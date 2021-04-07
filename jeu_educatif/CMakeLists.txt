@@ -29,9 +29,9 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        desktop.cpp
+        desktop.h
+        desktop.ui
         ressources.qrc
 )
 
