@@ -2,9 +2,11 @@
 #define DESKTOP_H
 
 #include <QMainWindow>
+#include "file.h"
 
 
 enum wallpaperType {professeur,joueur};
+
 namespace Ui {
 class Desktop;
 }

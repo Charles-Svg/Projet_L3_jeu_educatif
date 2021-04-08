@@ -32,6 +32,11 @@ set(PROJECT_SOURCES
         desktop.cpp
         desktop.h
         desktop.ui
+        abstractfile.cpp
+        abstractfile.h
+        file.cpp
+        file.h
+
         ressources.qrc
 )
 
