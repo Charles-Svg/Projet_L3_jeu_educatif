@@ -14,7 +14,7 @@ void Directory::OpenEvent()
 {
     //ce signal sera capté par la bureau et ouvrira la nouvelle FileWindow
 
-    _explorer=new FileWindow;
+    _explorer=new FileWindow(this->parentWidget());
     emit DirOpenned(_explorer);
     qDebug()<<"dir oppened";
 }

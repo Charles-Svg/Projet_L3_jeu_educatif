@@ -8,7 +8,7 @@
 #include <QMoveEvent>
 #include <QCloseEvent>
 
-class FileWindow : public QWidget
+class FileWindow : public QMdiSubWindow
 {
     Q_OBJECT
 public:

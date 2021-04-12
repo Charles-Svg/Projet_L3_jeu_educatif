@@ -51,6 +51,7 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
 void Desktop::addSubWindow(FileWindow * subwindow)
 {
     _zone->addSubWindow(subwindow);
+    qDebug()<<"fenetre ajoutée";
 }
 
 Desktop::~Desktop()

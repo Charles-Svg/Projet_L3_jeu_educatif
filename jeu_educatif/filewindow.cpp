@@ -1,7 +1,7 @@
 #include "filewindow.h"
 
 FileWindow::FileWindow(QWidget * parent)
-    :QWidget(parent)
+    :QMdiSubWindow(parent)
 {
 
     setAttribute(Qt::WA_DeleteOnClose);
