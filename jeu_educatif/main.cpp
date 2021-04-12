@@ -14,8 +14,9 @@ int main(int argc, char *argv[])
     a.setStyleSheet(styleSheet);
 
     Desktop w;
+
+     //w.showFullScreen(); //solution temporaire
     w.show();
-   // w.showFullScreen(); //solution temporaire
-    //w.setWindowState(Qt::WindowMaximized);
+    w.setWindowState(Qt::WindowMaximized);
     return a.exec();
 }

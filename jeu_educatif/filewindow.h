@@ -1,14 +1,14 @@
 #ifndef FILEWINDOW_H
 #define FILEWINDOW_H
 
-#include <QMdiArea>
-#include <QMdiSubWindow>
+
+#include <QWidget>
 #include <QIcon>
 #include <QDebug>
 #include <QMoveEvent>
 #include <QCloseEvent>
 
-class FileWindow : public QMdiSubWindow
+class FileWindow : public QWidget
 {
     Q_OBJECT
 public:

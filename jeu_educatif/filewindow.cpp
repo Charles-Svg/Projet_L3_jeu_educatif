@@ -1,16 +1,12 @@
 #include "filewindow.h"
 
 FileWindow::FileWindow(QWidget * parent)
-    :QMdiSubWindow(parent)
+    :QWidget(parent)
 {
 
-    setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle("Explorateur de Fichiers");
     setWindowIcon(QIcon(":/folder"));
-    setFixedSize(800,600);
-    move(500,500);
-    show();
-
+    setMinimumSize(800,600);
 
 }
 

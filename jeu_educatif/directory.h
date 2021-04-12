@@ -14,8 +14,6 @@ public:
 protected slots:
     void OpenEvent() override;
 
-private:
-    FileWindow * _explorer;
 
 signals:
    void DirOpenned(FileWindow *);

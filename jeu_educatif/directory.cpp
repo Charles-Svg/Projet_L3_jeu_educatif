@@ -13,8 +13,6 @@ Directory::Directory(QString const & nom,QWidget *parent)
 void Directory::OpenEvent()
 {
     //ce signal sera capté par la bureau et ouvrira la nouvelle FileWindow
-
-    _explorer=new FileWindow(this->parentWidget());
-    emit DirOpenned(_explorer);
+    emit DirOpenned(new FileWindow(this->parentWidget()));
     qDebug()<<"dir oppened";
 }

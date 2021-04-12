@@ -3,6 +3,8 @@
 
 
 #include <QMainWindow>
+#include <QMdiArea>
+#include <QMdiSubWindow>
 
 #include "filewindow.h"
 #include "file.h"

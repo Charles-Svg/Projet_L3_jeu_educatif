@@ -1,11 +1,15 @@
 #include "desktop.h"
 #include <QGridLayout>
-
+#include <QScreen>
 #include <QDebug>
+#include <QtGui>
 
 Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
   ,_zone(new QMdiArea(this))
 {
+
+    //permet de desactiver le maximize button
+    setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint );
 
     _zone->setBackground(QBrush());// permet de modifier/actualiser le background avec le css
     this->setCentralWidget(_zone);
@@ -13,11 +17,13 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
     setStyleSheet("border : 2px solid green;");
     QGridLayout* FileLayout= new QGridLayout(_zone);
 
+
     _zone->setLayout(FileLayout);
 
     //a remplacer par les tailles de l'ecran
-    this->setFixedWidth(1920);
-    this->setFixedHeight(1080);
+    QScreen* ecran=QGuiApplication::primaryScreen() ;
+
+    this->setFixedSize (ecran->availableSize());;
 
     _zone->setMinimumSize(this->size());
 
@@ -43,15 +49,16 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
        FileLayout->setColumnMinimumWidth(FileLayout->columnCount(),this->width());
        FileLayout->setRowMinimumHeight(FileLayout->rowCount(),this->height());
 
-       //_zone->addSubWindow(test);
 
        connect(dir1,&Directory::DirOpenned,this,&Desktop::addSubWindow);
 }
 
 void Desktop::addSubWindow(FileWindow * subwindow)
 {
-    _zone->addSubWindow(subwindow);
+    QMdiSubWindow* fileWindow= _zone->addSubWindow(subwindow);
     qDebug()<<"fenetre ajoutée";
+    fileWindow->move(this->width()/2-subwindow->width()/2,this->height()/2-subwindow->height()/2);
+    fileWindow->show();
 }
 
 Desktop::~Desktop()

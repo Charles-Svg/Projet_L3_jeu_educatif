@@ -3,6 +3,6 @@ QMdiArea {
 }
 
 
-FileWindow {
+QMdiSubWindow {
     background-color : rgb(50,50,75); ;
 }
