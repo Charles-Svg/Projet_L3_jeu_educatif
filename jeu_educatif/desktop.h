@@ -1,29 +1,30 @@
 #ifndef DESKTOP_H
 #define DESKTOP_H
 
+
 #include <QMainWindow>
+
+#include "filewindow.h"
 #include "file.h"
-
-
-enum wallpaperType {professeur,joueur};
-
-namespace Ui {
-class Desktop;
-}
+#include "directory.h"
 
 class Desktop : public QMainWindow
 {
     Q_OBJECT
-
 public:
     explicit Desktop(QWidget *parent = nullptr);
     ~Desktop();
 
-private:
-    Ui::Desktop *ui;
+public slots:
+    void addSubWindow(FileWindow *);
 
-protected:
-    void setWallpaper(wallpaperType type);
+signals:
+
+
+private:
+QMdiArea* _zone;
+
+
 };
 
 #endif // DESKTOP_H

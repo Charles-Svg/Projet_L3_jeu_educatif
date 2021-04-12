@@ -1,0 +1,8 @@
+QMdiArea {
+    background-image: url(:/wallpaper_prof);
+}
+
+
+FileWindow {
+    background-color : rgb(50,50,75); ;
+}

@@ -3,6 +3,8 @@
 
 #include "abstractfile.h"
 
+
+
 class File : public Abstractfile
 {
     Q_OBJECT
@@ -15,6 +17,10 @@ public:
 
 protected slots:
     void OpenEvent() override;
+
+private:
+    bool ecriture;
+
 
 };
 

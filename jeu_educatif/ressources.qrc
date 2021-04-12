@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file alias="wallpaper_prof">wallpaper_prof.jpg</file>
         <file alias="file">file2.png</file>
-        <file alias="folder2">folder2.png</file>
+        <file alias="folder">folder2.png</file>
+        <file alias="style">style.qss</file>
     </qresource>
 </RCC>
