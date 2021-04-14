@@ -6,9 +6,9 @@
 #include <QMdiArea>
 #include <QMdiSubWindow>
 
-#include "filewindow.h"
 #include "file.h"
-#include "directory.h"
+#include "filewindow.h"
+
 
 class Desktop : public QMainWindow
 {
@@ -18,7 +18,7 @@ public:
     ~Desktop();
 
 public slots:
-    void addSubWindow(FileWindow *);
+    void addSubWindow(Directory*);
 
 signals:
 

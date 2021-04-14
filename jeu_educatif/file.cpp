@@ -7,7 +7,6 @@ File::File(QString const & nom,QWidget *parent )
     setImage(":/file");
 
 
-
 }
 
 

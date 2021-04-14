@@ -1,20 +1,23 @@
 #ifndef FILEWINDOW_H
 #define FILEWINDOW_H
 
-
 #include <QWidget>
 #include <QIcon>
 #include <QDebug>
-#include <QMoveEvent>
-#include <QCloseEvent>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include "directory.h"
 
 class FileWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit FileWindow(QWidget * parent=nullptr); // parent=nullptr pour que ce soit une fenetre
+    explicit FileWindow(Directory *); // parent=nullptr pour que ce soit une fenetre
     void moveEvent(QMoveEvent *event) override;
 
+
+private:
+    Directory * rootDir;
 
 signals:
 

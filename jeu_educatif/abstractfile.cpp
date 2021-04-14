@@ -5,7 +5,7 @@
 #include <QDebug>
 
 Abstractfile::Abstractfile(QString const & nom,QWidget *parent,int size)
-    :QLabel(parent),_nom(new QLabel(nom,this)) ,_taille(size)
+    :QLabel(parent),_nom(new QLabel(nom,this)) ,_taille(size),locale(bureau)
 {
 
 
@@ -54,4 +54,10 @@ void Abstractfile::mousePressEvent(QMouseEvent * event)
        emit rightclicked();
 
     }
+}
+
+
+Abstractfile::~Abstractfile()
+{
+    delete _nom;
 }

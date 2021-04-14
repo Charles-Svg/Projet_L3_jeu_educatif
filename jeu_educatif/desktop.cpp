@@ -3,6 +3,9 @@
 #include <QScreen>
 #include <QDebug>
 #include <QtGui>
+#include <QStyleFactory>
+#include <QApplication>
+
 
 Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
   ,_zone(new QMdiArea(this))
@@ -43,6 +46,11 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
        FileLayout->setRowMinimumHeight(1,space);
        FileLayout->addWidget(dir1,2,0);
 
+
+
+       dir1->addfile("File 3");
+       dir1->addDir("dir2");
+
        qDebug()<<this->size();
 
        //permet de compacter les fichiers/dossier en haut a gauche
@@ -53,10 +61,11 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
        connect(dir1,&Directory::DirOpenned,this,&Desktop::addSubWindow);
 }
 
-void Desktop::addSubWindow(FileWindow * subwindow)
+void Desktop::addSubWindow(Directory * rootDir)
 {
+    FileWindow* subwindow=new FileWindow(rootDir);
     QMdiSubWindow* fileWindow= _zone->addSubWindow(subwindow);
-    qDebug()<<"fenetre ajoutée";
+
     fileWindow->move(this->width()/2-subwindow->width()/2,this->height()/2-subwindow->height()/2);
     fileWindow->show();
 }
