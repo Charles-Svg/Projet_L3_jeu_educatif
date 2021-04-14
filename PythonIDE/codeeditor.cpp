@@ -86,6 +86,10 @@ void CodeEditor::highlightCurrentLine()
     setExtraSelections(extraSelections);
 }
 
+
+/*
+ * Permet de surligner la ligne active
+ */
 void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
 {
     QPainter painter(lineNumberArea);
@@ -141,8 +145,6 @@ void CodeEditor::keyPressEvent(QKeyEvent *e){
     else if(e->key() == Qt::Key_Tab){
         this->insertPlainText("    ");
     }
-
-
 
     else {
         this->QPlainTextEdit::keyPressEvent(e);
