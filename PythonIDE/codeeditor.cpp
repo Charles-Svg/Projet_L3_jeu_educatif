@@ -5,6 +5,8 @@
 #include <QFontMetrics>
 #include <map>
 #include <vector>
+
+#include <QDebug>
 #include <iostream>
 
 
@@ -24,8 +26,6 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
     f.setPointSize(13);
     this->setFont(f);
 
-    setTabStopDistance(
-        QFontMetricsF(font()).horizontalAdvance(' ') * 4);
 }
 
 
@@ -111,6 +111,7 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
 
 void CodeEditor::keyPressEvent(QKeyEvent *e){
     //Récupération des caractères précédents et suivants
+    QString line = textCursor().block().text();
     QStringList str = this->toPlainText().split('\n', Qt::KeepEmptyParts);
     QString lastChar = str[this->textCursor().blockNumber()].mid(this->textCursor().columnNumber() -1 ,1);
     QString nextChar = str[this->textCursor().blockNumber()].mid(this->textCursor().columnNumber() ,1);
@@ -134,10 +135,43 @@ void CodeEditor::keyPressEvent(QKeyEvent *e){
     //Si le caractère entré est dans la liste des "a passer", que le caractère suivant est identique et que le caractère précédent n'est pas le caractère d'échappement, alors on passe juste le caractère
     if(std::find(autoSkip.begin(), autoSkip.end(), e->text()) != autoSkip.end() && lastChar != "\\" && e->text() == nextChar){
         this->moveCursor(QTextCursor::NextCharacter);
-    } else {
+
+    }
+    //Si le caractère entré est tab, on le remplace par 4 espaces
+    else if(e->key() == Qt::Key_Tab){
+        this->insertPlainText("    ");
+    }
+
+
+
+    else {
         this->QPlainTextEdit::keyPressEvent(e);
+        //Si la touche entrée a été appuyée
+        if(e->key() == Qt::Key_Return){
+            //On ajoute 4 espaces
+            if(lastChar == ":" || lastChar == "\\"){
+                this->insertPlainText("    ");
+            }
+            QString space;
+            for(int i = 0; i < line.size(); i++) {
+                    QChar c = line[i];
+
+                    if(!c.isSpace()) {
+                        space = line.left(i);
+                        break;
+                     }
+                    if(i + 1 == line.size()){
+                        space = line.left(i+1);
+                        break;
+                    }
+            }
+            insertPlainText(space);
+
+
+        }
+
         //Si le caractère d'avant n'est pas celui échappé
-        if(lastChar != "\\"){
+        else if(lastChar != "\\"){
             //Si le caractère fait partie de la liste auto-compléter, alors on rajoute le caractère à rajouter après le curseur
             if(autoComplete.find(e->text()) != autoComplete.end()){
                 QString enteredText = autoComplete.at(e->text());
