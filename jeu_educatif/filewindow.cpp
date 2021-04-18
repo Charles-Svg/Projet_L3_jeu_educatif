@@ -17,7 +17,9 @@ FileWindow::FileWindow(Directory * Dir)
     for(auto i=0;i<Dir->filelist().size();++i)
     {
 
-        Dir->filelist().at(i)->show();
+        auto fl= Dir->filelist();
+        auto a =fl.at(i);
+        a->show();
         layout->addWidget(Dir->filelist().at(i));
         layout->addStretch(1);
         qDebug()<<Dir->filelist().at(i)->nom();
@@ -27,6 +29,10 @@ FileWindow::FileWindow(Directory * Dir)
 
 }
 
+FileWindow::~FileWindow()
+{
+
+}
 
 void FileWindow::moveEvent(QMoveEvent *)
 {

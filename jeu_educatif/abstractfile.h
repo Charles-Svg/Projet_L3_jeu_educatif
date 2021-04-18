@@ -5,7 +5,7 @@
 #include <QMouseEvent>
 
 
-enum location{bureau,dossier};
+
 
 class Abstractfile : public QLabel
 {
@@ -16,7 +16,7 @@ public:
     ~Abstractfile();
 
     QString nom(){return _nom->text();};
-    void setLocale(location type){locale=type;};
+    void setLocale(Abstractfile* fenetre){locale=fenetre;};
 
 signals:
     void open();
@@ -34,7 +34,7 @@ protected:
     void mousePressEvent(QMouseEvent * event) override;
     virtual void setImage(QString const & filename);
 
-    location locale;
+    Abstractfile* locale;
 
 
 

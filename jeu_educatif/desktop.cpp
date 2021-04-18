@@ -63,7 +63,7 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
 
 void Desktop::addSubWindow(Directory * rootDir)
 {
-    FileWindow* subwindow=new FileWindow(rootDir);
+    FileWindow* subwindow = new FileWindow(rootDir);
     QMdiSubWindow* fileWindow= _zone->addSubWindow(subwindow);
 
     fileWindow->move(this->width()/2-subwindow->width()/2,this->height()/2-subwindow->height()/2);

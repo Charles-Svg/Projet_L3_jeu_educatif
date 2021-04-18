@@ -5,7 +5,7 @@
 #include <QDebug>
 
 Abstractfile::Abstractfile(QString const & nom,QWidget *parent,int size)
-    :QLabel(parent),_nom(new QLabel(nom,this)) ,_taille(size),locale(bureau)
+    :QLabel(parent),_nom(new QLabel(nom,this)) ,_taille(size),locale(nullptr)
 {
 
 

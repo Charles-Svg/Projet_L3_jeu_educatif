@@ -6,7 +6,6 @@ Directory::Directory(QString const & nom,QWidget *parent)
 {
     setImage(":/folder");
 
-
 }
 
 void Directory::OpenEvent()
@@ -14,7 +13,7 @@ void Directory::OpenEvent()
 
     //regarder s'il y a une fenetre ouverte sinon on en créer une autre
 
-    //faire l'intanciantion du FileWindow dans le desktop
+    //faire l'intanciation du FileWindow dans le desktop
     emit DirOpenned(this);
     qDebug()<<"dir oppened";
 }
@@ -24,7 +23,7 @@ void Directory::OpenEvent()
 void Directory::addfile(const QString &nom)
 {
     File * file=new File(nom,this->parentWidget());
-    file->setLocale(location::dossier);
+    file->setLocale(this);
     file->hide();
     FileList.push_back(file);
     emit FileListUpdated();
@@ -33,7 +32,7 @@ void Directory::addfile(const QString &nom)
 void Directory::addDir(const QString &nom)
 {
     Directory * dir=new Directory(nom,this->parentWidget());
-    dir->setLocale(location::dossier);
+    dir->setLocale(this);
     dir->hide();
     FileList.push_back(dir);
     emit FileListUpdated();

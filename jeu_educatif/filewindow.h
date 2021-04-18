@@ -14,6 +14,7 @@ class FileWindow : public QWidget
 public:
     explicit FileWindow(Directory *); // parent=nullptr pour que ce soit une fenetre
     void moveEvent(QMoveEvent *event) override;
+    ~FileWindow();
 
 
 private:
