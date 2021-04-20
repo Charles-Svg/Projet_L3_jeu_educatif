@@ -16,6 +16,7 @@ class Desktop : public QMainWindow
 public:
     explicit Desktop(QWidget *parent = nullptr);
     ~Desktop();
+    bool event(QEvent* event) override;
 
 public slots:
     void addSubWindow(Directory*);

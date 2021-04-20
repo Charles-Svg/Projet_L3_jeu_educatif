@@ -16,7 +16,8 @@ public:
     ~Abstractfile();
 
     QString nom(){return _nom->text();};
-    void setLocale(Abstractfile* fenetre){locale=fenetre;};
+    void setLocale(Abstractfile* fenetre){locale=fenetre;}
+    Abstractfile* getLocale(){return locale;}
 
 signals:
     void open();

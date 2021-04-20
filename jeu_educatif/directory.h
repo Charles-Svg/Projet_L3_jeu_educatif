@@ -19,13 +19,28 @@ protected slots:
 
 //faire en sorte que le Dir sache dans quoi il est
 signals:
-   void DirOpenned(Directory*);
+
    void FileListUpdated();
 
 protected:
     QVector<Abstractfile *> FileList;
 
 
+};
+
+//evenement personnalisé pour l'ouverture d'un dossier
+class OpenDirEvent : public QEvent
+{
+public:
+    OpenDirEvent(Directory *);
+
+    static QEvent::Type type();
+    Directory* sender();
+
+
+private:
+    static QEvent::Type MyType;
+    Directory * _sender;
 };
 
 #endif // DIRECTORY_H

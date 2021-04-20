@@ -39,8 +39,9 @@ set(PROJECT_SOURCES
         filewindow.h
         directory.cpp
         directory.h
+        dircontroller.cpp
+        dircontroller.h
 
-        style.qss
         ressources.qrc
 )
 

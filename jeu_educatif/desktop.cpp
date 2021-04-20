@@ -30,7 +30,7 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
 
     _zone->setMinimumSize(this->size());
 
-    int space=50;
+       int space=50;
 
        File * fichier = new File("File 1",this);
        FileLayout->addWidget(fichier,0,0);
@@ -48,6 +48,7 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
 
 
 
+
        dir1->addfile("File 3");
        dir1->addDir("dir2");
 
@@ -58,8 +59,27 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
        FileLayout->setRowMinimumHeight(FileLayout->rowCount(),this->height());
 
 
-       connect(dir1,&Directory::DirOpenned,this,&Desktop::addSubWindow);
+
 }
+
+
+bool Desktop::event(QEvent *event)
+{
+    if(event->type()==OpenDirEvent::type())
+    {
+        OpenDirEvent* ev= dynamic_cast<OpenDirEvent*>(event);
+        qDebug()<<"evenement recue de"<<ev->sender();
+        addSubWindow(ev->sender());
+
+        return true;
+    }
+    else
+    {
+        //qDebug()<<event->type();
+        return QWidget::event(event);
+    }
+}
+
 
 void Desktop::addSubWindow(Directory * rootDir)
 {
