@@ -14,16 +14,24 @@ public:
     void addfile(QString const & nom);
     QVector<Abstractfile *> filelist(){return FileList;}
 
+    void setparentDir(Directory* root){parentDir=root;}
+    Directory* getparentDir(){return parentDir;}
+
+    bool event(QEvent* event) override;
+
 protected slots:
     void OpenEvent() override;
 
-//faire en sorte que le Dir sache dans quoi il est
+
 signals:
 
    void FileListUpdated();
 
 protected:
     QVector<Abstractfile *> FileList;
+
+private:
+    Directory * parentDir;
 
 
 };
@@ -43,4 +51,16 @@ private:
     Directory * _sender;
 };
 
+class ChangeFileWindowEvent : public QEvent
+{
+public :
+    ChangeFileWindowEvent(Directory *);
+    static QEvent::Type type();
+    Directory* sender();
+
+private:
+    static QEvent::Type MyType;
+    Directory * _sender;
+
+};
 #endif // DIRECTORY_H

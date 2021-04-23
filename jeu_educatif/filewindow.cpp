@@ -21,7 +21,6 @@ FileWindow::FileWindow(Directory * Dir)
         a->show();
         layout->addWidget(a);
         layout->addStretch(1);
-        qDebug()<<Dir->filelist().at(i)->nom();
 
     }
 
@@ -34,7 +33,6 @@ FileWindow::~FileWindow()
     for (auto i = 0;i<rootDir->filelist().size();i++)
     {
         layout->removeWidget(rootDir->filelist().at(i));
-        qDebug()<<"remove : "<<rootDir->filelist().at(i)->nom();
         rootDir->filelist().at(i)->setParent(0);
 
     }

@@ -16,8 +16,6 @@ public:
     ~Abstractfile();
 
     QString nom(){return _nom->text();};
-    void setLocale(Abstractfile* fenetre){locale=fenetre;}
-    Abstractfile* getLocale(){return locale;}
 
 signals:
     void open();
@@ -35,7 +33,7 @@ protected:
     void mousePressEvent(QMouseEvent * event) override;
     virtual void setImage(QString const & filename);
 
-    Abstractfile* locale;
+
 
 
 

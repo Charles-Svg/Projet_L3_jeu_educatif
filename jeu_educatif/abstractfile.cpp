@@ -5,7 +5,7 @@
 #include <QDebug>
 
 Abstractfile::Abstractfile(QString const & nom,QWidget *parent,int size)
-    :QLabel(parent),_nom(new QLabel(nom,this)) ,_taille(size),locale(nullptr)
+    :QLabel(parent),_nom(new QLabel(nom,this)) ,_taille(size)
 {
 
 
@@ -44,13 +44,11 @@ void Abstractfile::mousePressEvent(QMouseEvent * event)
 {
     if(event->button() == Qt::LeftButton)
     {
-       qDebug()<<"left";
        emit leftclicked();
 
     }
     else if(event->button() == Qt::RightButton)
     {
-        qDebug()<<"right";
        emit rightclicked();
 
     }

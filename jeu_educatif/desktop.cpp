@@ -12,7 +12,7 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
 {
 
     //permet de desactiver le maximize button
-    setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint );
+    //setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint );
 
     _zone->setBackground(QBrush());// permet de modifier/actualiser le background avec le css
     this->setCentralWidget(_zone);
@@ -65,8 +65,10 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
 
 bool Desktop::event(QEvent *event)
 {
+
     if(event->type()==OpenDirEvent::type())
     {
+         qDebug()<<"type d'event recu par "<<this<<":"<<event;
         OpenDirEvent* ev= dynamic_cast<OpenDirEvent*>(event);
         qDebug()<<"evenement recue de"<<ev->sender();
         addSubWindow(ev->sender());
@@ -74,10 +76,19 @@ bool Desktop::event(QEvent *event)
         return true;
     }
     else
-    {
-        //qDebug()<<event->type();
+        if(event->type()==ChangeFileWindowEvent::type())   //ne rentre pas dans ce cas ????
+      {
+            qDebug()<<"type d'event recu par le bureau :"<<event;
+            ChangeFileWindowEvent* ev= dynamic_cast<ChangeFileWindowEvent*>(event);
+            qDebug()<<"evenement recue de"<<ev->sender();
+
+            //ChangeSubWindow
+
+            return true;
+       }
+
+    else
         return QWidget::event(event);
-    }
 }
 
 
