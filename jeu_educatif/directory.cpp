@@ -35,20 +35,19 @@ bool Directory::event(QEvent *event)
 
     if(event->type()==ChangeFileWindowEvent::type())
     {
-        qDebug()<<"entrée dans l'event de Directory";
+
+        ChangeFileWindowEvent* ev=dynamic_cast<ChangeFileWindowEvent*>(event);
         if(parentDir==nullptr)
         {
             // passe l'evenement à desktop
-
-            qDebug()<<"envoie a"<<this->parentWidget()->parentWidget()<<":"<<event;
-
-            QCoreApplication::postEvent(this->parentWidget()->parentWidget(),event);
+            ChangeFileWindowEvent* ev=dynamic_cast<ChangeFileWindowEvent*>(event);
+            QCoreApplication::postEvent(this->parentWidget()->parentWidget(),new ChangeFileWindowEvent(ev->sender()));
 
         }
         else {
             //passe l'evenement à sont parentDir
             qDebug()<<"envoie a son parent Dir";
-            QCoreApplication::postEvent(parentDir,event);
+            QCoreApplication::postEvent(parentDir,new ChangeFileWindowEvent(ev->sender()));
 
         }
         return true;

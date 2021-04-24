@@ -68,9 +68,7 @@ bool Desktop::event(QEvent *event)
 
     if(event->type()==OpenDirEvent::type())
     {
-         qDebug()<<"type d'event recu par "<<this<<":"<<event;
         OpenDirEvent* ev= dynamic_cast<OpenDirEvent*>(event);
-        qDebug()<<"evenement recue de"<<ev->sender();
         addSubWindow(ev->sender());
 
         return true;
@@ -78,7 +76,6 @@ bool Desktop::event(QEvent *event)
     else
         if(event->type()==ChangeFileWindowEvent::type())   //ne rentre pas dans ce cas ????
       {
-            qDebug()<<"type d'event recu par le bureau :"<<event;
             ChangeFileWindowEvent* ev= dynamic_cast<ChangeFileWindowEvent*>(event);
             qDebug()<<"evenement recue de"<<ev->sender();
 
