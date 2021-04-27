@@ -31,16 +31,29 @@ set(PROJECT_SOURCES
         main.cpp
         desktop.cpp
         desktop.h
+
         abstractfile.cpp
         abstractfile.h
+
+        abstractfileview.cpp
+        abstractfileview.h
+
         file.cpp
         file.h
+
+        fileview.cpp
+        fileview.h
+
         filewindow.cpp
         filewindow.h
+
         directory.cpp
         directory.h
-        dircontroller.cpp
-        dircontroller.h
+
+        directoryview.cpp
+        directoryview.h
+
+        evenements.cpp
 
         ressources.qrc
 )

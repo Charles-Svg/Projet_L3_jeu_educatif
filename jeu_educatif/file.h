@@ -7,16 +7,10 @@
 
 class File : public Abstractfile
 {
-    Q_OBJECT
 
 public:
-    explicit File(QString const & nom,QWidget *parent = nullptr);
+    explicit File(QString const & nom);
 
-
-
-
-protected slots:
-    void OpenEvent() override;
 
 private:
     bool ecriture;

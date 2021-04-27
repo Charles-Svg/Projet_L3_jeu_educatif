@@ -6,7 +6,8 @@
 #include <QMdiArea>
 #include <QMdiSubWindow>
 
-#include "file.h"
+#include "fileview.h"
+#include "directoryview.h"
 #include "filewindow.h"
 
 
@@ -20,6 +21,7 @@ public:
 
 public slots:
     void addSubWindow(Directory*);
+    void changeSubWindow(Directory*);
 
 signals:
 

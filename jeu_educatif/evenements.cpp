@@ -1,31 +1,35 @@
-#include "directory.h"
+#ifndef EVENEMENTS_CPP
+#define EVENEMENTS_CPP
 
 
-Directory::Directory(QString const & nom)
-    :Abstractfile(nom),_parentDir(nullptr)
-{}
-
-
-
-//ajoute une fichier ou dossier au Vector
-void Directory::addfile(const QString &nom)
+/*
+//evenement personnalisé pour l'ouverture d'un dossier
+class OpenDirEvent : public QEvent
 {
-    File * file=new File(nom);
-    FileList.push_back(file);
-}
+public:
+    OpenDirEvent(Directory *);
 
-void Directory::addDir(const QString &nom)
+    static QEvent::Type type();
+    Directory* sender();
+
+
+private:
+    static QEvent::Type MyType;
+    Directory * _sender;
+};
+
+class ChangeFileWindowEvent : public QEvent
 {
-    Directory * dir=new Directory(nom);
-    dir->_parentDir=this;
-    FileList.push_back(dir);
-}
+public :
+    ChangeFileWindowEvent(Directory *);
+    static QEvent::Type type();
+    Directory* sender();
 
+private:
+    static QEvent::Type MyType;
+    Directory * _sender;
 
-Directory::~Directory()
-{
-    delete _parentDir;
-}
+};*/
 
 
 /*
@@ -54,3 +58,6 @@ QEvent::Type ChangeFileWindowEvent::type(){return MyType;}
 
 Directory* ChangeFileWindowEvent::sender(){return _sender;}
 */
+
+
+#endif // EVENEMENTS_CPP
