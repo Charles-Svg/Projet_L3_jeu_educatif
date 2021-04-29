@@ -14,7 +14,7 @@ public:
     ~Directory();
 
 
-    void addDir(QString const & nom);
+    Directory* addDir(QString const & nom);
     void addfile(QString const & nom);
     QVector<Abstractfile *> filelist(){return FileList;}
 

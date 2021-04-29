@@ -14,21 +14,22 @@ void Directory::addfile(const QString &nom)
     FileList.push_back(file);
 }
 
-void Directory::addDir(const QString &nom)
+//mettrre le type de la en methode Directory*
+Directory* Directory::addDir(const QString &nom)
 {
     Directory * dir=new Directory(nom);
     dir->_parentDir=this;
     FileList.push_back(dir);
+    return dir;
 }
 
 
 Directory::~Directory()
 {
-    delete _parentDir;
+
     for(QVector<Abstractfile*>::iterator p=FileList.begin();p!=FileList.end();++p)
     {
-        qDebug()<<p<<*p;
-       //delete *p; //erreur de segmentation ici
+        delete *p;
     }
 }
 

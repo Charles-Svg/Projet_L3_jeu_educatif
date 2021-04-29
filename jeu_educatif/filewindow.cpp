@@ -33,7 +33,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
        }
        else if(Directory* a=dynamic_cast<Directory*>(rootDir->filelist().at(i)))
        {
-            //creer un dossier
+           //creer un dossier
            DirectoryView* b=new DirectoryView(a);
            contenu.push_back(b);
            layout->addWidget(b);
