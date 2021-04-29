@@ -40,7 +40,4 @@ void AbstractfileView::mousePressEvent(QMouseEvent * event)
     }
 }
 
-AbstractfileView::~AbstractfileView()
-{
-    delete _nom;
-}
+

@@ -9,7 +9,7 @@
 #include "fileview.h"
 #include "directoryview.h"
 #include "filewindow.h"
-
+#include <QVector>
 
 class Desktop : public QMainWindow
 {
@@ -23,11 +23,10 @@ public slots:
     void addSubWindow(Directory*);
     void changeSubWindow(Directory*);
 
-signals:
-
 
 private:
 QMdiArea* _zone;
+QVector<Abstractfile*> contenu;
 
 
 };

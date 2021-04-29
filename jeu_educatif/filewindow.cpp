@@ -20,47 +20,50 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
     layout->setAlignment(Qt::AlignTop);
     layout->addStretch(1);
 
- /*   for(auto i=0;i<rootDir->filelist().size();++i)
+    for(auto i=0;i<rootDir->filelist().size();++i)
     {
 
-        auto fl= rootDir->filelist();
-        auto a =fl.at(i);
-        a->show();
-        layout->addWidget(a);
+       if(File* a=dynamic_cast<File*>(rootDir->filelist().at(i)))
+        {
+           //on ceer un nouveau fichier
+           FileView* b= new FileView(a);
+           contenu.push_back(b);
+           layout->addWidget(b);
+
+       }
+       else if(Directory* a=dynamic_cast<Directory*>(rootDir->filelist().at(i)))
+       {
+            //creer un dossier
+           DirectoryView* b=new DirectoryView(a);
+           contenu.push_back(b);
+           layout->addWidget(b);
+       }
+
         layout->addStretch(1);
 
-    } */
+    }
 
 
 }
 
 void FileWindow::goBack(bool)
 {
- /*   if(rootDir->getparentDir()!=nullptr)
+   if(rootDir->parentDir()!=nullptr)
     {
         //faire un event
-        QCoreApplication::postEvent(desktop,new goPreviousEvent(rootDir->getparentDir()));
+        QCoreApplication::postEvent(desktop,new goPreviousEvent(rootDir->parentDir()));
     }
-    */
+
 }
 
 FileWindow::~FileWindow()
 {
-   /* for (auto i = 0;i<rootDir->filelist().size();i++)
+
+    for(QVector<AbstractfileView*>::iterator p=contenu.begin();p!=contenu.end();++p)
     {
-        layout->removeWidget(rootDir->filelist().at(i));
-        rootDir->filelist().at(i)->setParent(0); //potentielle fuite mémoire
-    }*/
+        delete *p;
+    }
 }
 
-
-//Event
-/*
-QEvent::Type goPreviousEvent::MyType= static_cast<QEvent::Type>(QEvent::registerEventType());
-
-goPreviousEvent::goPreviousEvent(Directory* previousDir)
-    :QEvent(MyType),_previousDir(previousDir)
-{}
-*/
 
 

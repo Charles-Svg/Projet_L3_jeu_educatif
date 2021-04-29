@@ -8,6 +8,7 @@ class Abstractfile
 
 public:
     explicit Abstractfile(QString const & nom);
+    virtual ~Abstractfile()=default;
     QString nom(){return _nom;}
 
 

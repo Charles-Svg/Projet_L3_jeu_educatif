@@ -33,3 +33,15 @@ private:
 
 };
 #endif // EVENEMENTS_H
+
+class goPreviousEvent : public QEvent
+{
+public:
+    goPreviousEvent(Directory*);
+    static QEvent::Type type(){return MyType;}
+    Directory* previousDir(){return _previousDir;}
+
+private:
+    static QEvent::Type MyType;
+    Directory * _previousDir;
+};

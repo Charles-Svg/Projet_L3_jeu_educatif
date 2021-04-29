@@ -7,6 +7,8 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include "directory.h"
+#include "directoryview.h"
+#include "fileview.h"
 
 class FileWindow : public QWidget
 {
@@ -24,23 +26,13 @@ private:
     Directory * rootDir;
     QHBoxLayout * layout;
     QWidget * desktop;
+    QVector<AbstractfileView*> contenu;
 
 signals:
     void goPrevious(Directory* parentDir);
 
 
 };
-/*
-class goPreviousEvent : public QEvent
-{
-public:
-    goPreviousEvent(Directory*);
-    static QEvent::Type type(){return MyType;}
-    Directory* previousDir(){return _previousDir;}
 
-private:
-    static QEvent::Type MyType;
-    Directory * _previousDir;
-};*/
 
 #endif // FILEWINDOW_H

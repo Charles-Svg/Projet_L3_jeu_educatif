@@ -5,5 +5,4 @@
 
 Abstractfile::Abstractfile(QString const & nom)
     :_nom(nom)
-
 {}

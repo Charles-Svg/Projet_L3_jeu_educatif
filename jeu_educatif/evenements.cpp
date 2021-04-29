@@ -31,4 +31,10 @@ Directory* ChangeFileWindowEvent::sender(){return _sender;}
 
 
 
+QEvent::Type goPreviousEvent::MyType= static_cast<QEvent::Type>(QEvent::registerEventType());
+
+goPreviousEvent::goPreviousEvent(Directory* previousDir)
+    :QEvent(MyType),_previousDir(previousDir)
+{}
+
 #endif // EVENEMENTS_CPP

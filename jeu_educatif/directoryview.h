@@ -12,10 +12,7 @@ class DirectoryView : public AbstractfileView
       Q_OBJECT
 public:
     DirectoryView(Directory*modeldir, QWidget *parent = nullptr);
-    ~DirectoryView();
-
-    //bool event(QEvent* event) override;
-
+    ~DirectoryView()=default;
 
 
     Directory* _model;

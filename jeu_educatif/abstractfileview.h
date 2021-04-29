@@ -11,9 +11,10 @@ class AbstractfileView : public QLabel
       Q_OBJECT
 public:
     AbstractfileView(Abstractfile*, QWidget * parent=nullptr, int size=48);
-    ~AbstractfileView();
+    virtual ~AbstractfileView()=default;
 
-    QString nom(){return _nom->text();}
+
+    QString nom()const{return _nom->text();}
 
 private:
     QLabel* _nom; //ce sera le nom du fichier positionné en bas du Qlabel

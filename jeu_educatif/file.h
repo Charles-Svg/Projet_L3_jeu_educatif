@@ -10,6 +10,7 @@ class File : public Abstractfile
 
 public:
     explicit File(QString const & nom);
+    ~File()=default;
 
 
 private:

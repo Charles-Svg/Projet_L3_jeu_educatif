@@ -6,6 +6,7 @@ FileView::FileView(File* filemodel,QWidget *parent)
     setImage(":/file");
 }
 
+
 void FileView::OpenEvent()
 {
     qDebug()<<"ouvre le fichier";

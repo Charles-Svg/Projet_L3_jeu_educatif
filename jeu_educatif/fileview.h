@@ -9,6 +9,7 @@ class FileView : public AbstractfileView
       Q_OBJECT
 public:
     FileView(File*,QWidget *parent = nullptr);
+    ~FileView()=default;
 
 private:
     bool ecriture;

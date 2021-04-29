@@ -34,28 +34,30 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
        int space=50;
 
        //changer les parents des fichiers et dossier a QMdiArea
-       File fichier("File 1");
-       FileView * file1 = new FileView(&fichier,_zone);
+       File* fichier=new File("File 1");
+       contenu.push_back(fichier);
+       FileView * file1 = new FileView(fichier,_zone);
        FileLayout->addWidget(file1,0,0);
        FileLayout->setColumnMinimumWidth(1,space);
 
 
-       File fichier2("File 2");
-       FileView * file2 = new FileView(&fichier2,_zone);
+       File* fichier2=new File("File 2");
+       contenu.push_back(fichier2);
+       FileView * file2 = new FileView(fichier2,_zone);
        FileLayout->addWidget(file2,0,2);
        FileLayout->setColumnMinimumWidth(3,space);
 
 
-       Directory dossier1("Dir1");
-       qDebug()<<"dossier crée, son parent :"<<dossier1.parentDir();
-       DirectoryView * dir1 =new DirectoryView(&dossier1,_zone);
+       Directory * dossier1=new Directory("Dir1");
+       contenu.push_back(dossier1);
+       DirectoryView * dir1 =new DirectoryView(dossier1,_zone);
        FileLayout->setRowMinimumHeight(1,space);
        FileLayout->addWidget(dir1,2,0);
 
 
 
-      //  dir1->addfile("File 3");
-      //  dir1->addDir("dir2");
+        dossier1->addfile("File 3");
+        dossier1->addDir("dir2");
 
        qDebug()<<this->size();
 
@@ -73,19 +75,17 @@ bool Desktop::event(QEvent *event)
 
      if(event->type()==OpenDirEvent::type())
     {
-       // OpenDirEvent* ev= dynamic_cast<OpenDirEvent*>(event);
-       // addSubWindow(ev->sender());
-        qDebug()<<"Open Dir event";
+        OpenDirEvent* ev= dynamic_cast<OpenDirEvent*>(event);
+        addSubWindow(ev->sender());
         return true;
     }
     else if(event->type()==ChangeFileWindowEvent::type())
       {
-           // ChangeFileWindowEvent* ev= dynamic_cast<ChangeFileWindowEvent*>(event);
-            //changeSubWindow(ev->sender());
-            qDebug()<<"Change file Window event";
+            ChangeFileWindowEvent* ev= dynamic_cast<ChangeFileWindowEvent*>(event);
+            changeSubWindow(ev->sender());
             return true;
        }
- /*   else if(event->type()==goPreviousEvent::type())
+    else if(event->type()==goPreviousEvent::type())
     {
         goPreviousEvent* ev= dynamic_cast<goPreviousEvent*>(event);
         changeSubWindow(ev->previousDir());
@@ -93,7 +93,7 @@ bool Desktop::event(QEvent *event)
         return true;
     }
 
-    else */
+    else
         return QWidget::event(event);
 }
 
@@ -122,4 +122,8 @@ void Desktop::changeSubWindow(Directory* sender)
 Desktop::~Desktop()
 {
     delete _zone;
+    for (QVector<Abstractfile*>::iterator p=contenu.begin();p!=contenu.end();++p)
+    {
+        delete *p;
+    }
 }
