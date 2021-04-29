@@ -47,15 +47,15 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
 
 
        Directory dossier1("Dir1");
+       qDebug()<<"dossier crée, son parent :"<<dossier1.parentDir();
        DirectoryView * dir1 =new DirectoryView(&dossier1,_zone);
        FileLayout->setRowMinimumHeight(1,space);
        FileLayout->addWidget(dir1,2,0);
 
 
 
-
-     //  dir1->addfile("File 3");
-     //  dir1->addDir("dir2");
+      //  dir1->addfile("File 3");
+      //  dir1->addDir("dir2");
 
        qDebug()<<this->size();
 
@@ -71,21 +71,21 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
 bool Desktop::event(QEvent *event)
 {
 
-/*    if(event->type()==OpenDirEvent::type())
+     if(event->type()==OpenDirEvent::type())
     {
-        OpenDirEvent* ev= dynamic_cast<OpenDirEvent*>(event);
-        addSubWindow(ev->sender());
-
+       // OpenDirEvent* ev= dynamic_cast<OpenDirEvent*>(event);
+       // addSubWindow(ev->sender());
+        qDebug()<<"Open Dir event";
         return true;
     }
     else if(event->type()==ChangeFileWindowEvent::type())
       {
-            ChangeFileWindowEvent* ev= dynamic_cast<ChangeFileWindowEvent*>(event);
-            changeSubWindow(ev->sender());
-
+           // ChangeFileWindowEvent* ev= dynamic_cast<ChangeFileWindowEvent*>(event);
+            //changeSubWindow(ev->sender());
+            qDebug()<<"Change file Window event";
             return true;
        }
-    else if(event->type()==goPreviousEvent::type())
+ /*   else if(event->type()==goPreviousEvent::type())
     {
         goPreviousEvent* ev= dynamic_cast<goPreviousEvent*>(event);
         changeSubWindow(ev->previousDir());

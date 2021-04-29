@@ -5,6 +5,7 @@
 
 #include "abstractfileview.h"
 #include "directory.h"
+#include "evenements.h"
 
 class DirectoryView : public AbstractfileView
 {
@@ -13,12 +14,12 @@ public:
     DirectoryView(Directory*modeldir, QWidget *parent = nullptr);
     ~DirectoryView();
 
-    bool event(QEvent* event) override;
+    //bool event(QEvent* event) override;
 
 
 
-private:
     Directory* _model;
+private:
 
 
 protected:

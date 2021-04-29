@@ -54,6 +54,7 @@ set(PROJECT_SOURCES
         directoryview.h
 
         evenements.cpp
+        evenements.h
 
         ressources.qrc
 )
