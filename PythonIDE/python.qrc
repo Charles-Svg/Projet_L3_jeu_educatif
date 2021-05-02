@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>python/cesar.py</file>
+        <file>python/test_cesar.py</file>
+    </qresource>
+</RCC>

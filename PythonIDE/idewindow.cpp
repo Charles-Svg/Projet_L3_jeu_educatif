@@ -8,7 +8,7 @@
 #include <QTextCodec>
 
 
-IDEWindow::IDEWindow(QWidget *parent) :
+IDEWindow::IDEWindow(QWidget *parent, Enigme e) :
     QMainWindow(parent),
     ui(new Ui::IDEWindow)
 {
@@ -66,6 +66,28 @@ IDEWindow::IDEWindow(QWidget *parent) :
     connect(this->_stopProgram, &QToolButton::clicked, this, &IDEWindow::stopProgram);
 
 
+
+    switch(e){
+    case Enigme::Cesar:
+        QFile file(":/python/cesar.py");
+        file.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content;
+        while(!file.atEnd())
+            content.append(file.readLine());
+        this->_codeEditor->setPlainText(content);
+        file.close();
+
+        QFile file2(":/python/test_cesar.py");
+        file2.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content2;
+        while(!file2.atEnd())
+            content2.append(file2.readLine());
+        this->writeInFile("test_cesar.py", content2);
+        file2.close();
+        this->_testFilename = "test_cesar.py";
+        break;
+    }
+
 }
 
 IDEWindow::~IDEWindow()
@@ -88,7 +110,7 @@ void IDEWindow::writeInFile(QString filename, QString data){
 }
 
 void IDEWindow::executeFile(QString filename){
-    QStringList arguments {filename, "-X utf-8"};
+    QStringList arguments {filename};
     this->_executor.start("python", arguments);
     this->_consoleOutput->clear();
     this->_consoleOutput->insertPlainText("-->");
@@ -105,7 +127,10 @@ void IDEWindow::runProgram(){
     QString filename("temp.py");
     QString data(this->_codeEditor->toPlainText());
     writeInFile(filename, data);
-    executeFile(filename);
+    if(this->_testFilename.isNull())
+        executeFile(filename);
+    else
+        executeFile(this->_testFilename);
     this->_stopProgram->setEnabled(true);
     ui->actionStop->setEnabled(true);
 

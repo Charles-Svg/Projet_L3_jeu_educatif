@@ -145,8 +145,6 @@ void CodeEditor::keyPressEvent(QKeyEvent *e){
         this->insertPlainText("    ");
     }
 
-
-
     else {
         this->QPlainTextEdit::keyPressEvent(e);
         //Si la touche entrée a été appuyée
