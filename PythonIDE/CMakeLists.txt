@@ -39,6 +39,7 @@ set(PROJECT_SOURCES
         pythonhighlighter.cpp
         pythonhighlighter.h
         resources.qrc
+        python.qrc
 )
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(PythonIDE
