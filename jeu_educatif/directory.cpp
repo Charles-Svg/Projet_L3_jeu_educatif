@@ -1,23 +1,23 @@
 #include "directory.h"
 #include <QDebug>
 
-Directory::Directory(QString const & nom)
-    :Abstractfile(nom),_parentDir(nullptr)
+Directory::Directory(QString const & nom,bool ouvrable)
+    :Abstractfile(nom,ouvrable),_parentDir(nullptr)
 {}
 
 
 
 //ajoute une fichier ou dossier au Vector
-void Directory::addfile(const QString &nom)
+void Directory::addFile(const QString &nom,FileType type,bool ouvrable)
 {
-    File * file=new File(nom);
+    File * file=new File(nom,type,ouvrable);
     FileList.push_back(file);
 }
 
 //mettrre le type de la en methode Directory*
-Directory* Directory::addDir(const QString &nom)
+Directory* Directory::addDir(const QString &nom,bool ouvrable)
 {
-    Directory * dir=new Directory(nom);
+    Directory * dir=new Directory(nom,ouvrable);
     dir->_parentDir=this;
     FileList.push_back(dir);
     return dir;

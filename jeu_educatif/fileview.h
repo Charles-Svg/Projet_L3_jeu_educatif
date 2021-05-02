@@ -4,6 +4,8 @@
 #include "file.h"
 #include "abstractfileview.h"
 
+
+
 class FileView : public AbstractfileView
 {
       Q_OBJECT
@@ -13,6 +15,7 @@ public:
 
 private:
     bool ecriture;
+    File * _model;
 
 protected:
 void OpenEvent() override;

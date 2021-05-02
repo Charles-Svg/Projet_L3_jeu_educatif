@@ -1,0 +1,17 @@
+* {
+
+border : 2px solid green;
+
+}
+
+QMdiArea {
+    background-image: url(:/wallpaper_eleve);
+
+}
+
+
+QMdiSubWindow {
+    background-color : rgb(50,50,75);
+    padding :4px;
+   /* border-color: lightgray; */
+}

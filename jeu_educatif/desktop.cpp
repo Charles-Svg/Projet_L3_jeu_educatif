@@ -6,9 +6,10 @@
 #include <QtGui>
 #include <QStyleFactory>
 #include <QApplication>
+#include <QFile>
 
-
-Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
+Desktop::Desktop(User user,QWidget *parent) :
+    QMainWindow(parent)
   ,_zone(new QMdiArea(this))
 {
 
@@ -18,57 +19,149 @@ Desktop::Desktop(QWidget *parent) : QMainWindow(parent)
     _zone->setBackground(QBrush());// permet de modifier/actualiser le background avec le css
     this->setCentralWidget(_zone);
 
-    setStyleSheet("border : 2px solid green;");
-    QGridLayout* FileLayout= new QGridLayout(_zone);
 
 
-    _zone->setLayout(FileLayout);
 
-    //a remplacer par les tailles de l'ecran
+    //s'adapte a la taille de l'écran
     QScreen* ecran=QGuiApplication::primaryScreen() ;
 
     this->setFixedSize (ecran->availableSize());;
 
     _zone->setMinimumSize(this->size());
 
-       int space=50;
+    switch(user)
+    {
 
-       //changer les parents des fichiers et dossier a QMdiArea
-       File* fichier=new File("File 1");
-       contenu.push_back(fichier);
-       FileView * file1 = new FileView(fichier,_zone);
-       FileLayout->addWidget(file1,0,0);
-       FileLayout->setColumnMinimumWidth(1,space);
+        case Eleve:
+        {
+            QFile style(":/styleEleve");
+            style.open(QFile::ReadOnly);
+            QString styleSheet = (style.readAll());
+            this->setStyleSheet(styleSheet);
+            addFilesEleve();
+
+         }
+            break;
+
+        case Prof :
+        {
+            //methode prof
+            QFile style(":/styleProf");
+            style.open(QFile::ReadOnly);
+            QString styleSheet = (style.readAll());
+            this->setStyleSheet(styleSheet);
+            addFilesProf();
+
+        }
+            break;
+    }
+
+}
+
+void Desktop::addFilesProf()
+{
+    QGridLayout* FileLayout= new QGridLayout(_zone);
 
 
-       File* fichier2=new File("File 2");
-       contenu.push_back(fichier2);
-       FileView * file2 = new FileView(fichier2,_zone);
-       FileLayout->addWidget(file2,0,2);
-       FileLayout->setColumnMinimumWidth(3,space);
+    _zone->setLayout(FileLayout);
+
+    int space=50;
+
+    Directory * cePC=new Directory("Ce PC");
+    contenu.push_back(cePC);
+    DirectoryView * cePCView =new DirectoryView(cePC,_zone);
+    FileLayout->addWidget(cePCView,0,0);
+    FileLayout->setColumnMinimumWidth(1,space);
 
 
-       Directory * dossier1=new Directory("Dir1");
-       contenu.push_back(dossier1);
-       DirectoryView * dir1 =new DirectoryView(dossier1,_zone);
-       FileLayout->setRowMinimumHeight(1,space);
-       FileLayout->addWidget(dir1,2,0);
+    Directory* UsbKey=new Directory("Clé USB");
+    contenu.push_back(UsbKey);
+    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,_zone);
+    FileLayout->setRowMinimumHeight(1,space);
+    FileLayout->addWidget(UsbKeyView,2,0);
 
 
+     //permet de compacter les fichiers/dossier en haut a gauche
+    FileLayout->setColumnMinimumWidth(FileLayout->columnCount(),this->width());
+    FileLayout->setRowMinimumHeight(FileLayout->rowCount(),this->height());
 
-        dossier1->addfile("File 3");
-        dossier1->addDir("dir2");
+    //ce PC
+        auto Vid=cePC->addDir("Vidéos");
+        Vid->addDir("NSFW",0); // non ouvrable
+        cePC->addDir("Téléchargements");
+        cePC->addDir("Images");
 
-       qDebug()<<this->size();
 
-       //permet de compacter les fichiers/dossier en haut a gauche
-       FileLayout->setColumnMinimumWidth(FileLayout->columnCount(),this->width());
-       FileLayout->setRowMinimumHeight(FileLayout->rowCount(),this->height());
+        auto Doc=cePC->addDir("Documents");
+        // dans Documents
+            auto Notes=Doc->addDir("Notes et resultats");
+            auto Annales= Notes->addDir("Annales Examens");
+            Annales->addFile("Examen1 2019-2020",FileType::PDF);
+            auto notesExam=Notes->addDir("Notes Examens");
+            auto Exam1= notesExam->addDir("Notes examen 1 2019");
+            Exam1->addFile("Barème",FileType::PDF);
+            //Exam1->addFile("Notes exam 1",FileType::)
+
+            Doc->addDir("Cours");
+
+    //contenu clé USB
 
 
 
 }
 
+void Desktop::addFilesEleve()
+{
+
+    QGridLayout* FileLayout= new QGridLayout(_zone);
+
+
+    _zone->setLayout(FileLayout);
+
+    int space=50;
+
+    Directory * cePC=new Directory("Ce PC");
+    contenu.push_back(cePC);
+    DirectoryView * cePCView =new DirectoryView(cePC,_zone);
+    FileLayout->addWidget(cePCView,0,0);
+    FileLayout->setColumnMinimumWidth(1,space);
+
+
+    Directory* UsbKey=new Directory("Clé USB");
+    contenu.push_back(UsbKey);
+    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,_zone);
+    FileLayout->setRowMinimumHeight(1,space);
+    FileLayout->addWidget(UsbKeyView,2,0);
+
+
+    //permet de compacter les fichiers/dossier en haut a gauche
+   FileLayout->setColumnMinimumWidth(FileLayout->columnCount(),this->width());
+   FileLayout->setRowMinimumHeight(FileLayout->rowCount(),this->height());
+
+
+    //contenu de CePC
+    cePC->addDir("Vidéos");
+
+    auto tel=cePC->addDir("Téléchargements");
+        tel->addFile("fortine.exe",FileType::PDF); //a changer !!!
+        tel->addFile("glitcher pro v-bucks.bat",FileType::PDF); // a changer !!!
+
+    cePC->addDir("Images");
+
+    auto doc=cePC->addDir("Documents");
+        doc->addDir("Fortnite");
+        auto cours=cePC->addDir("Cours");
+            cours->addDir("Maths");
+            cours->addDir("Karaté");
+            cours->addDir("Français");
+
+            auto crypto= cours->addDir("Cryptographie");
+                crypto->addFile("Vigenere",FileType::PDF);
+                crypto->addFile("Substitution mot-clé",FileType::PDF);
+                crypto->addFile("Césaaaaar",FileType::PDF); //ref à jojo
+
+
+}
 
 bool Desktop::event(QEvent *event)
 {

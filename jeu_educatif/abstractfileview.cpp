@@ -1,12 +1,29 @@
 #include "abstractfileview.h"
+#include <math.h>
 
-AbstractfileView::AbstractfileView(Abstractfile* filemodel, QWidget* parent,int size)
-    :QLabel(parent),_nom(new QLabel(filemodel->nom(),this)),_taille(size)
+AbstractfileView::AbstractfileView(Abstractfile* filemodel, QWidget* parent,int larg,int haut)
+    :QLabel(parent),_nom(new QLabel(filemodel->nom(),this)),largeur(larg),hauteur(haut)
 {
-     setFixedSize(_taille,_taille+16);
-     setAlignment(Qt::AlignTop);
+
+     auto metrics = QFontMetrics(QApplication::font());
+     int labelheight=18;
+     //faire ne sorte que le label du nom ait une taille qui s'adapte
+    if(metrics.horizontalAdvance(filemodel->nom())>larg-4)
+    {
+        int rapport=(metrics.horizontalAdvance(filemodel->nom())/larg)+1;
+        qDebug()<<"rapport de "+filemodel->nom()<<rapport;
+        labelheight=labelheight*rapport;
+    }
     _nom->setAlignment(Qt::AlignCenter);
-    _nom->setGeometry(0,this->height()-15,_taille,15);
+    _nom->setWordWrap(1);
+
+
+
+     setFixedSize(largeur,hauteur+labelheight);
+     setAlignment(Qt::AlignHCenter | Qt::AlignTop );
+
+
+    _nom->setGeometry(0,this->height()-labelheight,largeur,labelheight);
     _nom->setStyleSheet("color : white");
 }
 
@@ -14,8 +31,8 @@ AbstractfileView::AbstractfileView(Abstractfile* filemodel, QWidget* parent,int 
 void AbstractfileView::setImage(QString const & filename)
 {
     QPixmap fileImg(filename);
-    fileImg=fileImg.scaledToHeight(_taille,Qt::SmoothTransformation);
-    fileImg=fileImg.scaledToWidth(_taille,Qt::SmoothTransformation);
+    fileImg=fileImg.scaledToHeight(48,Qt::SmoothTransformation);
+    fileImg=fileImg.scaledToWidth(48,Qt::SmoothTransformation);
 
     this->setPixmap(fileImg);
 }

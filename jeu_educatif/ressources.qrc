@@ -3,6 +3,8 @@
         <file alias="wallpaper_prof">wallpaper_prof.jpg</file>
         <file alias="file">file2.png</file>
         <file alias="folder">folder2.png</file>
-        <file alias="style">style.qss</file>
+        <file alias="styleProf">styleProf.qss</file>
+        <file alias="styleEleve">styleEleve.qss</file>
+        <file alias="wallpaper_eleve">wallpaper_eleve.png</file>
     </qresource>
 </RCC>

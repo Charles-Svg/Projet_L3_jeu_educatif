@@ -8,12 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QFile style(":/style");
-    style.open(QFile::ReadOnly);
-    QString styleSheet = (style.readAll());
-    a.setStyleSheet(styleSheet);
-
-    Desktop w;
+    Desktop w(User::Prof);
 
      //w.showFullScreen(); //solution temporaire
     w.show();

@@ -11,11 +11,13 @@
 #include "filewindow.h"
 #include <QVector>
 
+enum User {Prof,Eleve};
+
 class Desktop : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit Desktop(QWidget *parent = nullptr);
+    explicit Desktop(User u,QWidget *parent = nullptr);
     ~Desktop();
     bool event(QEvent* event) override;
 
@@ -28,7 +30,12 @@ private:
 QMdiArea* _zone;
 QVector<Abstractfile*> contenu;
 
+//methode pour séparer le code
+void addFilesProf();
+void addFilesEleve();
+
 
 };
+
 
 #endif // DESKTOP_H
