@@ -1,4 +1,4 @@
-#include "desktop.h"
+#include "mainwindow.h"
 #include <QApplication>
 #include <QFile>
 #include <QtDebug>
@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Desktop w(User::Prof);
+    MainWindow w;
 
      //w.showFullScreen(); //solution temporaire
     w.show();

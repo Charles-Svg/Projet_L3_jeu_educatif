@@ -13,7 +13,7 @@
 
 enum User {Prof,Eleve};
 
-class Desktop : public QMainWindow
+class Desktop : public QMdiArea
 {
     Q_OBJECT
 public:
@@ -22,12 +22,11 @@ public:
     bool event(QEvent* event) override;
 
 public slots:
-    void addSubWindow(Directory*);
+    void ajouteSubWindow(Directory*);
     void changeSubWindow(Directory*);
 
 
 private:
-QMdiArea* _zone;
 QVector<Abstractfile*> contenu;
 
 //methode pour séparer le code

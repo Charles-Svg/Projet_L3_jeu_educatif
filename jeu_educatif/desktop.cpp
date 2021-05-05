@@ -1,7 +1,7 @@
 #include "desktop.h"
 
 #include <QGridLayout>
-#include <QScreen>
+
 #include <QDebug>
 #include <QtGui>
 #include <QStyleFactory>
@@ -9,25 +9,17 @@
 #include <QFile>
 
 Desktop::Desktop(User user,QWidget *parent) :
-    QMainWindow(parent)
-  ,_zone(new QMdiArea(this))
+    QMdiArea(parent)
 {
 
     //permet de desactiver le maximize button
     //setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint );
 
-    _zone->setBackground(QBrush());// permet de modifier/actualiser le background avec le css
-    this->setCentralWidget(_zone);
-
-
-
+    setBackground(QBrush());// permet de modifier/actualiser le background avec le css
 
     //s'adapte a la taille de l'écran
-    QScreen* ecran=QGuiApplication::primaryScreen() ;
 
-    this->setFixedSize (ecran->availableSize());;
-
-    _zone->setMinimumSize(this->size());
+    setMinimumSize(parent->size());
 
     switch(user)
     {
@@ -60,23 +52,23 @@ Desktop::Desktop(User user,QWidget *parent) :
 
 void Desktop::addFilesProf()
 {
-    QGridLayout* FileLayout= new QGridLayout(_zone);
+    QGridLayout* FileLayout= new QGridLayout(this);
 
 
-    _zone->setLayout(FileLayout);
+    this->setLayout(FileLayout);
 
     int space=50;
 
     Directory * cePC=new Directory("Ce PC");
     contenu.push_back(cePC);
-    DirectoryView * cePCView =new DirectoryView(cePC,_zone);
+    DirectoryView * cePCView =new DirectoryView(cePC,this);
     FileLayout->addWidget(cePCView,0,0);
     FileLayout->setColumnMinimumWidth(1,space);
 
 
     Directory* UsbKey=new Directory("Clé USB");
     contenu.push_back(UsbKey);
-    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,_zone);
+    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,this);
     FileLayout->setRowMinimumHeight(1,space);
     FileLayout->addWidget(UsbKeyView,2,0);
 
@@ -113,23 +105,23 @@ void Desktop::addFilesProf()
 void Desktop::addFilesEleve()
 {
 
-    QGridLayout* FileLayout= new QGridLayout(_zone);
+    QGridLayout* FileLayout= new QGridLayout(this);
 
 
-    _zone->setLayout(FileLayout);
+    this->setLayout(FileLayout);
 
     int space=50;
 
     Directory * cePC=new Directory("Ce PC");
     contenu.push_back(cePC);
-    DirectoryView * cePCView =new DirectoryView(cePC,_zone);
+    DirectoryView * cePCView =new DirectoryView(cePC,this);
     FileLayout->addWidget(cePCView,0,0);
     FileLayout->setColumnMinimumWidth(1,space);
 
 
     Directory* UsbKey=new Directory("Clé USB");
     contenu.push_back(UsbKey);
-    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,_zone);
+    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,this);
     FileLayout->setRowMinimumHeight(1,space);
     FileLayout->addWidget(UsbKeyView,2,0);
 
@@ -169,7 +161,7 @@ bool Desktop::event(QEvent *event)
      if(event->type()==OpenDirEvent::type())
     {
         OpenDirEvent* ev= dynamic_cast<OpenDirEvent*>(event);
-        addSubWindow(ev->sender());
+        ajouteSubWindow(ev->sender());
         return true;
     }
     else if(event->type()==ChangeFileWindowEvent::type())
@@ -187,16 +179,16 @@ bool Desktop::event(QEvent *event)
     }
 
     else
-        return QWidget::event(event);
+        return QMdiArea::event(event);
 }
 
 
-void Desktop::addSubWindow(Directory * rootDir)
+void Desktop::ajouteSubWindow(Directory * rootDir)
 {
     FileWindow* subwindow = new FileWindow(rootDir,this);
     connect(subwindow,&FileWindow::goPrevious,this,&Desktop::changeSubWindow);
 
-    QMdiSubWindow* fileWindow= _zone->addSubWindow(subwindow);
+    QMdiSubWindow* fileWindow= this->addSubWindow(subwindow);
 
     fileWindow->move(this->width()/2-subwindow->width()/2,this->height()/2-subwindow->height()/2);
     fileWindow->show();
@@ -205,17 +197,16 @@ void Desktop::addSubWindow(Directory * rootDir)
 void Desktop::changeSubWindow(Directory* sender)
 {
     qDebug()<<"change subwindow";
-    if(_zone->activeSubWindow()!=nullptr)
+    if(this->activeSubWindow()!=nullptr)
     {
      FileWindow* newfile= new FileWindow(sender,this);
-     _zone->activeSubWindow()->setWidget(newfile);
+     this->activeSubWindow()->setWidget(newfile);
     }
 }
 
 Desktop::~Desktop()
 {
-    delete _zone;
-    for (QVector<Abstractfile*>::iterator p=contenu.begin();p!=contenu.end();++p)
+     for (QVector<Abstractfile*>::iterator p=contenu.begin();p!=contenu.end();++p)
     {
         delete *p;
     }

@@ -2,7 +2,7 @@
 #include <QPushButton>
 
 FileWindow::FileWindow(Directory * Dir,QWidget * desk)
-    :QWidget(nullptr),rootDir(Dir),layout(new QHBoxLayout()),desktop(desk)
+    :QWidget(nullptr),rootDir(Dir),layout(new QHBoxLayout()),_desktop(desk)
 {
 
     setWindowTitle("Explorateur de Fichiers");
@@ -26,7 +26,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
        if(File* a=dynamic_cast<File*>(rootDir->filelist().at(i)))
         {
            //on ceer un nouveau fichier
-           FileView* b= new FileView(a);
+           FileView* b= new FileView(a,this);
            contenu.push_back(b);
            layout->addWidget(b);
 
@@ -34,7 +34,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
        else if(Directory* a=dynamic_cast<Directory*>(rootDir->filelist().at(i)))
        {
            //creer un dossier
-           DirectoryView* b=new DirectoryView(a);
+           DirectoryView* b=new DirectoryView(a,this);
            contenu.push_back(b);
            layout->addWidget(b);
        }
@@ -45,13 +45,24 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
 
 
 }
-
+bool FileWindow::event(QEvent * ev)
+{
+    if(ev->type()==ChangeFileWindowEvent::type())
+    {
+        ChangeFileWindowEvent * event = dynamic_cast<ChangeFileWindowEvent *>(ev);
+        QCoreApplication::postEvent(_desktop,new ChangeFileWindowEvent(event->sender()));
+        return true;
+    }
+    else{
+        return QWidget::event(ev);
+    }
+}
 void FileWindow::goBack(bool)
 {
    if(rootDir->parentDir()!=nullptr)
     {
         //faire un event
-        QCoreApplication::postEvent(desktop,new goPreviousEvent(rootDir->parentDir()));
+        QCoreApplication::postEvent(_desktop,new goPreviousEvent(rootDir->parentDir()));
     }
 
 }

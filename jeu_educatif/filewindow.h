@@ -16,16 +16,18 @@ class FileWindow : public QWidget
 public:
     explicit FileWindow(Directory *,QWidget * desktop); // parent=nullptr pour que ce soit une fenetre
     ~FileWindow();
+    bool event(QEvent*) override;
 
 
 
 public slots:
     void goBack(bool);
+    QWidget* desktop(){return _desktop;}
 
 private:
     Directory * rootDir;
     QHBoxLayout * layout;
-    QWidget * desktop;
+    QWidget * _desktop;
     QVector<AbstractfileView*> contenu;
 
 signals:
