@@ -7,7 +7,7 @@
 #include "codeeditor.h"
 #include "pythonhighlighter.h"
 
-enum class Enigme{Cesar, Vigenere, Copie, Substitution, Final};
+enum class Enigme{Copie, Cesar, Vigenere, Substitution, Notes, Final};
 
 
 namespace Ui {
@@ -21,7 +21,7 @@ class IDEWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit IDEWindow(QWidget *parent = nullptr, Enigme e = Enigme::Cesar);
+    explicit IDEWindow(Enigme e = Enigme::Cesar, QWidget *parent = nullptr);
     ~IDEWindow();
     void writeInFile(QString filename, QString data);
     void executeFile(QString filename);

@@ -8,7 +8,7 @@
 #include <QTextCodec>
 
 
-IDEWindow::IDEWindow(QWidget *parent, Enigme e) :
+IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::IDEWindow)
 {
@@ -66,10 +66,37 @@ IDEWindow::IDEWindow(QWidget *parent, Enigme e) :
     connect(this->_stopProgram, &QToolButton::clicked, this, &IDEWindow::stopProgram);
 
 
-
+//Classe énigme (?)
     switch(e){
-    case Enigme::Cesar:
-        QFile file(":/python/cesar.py");
+    case Enigme::Copie:{
+        QFile file(":/python/c_copy.py");
+        file.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content;
+        while(!file.atEnd())
+            content.append(file.readLine());
+        this->_codeEditor->setPlainText(content);
+        file.close();
+
+        QFile file2(":/python/test_copy.py");
+        file2.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content2;
+        while(!file2.atEnd())
+            content2.append(file2.readLine());
+        this->writeInFile("test_copy.py", content2);
+        file2.close();
+        this->_testFilename = "test_copy.py";
+
+        QFile file3(":/python/files.py");
+        file3.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content3;
+        while(!file3.atEnd())
+            content3.append(file3.readLine());
+        this->writeInFile("files.py", content3);
+        file3.close();
+        break;
+    }
+    case Enigme::Cesar:{
+        QFile file(":/python/c_cesar.py");
         file.open(QIODevice::Text | QIODevice::ReadOnly);
         QString content;
         while(!file.atEnd())
@@ -86,6 +113,82 @@ IDEWindow::IDEWindow(QWidget *parent, Enigme e) :
         file2.close();
         this->_testFilename = "test_cesar.py";
         break;
+    }
+    case Enigme::Vigenere:{
+        QFile file(":/python/c_vigenere.py");
+        file.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content;
+        while(!file.atEnd())
+            content.append(file.readLine());
+        this->_codeEditor->setPlainText(content);
+        file.close();
+
+        QFile file2(":/python/test_vigenere.py");
+        file2.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content2;
+        while(!file2.atEnd())
+            content2.append(file2.readLine());
+        this->writeInFile("test_vigenere.py", content2);
+        file2.close();
+        this->_testFilename = "test_vigenere.py";
+        break;
+    }
+    case Enigme::Substitution:{
+        QFile file(":/python/c_substitution.py");
+        file.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content;
+        while(!file.atEnd())
+            content.append(file.readLine());
+        this->_codeEditor->setPlainText(content);
+        file.close();
+
+        QFile file2(":/python/test_substitution.py");
+        file2.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content2;
+        while(!file2.atEnd())
+            content2.append(file2.readLine());
+        this->writeInFile("test_substitution.py", content2);
+        file2.close();
+        this->_testFilename = "test_substitution.py";
+        break;
+    }
+    case Enigme::Notes:{
+        QFile file(":/python/c_change_notes.py");
+        file.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content;
+        while(!file.atEnd())
+            content.append(file.readLine());
+        this->_codeEditor->setPlainText(content);
+        file.close();
+
+        QFile file2(":/python/test_notes.py");
+        file2.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content2;
+        while(!file2.atEnd())
+            content2.append(file2.readLine());
+        this->writeInFile("test_notes.py", content2);
+        file2.close();
+        this->_testFilename = "test_notes.py";
+
+        QFile file3(":/python/notes.py");
+        file3.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content3;
+        while(!file3.atEnd())
+            content3.append(file3.readLine());
+        this->writeInFile("notes.py", content3);
+        file3.close();
+        break;
+    }
+    case Enigme::Final:{
+        QFile file(":/python/c_fin.py");
+        file.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content;
+        while(!file.atEnd())
+            content.append(file.readLine());
+        this->_codeEditor->setPlainText(content);
+        file.close();
+        break;
+    }
     }
 
 }

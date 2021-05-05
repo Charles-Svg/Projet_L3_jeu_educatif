@@ -1,6 +1,11 @@
 import temp
 
+
 def test():
+    if temp.cesar("a", 1) is None:
+        print("Incorrect : aucun retour")
+        return False
+
     test1 = temp.cesar("avion", 2)
     if test1 != "ytgml":
         if test1 == "cxkqp":
