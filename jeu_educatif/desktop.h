@@ -25,7 +25,7 @@ public:
 public slots:
     void ajouteSubWindow(Directory*);
     void changeSubWindow(Directory*);
-    void ajoutePyFileWindow(File*);
+    void ajoutePyFileWindow(PyFile*);
 
 private:
 QVector<Abstractfile*> contenu;

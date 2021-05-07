@@ -31,6 +31,21 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
            layout->addWidget(b);
 
        }
+       else if(PyFile* a=dynamic_cast<PyFile*>(rootDir->filelist().at(i)))
+       {
+           //on ceer un nouveau fichier
+           PyFileView* b= new PyFileView(a,this);
+           contenu.push_back(b);
+           layout->addWidget(b);
+       }
+       else if (PdfFile* a=dynamic_cast<PdfFile*>(rootDir->filelist().at(i)))
+       {
+           //on ceer un nouveau fichier
+           PdfFileView* b= new PdfFileView(a,this);
+           contenu.push_back(b);
+           layout->addWidget(b);
+       }
+
        else if(Directory* a=dynamic_cast<Directory*>(rootDir->filelist().at(i)))
        {
            //creer un dossier

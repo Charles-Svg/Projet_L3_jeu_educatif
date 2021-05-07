@@ -3,23 +3,33 @@
 
 #include "abstractfile.h"
 
-
-enum FileType {PDF,PY};
+enum FileType {Txt,PDF,PY};
 
 class File : public Abstractfile
 {
 
 public:
-    explicit File(QString const & nom,FileType file,bool ouvrable=1);
+    explicit File(QString const & nom,bool ouvrable=1);
     ~File()=default;
 
-    FileType type() const{return _type;}
-
-private:
-    FileType _type;
-    bool ecriture;
-
-
 };
+
+
+class PyFile : public Abstractfile
+{
+public:
+    PyFile(QString const & nom,bool ouvrable=1);
+};
+
+
+class PdfFile : public Abstractfile
+{
+public:
+    PdfFile(QString const & nom,bool ouvrable=1);
+};
+
+
+
+
 
 #endif // FILE_H

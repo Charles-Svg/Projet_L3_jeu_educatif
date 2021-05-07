@@ -10,5 +10,6 @@
         <file alias="pieThonLogo">src/pieThonLogo.png</file>
         <file alias="playIcon">src/playIcon.png</file>
         <file alias="stopIcon">src/stopIcon.png</file>
+        <file alias="pdfIcon">src/pdfIcon.png</file>
     </qresource>
 </RCC>

@@ -10,8 +10,32 @@ Directory::Directory(QString const & nom,bool ouvrable)
 //ajoute une fichier ou dossier au Vector
 void Directory::addFile(const QString &nom,FileType type,bool ouvrable)
 {
-    File * file=new File(nom,type,ouvrable);
-    FileList.push_back(file);
+    switch (type) {
+        case Txt :
+        {
+            File * file=new File(nom,ouvrable);
+            FileList.push_back(file);
+        }
+        break;
+
+        case PY:
+        {
+            PyFile * file=new PyFile(nom,ouvrable);
+            FileList.push_back(file);
+        }
+        break;
+
+        case PDF:
+        {
+            PdfFile * file= new PdfFile(nom,ouvrable);
+            FileList.push_back(file);
+
+        }
+        break;
+
+
+    }
+
 }
 
 //mettrre le type de la en methode Directory*

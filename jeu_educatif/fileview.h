@@ -13,7 +13,6 @@ class FileView : public AbstractfileView
       Q_OBJECT
 public:
     FileView(File*,QWidget *parent = nullptr);
-    ~FileView()=default;
 
 private:
     bool ecriture;
@@ -24,4 +23,34 @@ void OpenEvent() override;
 
 };
 
+
+
+class PyFileView : public AbstractfileView
+{
+Q_OBJECT
+
+public:
+    PyFileView(PyFile*,QWidget *parent = nullptr);
+
+private:
+    PyFile* _model;
+
+protected:
+    void OpenEvent() override;
+};
+
+
+class PdfFileView : public AbstractfileView
+{
+Q_OBJECT
+
+public:
+    PdfFileView(PdfFile*,QWidget *parent = nullptr);
+
+private:
+    PdfFile* _model;
+
+protected:
+    void OpenEvent() override;
+};
 #endif // FILEVIEW_H

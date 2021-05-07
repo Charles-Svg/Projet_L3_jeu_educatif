@@ -12,9 +12,6 @@ Desktop::Desktop(User user,QWidget *parent) :
     QMdiArea(parent)
 {
 
-    //permet de desactiver le maximize button
-    //setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint );
-
     setBackground(QBrush());// permet de modifier/actualiser le background avec le css
 
     //s'adapte a la taille de l'écran
@@ -136,8 +133,8 @@ void Desktop::addFilesEleve()
     cePC->addDir("Vidéos");
 
     auto tel=cePC->addDir("Téléchargements");
-        tel->addFile("fortine.exe",FileType::PDF); //a changer !!!
-        tel->addFile("glitcher pro v-bucks.bat",FileType::PDF); // a changer !!!
+        tel->addFile("fortine.exe",FileType::Txt); //a changer !!!
+        tel->addFile("glitcher pro v-bucks.bat",FileType::Txt); // a changer !!!
 
     cePC->addDir("Images");
 
@@ -212,7 +209,7 @@ void Desktop::changeSubWindow(Directory* sender)
     }
 }
 
-void Desktop::ajoutePyFileWindow(File*)
+void Desktop::ajoutePyFileWindow(PyFile*)
 {
     IDEWindow* Pywindow = new IDEWindow();
     QMdiSubWindow* subwindow= this->addSubWindow(Pywindow);

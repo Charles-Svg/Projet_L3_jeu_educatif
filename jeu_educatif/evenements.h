@@ -49,12 +49,12 @@ private:
 class OpenPyFileEvent : public QEvent
 {
 public:
-    OpenPyFileEvent(File*);
+    OpenPyFileEvent(PyFile*);
     static QEvent::Type type(){return MyType;}
-    File* sender(){return _sender;}
+    PyFile* sender(){return _sender;}
 private:
     static QEvent::Type MyType;
-    File * _sender;
+    PyFile * _sender;
 };
 
 
