@@ -3,7 +3,9 @@
 
 #include "file.h"
 #include "abstractfileview.h"
+#include "evenements.h"
 
+#include <QCoreApplication>
 
 
 class FileView : public AbstractfileView

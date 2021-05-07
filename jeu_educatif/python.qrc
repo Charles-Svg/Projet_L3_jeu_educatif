@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>python/test_cesar.py</file>
+        <file>python/c_cesar.py</file>
+        <file>python/c_change_notes.py</file>
+        <file>python/c_copy.py</file>
+        <file>python/c_fin.py</file>
+        <file>python/c_substitution.py</file>
+        <file>python/c_vigenere.py</file>
+        <file>python/files.py</file>
+        <file>python/notes.py</file>
+        <file>python/test_copy.py</file>
+        <file>python/test_notes.py</file>
+        <file>python/test_substitution.py</file>
+        <file>python/test_vigenere.py</file>
+    </qresource>
+</RCC>

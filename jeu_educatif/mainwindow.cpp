@@ -6,6 +6,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     QScreen* ecran=QGuiApplication::primaryScreen() ;
     this->setFixedSize (ecran->availableSize());
 
-    Desktop* Desk= new Desktop(User::Prof,this);
+    Desktop* Desk= new Desktop(User::Eleve,this);
     setCentralWidget(Desk);
 }

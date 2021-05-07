@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    IDEWindow w(Enigme::Vigenere);
+    IDEWindow w;
     w.show();
     return a.exec();
 }

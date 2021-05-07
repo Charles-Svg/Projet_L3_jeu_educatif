@@ -9,6 +9,7 @@
 #include "fileview.h"
 #include "directoryview.h"
 #include "filewindow.h"
+#include "idewindow.h"
 #include <QVector>
 
 enum User {Prof,Eleve};
@@ -24,7 +25,7 @@ public:
 public slots:
     void ajouteSubWindow(Directory*);
     void changeSubWindow(Directory*);
-
+    void ajoutePyFileWindow(File*);
 
 private:
 QVector<Abstractfile*> contenu;

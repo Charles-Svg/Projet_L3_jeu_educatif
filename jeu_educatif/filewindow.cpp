@@ -53,6 +53,12 @@ bool FileWindow::event(QEvent * ev)
         QCoreApplication::postEvent(_desktop,new ChangeFileWindowEvent(event->sender()));
         return true;
     }
+    else if (ev->type()==OpenPyFileEvent::type())
+    {
+        OpenPyFileEvent* event = dynamic_cast<OpenPyFileEvent*>(ev);
+        QCoreApplication::postEvent(_desktop,new OpenPyFileEvent(event->sender()));
+        return true;
+    }
     else{
         return QWidget::event(ev);
     }

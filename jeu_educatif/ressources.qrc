@@ -1,10 +1,14 @@
 <RCC>
     <qresource prefix="/">
-        <file alias="wallpaper_prof">wallpaper_prof.jpg</file>
-        <file alias="file">file2.png</file>
-        <file alias="folder">folder2.png</file>
-        <file alias="styleProf">styleProf.qss</file>
-        <file alias="styleEleve">styleEleve.qss</file>
-        <file alias="wallpaper_eleve">wallpaper_eleve.png</file>
+        <file alias="styleEleve">src/styleEleve.qss</file>
+        <file alias="styleProf">src/styleProf.qss</file>
+        <file alias="wallpaper_eleve">src/wallpaper_eleve.png</file>
+        <file alias="wallpaper_prof">src/wallpaper_prof.jpg</file>
+        <file alias="file">src/file.png</file>
+        <file alias="folder">src/folder.png</file>
+        <file alias="pieThonIcon">src/pieThonIcon.png</file>
+        <file alias="pieThonLogo">src/pieThonLogo.png</file>
+        <file alias="playIcon">src/playIcon.png</file>
+        <file alias="stopIcon">src/stopIcon.png</file>
     </qresource>
 </RCC>

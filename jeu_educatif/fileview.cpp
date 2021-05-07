@@ -1,5 +1,6 @@
 #include "fileview.h"
 
+
 FileView::FileView(File* filemodel,QWidget *parent)
     :AbstractfileView(filemodel,parent),_model(filemodel)
 {
@@ -10,7 +11,7 @@ FileView::FileView(File* filemodel,QWidget *parent)
     break;
 
     case PY :
-        setImage("");
+        setImage(":/pieThonLogo");
     break;
 
     }
@@ -22,14 +23,25 @@ void FileView::OpenEvent()
 {
     if(_model->ouvrable())
     {
-        qDebug()<<"ouvre le fichier";
-        //ouvre un dialog de consultation du fichier
+
+        switch (_model->type())
+        {
+            case PDF:
+            //post evenements ouverture pdf
+            break;
+
+            case PY:
+            //post event ouverture PyIde
+            QCoreApplication::postEvent(this->parent(),new OpenPyFileEvent(_model));
+            break;
+
+        }
 
     }
     else {
         QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès a fichier");
         message.exec();
     }
-
-
 }
+
+

@@ -60,7 +60,19 @@ set(PROJECT_SOURCES
         evenements.cpp
         evenements.h
 
+        idewindow.cpp
+        idewindow.h
+
+        codeeditor.cpp
+        codeeditor.h
+
+        linenumberarea.h
+
+        pythonhighlighter.cpp
+        pythonhighlighter.h
+
         ressources.qrc
+        python.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

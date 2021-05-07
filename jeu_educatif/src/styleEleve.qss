@@ -13,5 +13,5 @@ QMdiArea {
 QMdiSubWindow {
     background-color : rgb(50,50,75);
     padding :4px;
-   /* border-color: lightgray; */
+    color: white;
 }

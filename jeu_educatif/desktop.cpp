@@ -1,7 +1,7 @@
 #include "desktop.h"
 
-#include <QGridLayout>
 
+#include <QGridLayout>
 #include <QDebug>
 #include <QtGui>
 #include <QStyleFactory>
@@ -132,6 +132,7 @@ void Desktop::addFilesEleve()
 
 
     //contenu de CePC
+    cePC->addFile("Test.py",FileType::PY);
     cePC->addDir("Vidéos");
 
     auto tel=cePC->addDir("Téléchargements");
@@ -177,6 +178,13 @@ bool Desktop::event(QEvent *event)
 
         return true;
     }
+     else if (event->type()==OpenPyFileEvent::type())
+     {
+        //regarder quel fichier on veut ouvrir
+         OpenPyFileEvent* ev=dynamic_cast<OpenPyFileEvent*>(event);
+         ajoutePyFileWindow(ev->sender());
+         return true;
+     }
 
     else
         return QMdiArea::event(event);
@@ -203,6 +211,16 @@ void Desktop::changeSubWindow(Directory* sender)
      this->activeSubWindow()->setWidget(newfile);
     }
 }
+
+void Desktop::ajoutePyFileWindow(File*)
+{
+    IDEWindow* Pywindow = new IDEWindow();
+    QMdiSubWindow* subwindow= this->addSubWindow(Pywindow);
+    subwindow->move(this->width()/2-Pywindow->width()/2,this->height()/2-Pywindow->height()/2);
+    subwindow->show();
+
+}
+
 
 Desktop::~Desktop()
 {

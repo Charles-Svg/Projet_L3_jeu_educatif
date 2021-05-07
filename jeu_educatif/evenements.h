@@ -32,7 +32,6 @@ private:
     Directory * _sender;
 
 };
-#endif // EVENEMENTS_H
 
 class goPreviousEvent : public QEvent
 {
@@ -45,3 +44,18 @@ private:
     static QEvent::Type MyType;
     Directory * _previousDir;
 };
+
+
+class OpenPyFileEvent : public QEvent
+{
+public:
+    OpenPyFileEvent(File*);
+    static QEvent::Type type(){return MyType;}
+    File* sender(){return _sender;}
+private:
+    static QEvent::Type MyType;
+    File * _sender;
+};
+
+
+#endif // EVENEMENTS_H
