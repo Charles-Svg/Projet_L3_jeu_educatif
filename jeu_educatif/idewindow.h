@@ -26,8 +26,6 @@ public:
 
 
 private slots:
-    void on_actionRun_triggered();
-    void on_actionStop_triggered();
     void cursorPosition_changed();
     void codeExecution_finished(int exitCode);
     void displayStandard_output();

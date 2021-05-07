@@ -247,15 +247,6 @@ void IDEWindow::stopProgram(){
 }
 
 
-void IDEWindow::on_actionRun_triggered(){
-    this->runProgram();
-}
-
-
-void IDEWindow::on_actionStop_triggered(){
-    this->stopProgram();
-}
-
 
 void IDEWindow::cursorPosition_changed(){
     QTextCursor c = this->_codeEditor->textCursor();
