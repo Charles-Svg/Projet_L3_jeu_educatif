@@ -31,45 +31,41 @@ set(PROJECT_SOURCES
         main.cpp
 
         mainwindow.cpp
-        mainwindow.h
+
 
         desktop.cpp
-        desktop.h
+
 
         abstractfile.cpp
-        abstractfile.h
 
         abstractfileview.cpp
-        abstractfileview.h
+
 
         file.cpp
-        file.h
+
 
         fileview.cpp
-        fileview.h
+
 
         filewindow.cpp
-        filewindow.h
 
         directory.cpp
-        directory.h
+
 
         directoryview.cpp
-        directoryview.h
 
         evenements.cpp
-        evenements.h
+
 
         idewindow.cpp
-        idewindow.h
+
 
         codeeditor.cpp
-        codeeditor.h
+
 
         linenumberarea.h
 
         pythonhighlighter.cpp
-        pythonhighlighter.h
 
         ressources.qrc
         python.qrc

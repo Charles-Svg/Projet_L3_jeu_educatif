@@ -7,11 +7,10 @@ AbstractfileView::AbstractfileView(Abstractfile* filemodel, QWidget* parent,int 
 
      auto metrics = QFontMetrics(QApplication::font());
      int labelheight=18;
-     //faire ne sorte que le label du nom ait une taille qui s'adapte
+     //faire en sorte que le label du nom ait une taille qui s'adapte
     if(metrics.horizontalAdvance(filemodel->nom())>larg-4)
     {
         int rapport=(metrics.horizontalAdvance(filemodel->nom())/larg)+1;
-        qDebug()<<"rapport de "+filemodel->nom()<<rapport;
         labelheight=labelheight*rapport;
     }
     _nom->setAlignment(Qt::AlignCenter);

@@ -1,9 +1,12 @@
 #include "directoryview.h"
 
-DirectoryView::DirectoryView(Directory* modeldir,QWidget *parent)
+DirectoryView::DirectoryView(Directory* modeldir,QWidget *parent,typeDir type)
     :AbstractfileView(modeldir,parent),_model(modeldir)
 {
-    setImage(":/folder");
+    if(type==classic)
+        setImage(":/folder");
+    else
+        setImage(":/usb");
 }
 
 
@@ -19,7 +22,7 @@ void DirectoryView::OpenEvent()
         }
         else {
             //event qui change la filewindow qui devrait etre envoyer au desktop et c'est le desktop qui va agir sur le controlleur
-            qDebug()<<"changeFileWinow";
+
             QCoreApplication::postEvent(this->parent(),new ChangeFileWindowEvent(_model));
 
         }
@@ -27,7 +30,6 @@ void DirectoryView::OpenEvent()
     else {
         QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès au dossier");
         message.exec();
-        qDebug()<<"non ouvrable";
     }
 
 

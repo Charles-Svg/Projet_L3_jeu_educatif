@@ -7,11 +7,12 @@
 #include "directory.h"
 #include "evenements.h"
 
+enum typeDir {classic,usb};
 class DirectoryView : public AbstractfileView
 {
       Q_OBJECT
 public:
-    DirectoryView(Directory*modeldir, QWidget *parent = nullptr);
+    DirectoryView(Directory*modeldir, QWidget *parent = nullptr,typeDir=classic);
     ~DirectoryView()=default;
 
 

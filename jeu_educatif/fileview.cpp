@@ -13,7 +13,7 @@ void FileView::OpenEvent()
 {
     if(_model->ouvrable())
     {
-
+        //ouverture du fichier simple
     }
     else {
         QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès a fichier");

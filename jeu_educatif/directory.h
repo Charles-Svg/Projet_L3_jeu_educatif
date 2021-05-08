@@ -10,12 +10,15 @@ class Directory : public Abstractfile
 {
 
 public:
-    explicit Directory(QString const & nom,bool ouvrable=1);
+    explicit Directory(QString const & nom,bool ouvrable=true);
     ~Directory();
 
 
-    Directory* addDir(QString const & nom,bool ouvrable=1);
-    void addFile(QString const & nom,FileType type,bool ouvrable=1);
+    Directory* addDir(QString const & nom,bool ouvrable=true);
+    void addFile(QString const & nom,bool ouvrable=false);
+    void addPdfFile(QString const & nom,bool ouvrable=true);
+    void addPyFile(QString const & nom,Enigme type=Enigme::Cesar,bool ouvrable=true);
+
     QVector<Abstractfile *> filelist(){return FileList;}
 
     void setparentDir(Directory* root){_parentDir=root;}

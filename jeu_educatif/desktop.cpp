@@ -17,6 +17,7 @@ Desktop::Desktop(User user,QWidget *parent) :
     //s'adapte a la taille de l'écran
 
     setMinimumSize(parent->size());
+    setOption(QMdiArea::DontMaximizeSubWindowOnActivation);
 
     switch(user)
     {
@@ -65,7 +66,7 @@ void Desktop::addFilesProf()
 
     Directory* UsbKey=new Directory("Clé USB");
     contenu.push_back(UsbKey);
-    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,this);
+    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,this,usb);
     FileLayout->setRowMinimumHeight(1,space);
     FileLayout->addWidget(UsbKeyView,2,0);
 
@@ -77,19 +78,19 @@ void Desktop::addFilesProf()
     //ce PC
         auto Vid=cePC->addDir("Vidéos");
         Vid->addDir("NSFW",0); // non ouvrable
-        cePC->addDir("Téléchargements");
-        cePC->addDir("Images");
+        cePC->addDir("Téléchargements",false);
+        cePC->addDir("Images",false);
 
 
         auto Doc=cePC->addDir("Documents");
         // dans Documents
             auto Notes=Doc->addDir("Notes et resultats");
             auto Annales= Notes->addDir("Annales Examens");
-            Annales->addFile("Examen1 2019-2020",FileType::PDF);
+            Annales->addPdfFile("Examen1 2019-2020");
             auto notesExam=Notes->addDir("Notes Examens");
             auto Exam1= notesExam->addDir("Notes examen 1 2019");
-            Exam1->addFile("Barème",FileType::PDF);
-            //Exam1->addFile("Notes exam 1",FileType::)
+            Exam1->addPdfFile("Barème.pdf");
+            Exam1->addFile("Notes exam 1");
 
             Doc->addDir("Cours");
 
@@ -118,7 +119,7 @@ void Desktop::addFilesEleve()
 
     Directory* UsbKey=new Directory("Clé USB");
     contenu.push_back(UsbKey);
-    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,this);
+    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,this,usb);
     FileLayout->setRowMinimumHeight(1,space);
     FileLayout->addWidget(UsbKeyView,2,0);
 
@@ -129,12 +130,12 @@ void Desktop::addFilesEleve()
 
 
     //contenu de CePC
-    cePC->addFile("Test.py",FileType::PY);
+    cePC->addPyFile("Test.py",Enigme::Vigenere);
     cePC->addDir("Vidéos");
 
     auto tel=cePC->addDir("Téléchargements");
-        tel->addFile("fortine.exe",FileType::Txt); //a changer !!!
-        tel->addFile("glitcher pro v-bucks.bat",FileType::Txt); // a changer !!!
+        tel->addFile("fortine.exe");
+        tel->addFile("glitcher pro v-bucks.bat");
 
     cePC->addDir("Images");
 
@@ -146,9 +147,9 @@ void Desktop::addFilesEleve()
             cours->addDir("Français");
 
             auto crypto= cours->addDir("Cryptographie");
-                crypto->addFile("Vigenere",FileType::PDF);
-                crypto->addFile("Substitution mot-clé",FileType::PDF);
-                crypto->addFile("Césaaaaar",FileType::PDF); //ref à jojo
+                crypto->addPdfFile("Vigenere");
+                crypto->addPdfFile("Substitution mot-clé");
+                crypto->addPdfFile("Césaaaaar"); //ref à jojo
 
 
 }
@@ -201,7 +202,7 @@ void Desktop::ajouteSubWindow(Directory * rootDir)
 
 void Desktop::changeSubWindow(Directory* sender)
 {
-    qDebug()<<"change subwindow";
+
     if(this->activeSubWindow()!=nullptr)
     {
      FileWindow* newfile= new FileWindow(sender,this);
@@ -209,9 +210,9 @@ void Desktop::changeSubWindow(Directory* sender)
     }
 }
 
-void Desktop::ajoutePyFileWindow(PyFile*)
+void Desktop::ajoutePyFileWindow(PyFile* file)
 {
-    IDEWindow* Pywindow = new IDEWindow();
+    IDEWindow* Pywindow = new IDEWindow(file->enigmeType(),this);
     QMdiSubWindow* subwindow= this->addSubWindow(Pywindow);
     subwindow->move(this->width()/2-Pywindow->width()/2,this->height()/2-Pywindow->height()/2);
     subwindow->show();
