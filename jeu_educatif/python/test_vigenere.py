@@ -35,12 +35,12 @@ def test():
         print("Incorrect : la clé doit être une chaîne de caractères")
         return False
 
-    if temp.cle != "premierelettredechaqueligneducourssurvigenere":
+    if temp.cle != "giovan":
         print("Incorrect : la clé est incorrecte")
         return False
 
     print(
-        "le second caractere est la lettre q")
+        "rm gzcbtl qvrnibsme ryb zv lrzbfz q")
     return True
 
 

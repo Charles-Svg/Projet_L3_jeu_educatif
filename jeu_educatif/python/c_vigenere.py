@@ -6,14 +6,14 @@
 #
 # La définition de la fonction vous est déjà donnée, à vous de l'implémenter
 #
-# Vous devrez également trouver la valeur de la variable cle. Vous la trouverez peut-être en fouillant le contenu de
-# votre pc
+# Vous devrez également trouver la valeur de la variable cle. Vous la trouverez peut-être en fouillant le contenu de votre pc
 #
 # Aides :
 #   - les fonctions ord(<char>)->int et chr(<int>)->char vous seront utiles
 #   - en ascii, le code des lettres minuscules est compris entre 97 (a) et 122 (z)
 #   - le modulo (noté "%") vous sera utile afin de boucler dans les indices de la clé
 #   - il ne vous est pas demandé de traiter la ponctuation, mais vous devez traiter les espaces
+#   - afin d'obtenir la longueur de la clé, il est possible d'utiliser la méthode len(key)
 
 # A compléter
 cle = None
