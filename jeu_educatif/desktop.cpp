@@ -227,7 +227,6 @@ void Desktop::ajoutePyFileWindow(PyFile* file)
 void Desktop::ajoutePdfFileWindow(PdfFile* file)
 {
 
-    //file->cours()
     FakePdfViewer* PdfWindow= new FakePdfViewer(file->cours());
     QMdiSubWindow* subwindow= this->addSubWindow(PdfWindow);
 

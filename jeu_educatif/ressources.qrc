@@ -12,7 +12,18 @@
         <file alias="stopIcon">src/stopIcon.png</file>
         <file alias="pdfIcon">src/pdfIcon.png</file>
         <file alias="usb">src/usbIcon.png</file>
-        <file alias="test.pdf">src/test.pdf.png</file>
-        <file alias="cesar.pdf">src/Cesar.pdf.png</file>
+        <file alias="vigenere1">src/Vigenere-1.jpg</file>
+        <file alias="vigenere2">src/Vigenere-2.jpg</file>
+        <file alias="vigenere3">src/Vigenere-3.jpg</file>
+        <file alias="vigenere4">src/Vigenere-4.jpg</file>
+        <file alias="vigenere5">src/Vigenere-5.jpg</file>
+        <file alias="cesar1">src/Cesar_1.jpg</file>
+        <file alias="cesar2">src/Cesar_2.jpg</file>
+        <file alias="cesar3">src/Cesar_3.jpg</file>
+        <file alias="cesar4">src/Cesar_4.jpg</file>
+        <file alias="substitution1">src/substitution-1.jpg</file>
+        <file alias="substitution2">src/substitution-2.jpg</file>
+        <file alias="substitution3">src/substitution-3.jpg</file>
+        <file alias="substitution4">src/substitution-4.jpg</file>
     </qresource>
 </RCC>
