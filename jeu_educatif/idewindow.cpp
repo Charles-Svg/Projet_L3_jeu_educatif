@@ -2,6 +2,7 @@
 #include "codeeditor.h"
 
 #include <QFile>
+#include <QFileInfo>
 #include <QTextStream>
 #include <iostream>
 #include <QObject>
@@ -68,7 +69,6 @@ IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
     connect(this->_stopProgram, &QToolButton::clicked, this, &IDEWindow::stopProgram);
 
 
-//Classe énigme (?)
     switch(e){
     case Enigme::Copie:{
         QFile file(":/python/c_copy.py");
@@ -192,6 +192,17 @@ IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
         break;
     }
     }
+
+    if(!QFileInfo::exists("save.py")){
+        QFile file(":/python/save.py");
+        file.open(QIODevice::Text | QIODevice::ReadOnly);
+        QString content;
+        while(!file.atEnd())
+            content.append(file.readLine());
+        this->writeInFile("save.py", content);
+        file.close();
+    }
+
 
 }
 

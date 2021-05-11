@@ -13,5 +13,6 @@
         <file>python/test_notes.py</file>
         <file>python/test_substitution.py</file>
         <file>python/test_vigenere.py</file>
+        <file>python/save.py</file>
     </qresource>
 </RCC>
