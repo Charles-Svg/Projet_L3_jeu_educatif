@@ -54,11 +54,11 @@ set(PROJECT_SOURCES
 
         codeeditor.cpp
 
-        linenumberarea.h
-
         pythonhighlighter.cpp
 
         fakepdfviewer.cpp
+
+        JsonHelper.cpp
 
         ressources.qrc
         python.qrc
@@ -81,3 +81,5 @@ else()
 endif()
 
 target_link_libraries(jeu_educatif PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+

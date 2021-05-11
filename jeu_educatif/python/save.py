@@ -13,6 +13,6 @@ class Sauvegarde(Enum):
 def valider(chapitre, epreuve):
     with open("save.json", "r") as f:
         save = json.load(f)
-        save["Chapitre " + str(chapitre)][epreuve.value] = 1
+        save["Chapitre " + str(chapitre)][epreuve.value] = True
         json.dump(save, open("save.json", "w"))
         return
