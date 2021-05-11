@@ -2,12 +2,12 @@ import temp
 
 
 def test():
-    if temp.vigenere("a", "a") is None:
+    if temp.substitution("a", "a") is None:
         print("Incorrect : aucun retour")
         return False
 
-    test1 = temp.vigenere("avion", "oui")
-    if test1 != "mbaat":
+    test1 = temp.substitution("avion", "xylophone")
+    if test1 != "ixodg":
         if test1 == "opqch":
             print("Incorrect : ceci est une fonction de chiffrement et non de déchiffrement comme requis")
         elif not test1.isalpha():
@@ -16,18 +16,16 @@ def test():
             print("Incorrect : mauvaise implémentation de l'algorithme")
         return False
 
-    test2 = temp.vigenere("avion", "nope")
-    if test2 != "nhtka":
-        if test2 == "nhtbz":
-            print("Incorrect : la clé ne doit pas avoir de taille définie")
-        elif not test2.isalpha():
+    test2 = temp.substitution("avion", "qsdfghjklmwxcvbnazertyuiop")
+    if test2 != "qnxyp":
+        if not test2.isalpha():
             print("Incorrect : mauvais traitement des lettres")
         else:
             print("Incorrect : mauvaise implémentation de l'algorithme")
         return False
 
-    test3 = temp.vigenere("avi on", "oui")
-    if test3 != "mba at":
+    test3 = temp.substitution("avi on", "xylophone")
+    if test3 != "ixo dg":
         print("Incorrect : espaces non traités")
         return False
 
@@ -35,26 +33,25 @@ def test():
         print("Incorrect : la clé doit être une chaîne de caractères")
         return False
 
-    if temp.cle != "giovan":
+    if temp.cle != "azertyuiop":
         print("Incorrect : la clé est incorrecte")
         return False
 
     print(
-        "rm gzcbtl qvrnibsme ryb zv lrzbfz q")
+        "ct mkgolotdt eakaemtkt tlm ca ctmmkt o")
     return True
 
 
 try:
-    if not ("vigenere" in dir(temp) and callable(getattr(temp,'vigenere'))):
-        print("Incorrect : fonction vigenere(mot, cle) non déclarée")
+    if not ("substitution" in dir(temp) and callable(getattr(temp,'substitution'))):
+        print("Incorrect : fonction substitution(mot, cle) non déclarée")
         answer = False
     else:
         answer = test()
 except Exception as e:
     print(type(e).__name__, ":", e)
     answer = False
-
-
+    
 if answer:
     import save
-    save.valider(2, save.Sauvegarde.VIGENERE)
+    save.valider(2, save.Sauvegarde.SUBSTITUTION)
