@@ -29,13 +29,13 @@ private:
 
 };
 
-enum Cours {Cesar, Vigenere, Substitution, Fin,Autre};
+enum Cours {Cesar, Vigenere, Substitution, Fin, Autre};
 
 class PdfFile : public Abstractfile
 {
 public:
     PdfFile(QString const & nom,Cours course,bool ouvrable=true);
-    QString cours();
+    Cours cours(){return _cours;}
 
 private:
         Cours _cours;

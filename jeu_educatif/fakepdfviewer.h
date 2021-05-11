@@ -4,16 +4,26 @@
 #include <QScrollArea>
 #include <QLabel>
 #include <QResizeEvent>
+#include <QVector>
+#include <QVBoxLayout>
+
+#include "file.h"
+
+
 class FakePdfViewer : public QScrollArea
 {
 public:
-    FakePdfViewer(QString const & course,QWidget* parent=nullptr);
+    FakePdfViewer(Cours cours,QWidget* parent=nullptr);
+    ~FakePdfViewer();
     void resizeEvent(QResizeEvent*) override;
-
+    void LoadImages(Cours c);
 
 private:
-    QImage image; //peut etre useless
-    QLabel *label;
+
+    QVector<QLabel*> Images;
+    QVBoxLayout* layout;
+
+
 };
 
 #endif // FAKEPDFVIEWER_H
