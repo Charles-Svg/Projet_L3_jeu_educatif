@@ -10,6 +10,7 @@
 #include "directoryview.h"
 #include "filewindow.h"
 #include "idewindow.h"
+#include "fakepdfviewer.h"
 #include <QVector>
 
 enum User {Prof,Eleve};
@@ -26,6 +27,7 @@ public slots:
     void ajouteSubWindow(Directory*);
     void changeSubWindow(Directory*);
     void ajoutePyFileWindow(PyFile*);
+    void ajoutePdfFileWindow(PdfFile*);
 
 private:
 QVector<Abstractfile*> contenu;

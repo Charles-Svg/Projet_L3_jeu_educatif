@@ -22,9 +22,9 @@ void Directory::addPyFile(const QString &nom,Enigme type,bool ouvrable)
 }
 
 
-void Directory::addPdfFile(const QString &nom, bool ouvrable)
+void Directory::addPdfFile(const QString &nom,Cours cours ,bool ouvrable)
 {
-    PdfFile * file= new PdfFile(nom,ouvrable);
+    PdfFile * file= new PdfFile(nom,cours,ouvrable);
     FileList.push_back(file);
 }
 

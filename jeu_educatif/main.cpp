@@ -13,5 +13,6 @@ int main(int argc, char *argv[])
      //w.showFullScreen(); //solution temporaire
     w.show();
     w.setWindowState(Qt::WindowMaximized);
+
     return a.exec();
 }

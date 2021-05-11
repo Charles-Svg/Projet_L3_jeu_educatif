@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include <QScreen>
+#include <QDesktopServices>
+
+#include "fakepdfviewer.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -10,4 +13,5 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     Desktop* Desk= new Desktop(User::Eleve,this);
     setCentralWidget(Desk);
+
 }

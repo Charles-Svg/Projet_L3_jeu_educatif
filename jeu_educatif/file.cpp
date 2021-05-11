@@ -13,6 +13,32 @@ PyFile::PyFile(QString const & nom,Enigme enig,bool ouvrable)
 
 
 
-PdfFile::PdfFile(QString const & nom,bool ouvrable)
-    : Abstractfile(nom,ouvrable)
+PdfFile::PdfFile(QString const & nom,Cours cours,bool ouvrable)
+    : Abstractfile(nom,ouvrable),_cours(cours)
 {}
+
+QString PdfFile::cours()
+{
+    switch (_cours) {
+
+
+        case Cesar:
+           return ":/cesar.pdf";
+
+
+        case Vigenere:
+           return ":/vigenere";
+
+
+        case Substitution:
+            return ":/substitution";
+
+        case Fin:
+           return ":/fin";
+
+
+        default:
+            return "";
+
+    }
+}

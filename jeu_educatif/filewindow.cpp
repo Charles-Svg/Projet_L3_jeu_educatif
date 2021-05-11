@@ -13,6 +13,8 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
     //boutton de retour en arrière
 
      QPushButton* goPrevious= new QPushButton("Go Back",this);
+     goPrevious->setMinimumSize(60,40);
+     layout->addWidget(goPrevious);
      connect(goPrevious,&QAbstractButton::clicked,this,&FileWindow::goBack);
 
     //organise les sous-fichiers de Dir dans un layout (QGridLayout)
@@ -72,6 +74,12 @@ bool FileWindow::event(QEvent * ev)
     {
         OpenPyFileEvent* event = dynamic_cast<OpenPyFileEvent*>(ev);
         QCoreApplication::postEvent(_desktop,new OpenPyFileEvent(event->sender()));
+        return true;
+    }
+    else if (ev->type()==OpenPdfFileEvent::type())
+    {
+        OpenPdfFileEvent* event = dynamic_cast<OpenPdfFileEvent*>(ev);
+        QCoreApplication::postEvent(_desktop,new OpenPdfFileEvent(event->sender()));
         return true;
     }
     else{

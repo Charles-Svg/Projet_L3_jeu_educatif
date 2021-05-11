@@ -12,5 +12,7 @@
         <file alias="stopIcon">src/stopIcon.png</file>
         <file alias="pdfIcon">src/pdfIcon.png</file>
         <file alias="usb">src/usbIcon.png</file>
+        <file alias="test.pdf">src/test.pdf.png</file>
+        <file alias="cesar.pdf">src/Cesar.pdf.png</file>
     </qresource>
 </RCC>
