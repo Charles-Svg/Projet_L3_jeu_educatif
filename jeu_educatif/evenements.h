@@ -58,4 +58,16 @@ private:
 };
 
 
+class OpenPdfFileEvent : public QEvent
+{
+public:
+    OpenPdfFileEvent(PdfFile*);
+    static QEvent::Type type(){return MyType;}
+    PdfFile* sender(){return _sender;}
+private:
+    static QEvent::Type MyType;
+    PdfFile * _sender;
+};
+
+
 #endif // EVENEMENTS_H

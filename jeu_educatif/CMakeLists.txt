@@ -32,40 +32,33 @@ set(PROJECT_SOURCES
 
         mainwindow.cpp
 
-
         desktop.cpp
-
 
         abstractfile.cpp
 
         abstractfileview.cpp
 
-
         file.cpp
 
-
         fileview.cpp
-
 
         filewindow.cpp
 
         directory.cpp
 
-
         directoryview.cpp
 
         evenements.cpp
 
-
         idewindow.cpp
 
-
         codeeditor.cpp
-
 
         linenumberarea.h
 
         pythonhighlighter.cpp
+
+        fakepdfviewer.cpp
 
         ressources.qrc
         python.qrc

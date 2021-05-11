@@ -44,4 +44,11 @@ QEvent::Type OpenPyFileEvent::MyType=static_cast<QEvent::Type>(QEvent::registerE
 OpenPyFileEvent::OpenPyFileEvent(PyFile * send)
     :QEvent(MyType),_sender(send)
 {}
+
+QEvent::Type OpenPdfFileEvent::MyType=static_cast<QEvent::Type>(QEvent::registerEventType());
+
+OpenPdfFileEvent::OpenPdfFileEvent(PdfFile * send)
+    :QEvent(MyType),_sender(send)
+{}
+
 #endif // EVENEMENTS_CPP

@@ -57,7 +57,7 @@ void PdfFileView::OpenEvent()
 {
     if(_model->ouvrable())
     {
-        //ouvre le pdf
+        QCoreApplication::postEvent(this->parent(),new OpenPdfFileEvent(_model));
     }
     else {
         QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès a fichier");

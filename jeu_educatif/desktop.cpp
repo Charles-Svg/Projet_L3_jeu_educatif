@@ -1,6 +1,5 @@
 #include "desktop.h"
 
-
 #include <QGridLayout>
 #include <QDebug>
 #include <QtGui>
@@ -86,10 +85,10 @@ void Desktop::addFilesProf()
         // dans Documents
             auto Notes=Doc->addDir("Notes et resultats");
             auto Annales= Notes->addDir("Annales Examens");
-            Annales->addPdfFile("Examen1 2019-2020");
+            //Annales->addPdfFile("Examen1 2019-2020",Cesar);
             auto notesExam=Notes->addDir("Notes Examens");
             auto Exam1= notesExam->addDir("Notes examen 1 2019");
-            Exam1->addPdfFile("Barème.pdf");
+           // Exam1->addPdfFile("Barème.pdf",Cesar);
             Exam1->addFile("Notes exam 1");
 
             Doc->addDir("Cours");
@@ -147,9 +146,9 @@ void Desktop::addFilesEleve()
             cours->addDir("Français");
 
             auto crypto= cours->addDir("Cryptographie");
-                crypto->addPdfFile("Vigenere");
-                crypto->addPdfFile("Substitution mot-clé");
-                crypto->addPdfFile("Césaaaaar"); //ref à jojo
+                crypto->addPdfFile("Vigenere",Vigenere);
+                crypto->addPdfFile("Substitution mot-clé",Substitution);
+                crypto->addPdfFile("Césaaaaar",Cesar); //ref à jojo
 
 
 }
@@ -183,7 +182,13 @@ bool Desktop::event(QEvent *event)
          ajoutePyFileWindow(ev->sender());
          return true;
      }
-
+     else if (event->type()==OpenPdfFileEvent::type())
+     {
+        //regarder quel fichier on veut ouvrir
+         OpenPdfFileEvent* ev=dynamic_cast<OpenPdfFileEvent*>(event);
+         ajoutePdfFileWindow(ev->sender());
+         return true;
+     }
     else
         return QMdiArea::event(event);
 }
@@ -217,6 +222,17 @@ void Desktop::ajoutePyFileWindow(PyFile* file)
     subwindow->move(this->width()/2-Pywindow->width()/2,this->height()/2-Pywindow->height()/2);
     subwindow->show();
 
+}
+
+void Desktop::ajoutePdfFileWindow(PdfFile* file)
+{
+
+    //file->cours()
+    FakePdfViewer* PdfWindow= new FakePdfViewer(file->cours());
+    QMdiSubWindow* subwindow= this->addSubWindow(PdfWindow);
+
+    subwindow->move(this->width()/2-PdfWindow->width()/2,this->height()/2-PdfWindow->height()/2);
+    subwindow->show();
 }
 
 
