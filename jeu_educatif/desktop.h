@@ -36,7 +36,6 @@ QVector<Abstractfile*> contenu;
 void addFilesProf();
 void addFilesEleve();
 
-
 };
 
 

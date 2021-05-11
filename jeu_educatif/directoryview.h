@@ -12,12 +12,13 @@ class DirectoryView : public AbstractfileView
 {
       Q_OBJECT
 public:
-    DirectoryView(Directory*modeldir, QWidget *parent = nullptr,typeDir=classic);
+    DirectoryView(Directory*modeldir,QWidget* desktop ,typeDir=classic,QWidget *parent = nullptr);
     ~DirectoryView()=default;
 
 
-    Directory* _model;
 private:
+    Directory* _model;
+    QWidget* _desktop;
 
 
 protected:

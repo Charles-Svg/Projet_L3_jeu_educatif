@@ -14,9 +14,11 @@ Desktop::Desktop(User user,QWidget *parent) :
     setBackground(QBrush());// permet de modifier/actualiser le background avec le css
 
     //s'adapte a la taille de l'écran
-
     setMinimumSize(parent->size());
     setOption(QMdiArea::DontMaximizeSubWindowOnActivation);
+
+    qDebug()<<this->viewport();
+
 
     switch(user)
     {
@@ -49,10 +51,10 @@ Desktop::Desktop(User user,QWidget *parent) :
 
 void Desktop::addFilesProf()
 {
-    QGridLayout* FileLayout= new QGridLayout(this);
+    QGridLayout* FileLayout= new QGridLayout(this->viewport());
 
 
-    this->setLayout(FileLayout);
+    //this->viewport()->setLayout(FileLayout);
 
     int space=50;
 
@@ -76,16 +78,16 @@ void Desktop::addFilesProf()
 
     //ce PC
         auto Vid=cePC->addDir("Vidéos");
-        Vid->addDir("NSFW",0); // non ouvrable
+        Vid->addDir("NSFW",false); // non ouvrable
         cePC->addDir("Téléchargements",false);
         cePC->addDir("Images",false);
 
 
         auto Doc=cePC->addDir("Documents");
         // dans Documents
-            auto Notes=Doc->addDir("Notes et resultats");
+            auto Notes=Doc->addDir("Notes et resultats"); //ce doc qu'on ne peut ouvrir dans le chap 1
             auto Annales= Notes->addDir("Annales Examens");
-            //Annales->addPdfFile("Examen1 2019-2020",Cesar);
+            Annales->addPdfFile("Examen1 2019-2020",Cesar);
             auto notesExam=Notes->addDir("Notes Examens");
             auto Exam1= notesExam->addDir("Notes examen 1 2019");
            // Exam1->addPdfFile("Barème.pdf",Cesar);
@@ -102,10 +104,10 @@ void Desktop::addFilesProf()
 void Desktop::addFilesEleve()
 {
 
-    QGridLayout* FileLayout= new QGridLayout(this);
+    QGridLayout* FileLayout= new QGridLayout(this->viewport());
 
 
-    this->setLayout(FileLayout);
+   // this->viewport()->setLayout(FileLayout);
 
     int space=50;
 
@@ -149,6 +151,15 @@ void Desktop::addFilesEleve()
                 crypto->addPdfFile("Vigenere",Vigenere);
                 crypto->addPdfFile("Substitution mot-clé",Substitution);
                 crypto->addPdfFile("Césaaaaar",Cesar); //ref à jojo
+
+    //clé usb
+    auto notes = UsbKey->addDir("Notes et résultats");
+    notes->addPyFile("Programmation des examens.xls",Enigme::Substitution);
+    auto exam= notes->addDir("Annales examens");
+    exam->addPyFile("Examen1.pdf",Enigme::Vigenere);
+    auto note2=notes->addDir("Notes examens");
+    auto note3=note2->addDir("Notes Examen1");
+    note3->addPyFile("Bareme.pdf",Enigme::Cesar);
 
 
 }
@@ -201,8 +212,12 @@ void Desktop::ajouteSubWindow(Directory * rootDir)
 
     QMdiSubWindow* fileWindow= this->addSubWindow(subwindow);
 
+
+
     fileWindow->move(this->width()/2-subwindow->width()/2,this->height()/2-subwindow->height()/2);
     fileWindow->show();
+
+
 }
 
 void Desktop::changeSubWindow(Directory* sender)

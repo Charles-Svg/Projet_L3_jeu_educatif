@@ -51,7 +51,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
        else if(Directory* a=dynamic_cast<Directory*>(rootDir->filelist().at(i)))
        {
            //creer un dossier
-           DirectoryView* b=new DirectoryView(a,this);
+           DirectoryView* b=new DirectoryView(a,_desktop,classic,this);
            contenu.push_back(b);
            layout->addWidget(b);
        }
@@ -64,13 +64,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
 }
 bool FileWindow::event(QEvent * ev)
 {
-    if(ev->type()==ChangeFileWindowEvent::type())
-    {
-        ChangeFileWindowEvent * event = dynamic_cast<ChangeFileWindowEvent *>(ev);
-        QCoreApplication::postEvent(_desktop,new ChangeFileWindowEvent(event->sender()));
-        return true;
-    }
-    else if (ev->type()==OpenPyFileEvent::type())
+    if (ev->type()==OpenPyFileEvent::type())
     {
         OpenPyFileEvent* event = dynamic_cast<OpenPyFileEvent*>(ev);
         QCoreApplication::postEvent(_desktop,new OpenPyFileEvent(event->sender()));
