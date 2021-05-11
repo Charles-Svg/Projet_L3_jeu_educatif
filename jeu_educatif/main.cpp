@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     //Chargement de la sauvegarde (création du fichier s'il n'existe pas)
     QFile save("save.json");
 
-    QString data("{ \"Chapitre 1\": { \"Copie\": true }, \"Chapitre 2\": { \"Cesar\": true, \"Vigenere\": false, \"Substitution\": true } }");
+    QString data("{ \"Chapitre 1\": { \"Copie\": false }, \"Chapitre 2\": { \"Cesar\": false, \"Vigenere\": false, \"Substitution\": false } }");
     if(save.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream out(&save);
         out.setCodec("UTF-8");
