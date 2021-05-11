@@ -1,7 +1,7 @@
 #include "directoryview.h"
 
-DirectoryView::DirectoryView(Directory* modeldir,QWidget *parent,typeDir type)
-    :AbstractfileView(modeldir,parent),_model(modeldir)
+DirectoryView::DirectoryView(Directory* modeldir,QWidget* desktop,typeDir type,QWidget *parent)
+    :AbstractfileView(modeldir,parent),_model(modeldir),_desktop(desktop)
 {
     if(type==classic)
         setImage(":/folder");
@@ -18,12 +18,12 @@ void DirectoryView::OpenEvent()
         //regarder s'il y a une fenetre ouverte sinon on en créer une autre
         if(_model->parentDir()==nullptr)
         {
-           QCoreApplication::postEvent(this->parent(),new OpenDirEvent(_model));
+           //ai-je une autre solution ?
+           QCoreApplication::postEvent(_desktop,new OpenDirEvent(_model));
         }
         else {
-            //event qui change la filewindow qui devrait etre envoyer au desktop et c'est le desktop qui va agir sur le controlleur
 
-            QCoreApplication::postEvent(this->parent(),new ChangeFileWindowEvent(_model));
+            QCoreApplication::postEvent(_desktop,new ChangeFileWindowEvent(_model));
 
         }
     }

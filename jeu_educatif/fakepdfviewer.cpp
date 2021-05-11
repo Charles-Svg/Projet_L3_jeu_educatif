@@ -24,6 +24,8 @@ FakePdfViewer::~FakePdfViewer()
         delete *i;
     }
 }
+
+
 void FakePdfViewer::resizeEvent(QResizeEvent * ev)
 {
     qDebug()<<"old "<<ev->oldSize();

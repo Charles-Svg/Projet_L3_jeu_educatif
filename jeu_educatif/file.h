@@ -17,11 +17,10 @@ public:
 
 
 
-
 class PyFile : public Abstractfile
 {
 public:
-    PyFile(QString const & nom,Enigme enig=Enigme::Cesar,bool ouvrable=true);
+    PyFile(QString const & nom,Enigme enig,bool ouvrable=true);
     Enigme enigmeType(){return _enigmeType;}
 
 private:
