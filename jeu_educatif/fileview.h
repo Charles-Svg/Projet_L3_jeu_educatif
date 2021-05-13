@@ -25,6 +25,7 @@ void OpenEvent() override;
 
 
 
+
 class PyFileView : public AbstractfileView
 {
 Q_OBJECT

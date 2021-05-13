@@ -7,8 +7,8 @@ File::File(QString const & nom,bool ouvrable)
 
 
 
-PyFile::PyFile(QString const & nom,Enigme enig,bool ouvrable)
-    : Abstractfile(nom,ouvrable),_enigmeType(enig)
+PyFile::PyFile(QString const & nom,Enigme enig,Icon i,bool ouvrable)
+    : Abstractfile(nom,ouvrable),icone(i),_enigmeType(enig)
 {}
 
 

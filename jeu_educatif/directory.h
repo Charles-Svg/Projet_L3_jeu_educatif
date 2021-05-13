@@ -17,7 +17,7 @@ public:
     Directory* addDir(QString const & nom,bool ouvrable=true);
     void addFile(QString const & nom,bool ouvrable=false);
     void addPdfFile(QString const & nom,Cours cours,bool ouvrable=true);
-    void addPyFile(QString const & nom,Enigme type,bool ouvrable=true);
+    void addPyFile(const QString &nom,Enigme type,Icon i=python,bool ouvrable=true);
 
     QVector<Abstractfile *> filelist(){return FileList;}
 

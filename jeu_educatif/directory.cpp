@@ -15,9 +15,9 @@ void Directory::addFile(const QString &nom,bool ouvrable)
 }
 
 
-void Directory::addPyFile(const QString &nom,Enigme type,bool ouvrable)
+void Directory::addPyFile(const QString &nom,Enigme type,Icon i,bool ouvrable)
 {
-    PyFile* file=new PyFile(nom,type,ouvrable);
+    PyFile* file=new PyFile(nom,type,i,ouvrable);
     FileList.push_back(file);
 }
 

@@ -4,6 +4,7 @@
 #include "abstractfile.h"
 #include "idewindow.h"
 
+enum Icon{python,xls,pdf,file};
 
 class File : public Abstractfile
 {
@@ -19,8 +20,9 @@ public:
 class PyFile : public Abstractfile
 {
 public:
-    PyFile(QString const & nom,Enigme enig,bool ouvrable=true);
+    PyFile(QString const & nom,Enigme enig,Icon i=python,bool ouvrable=true);
     Enigme enigmeType(){return _enigmeType;}
+    Icon icone;
 
 private:
     Enigme _enigmeType;
