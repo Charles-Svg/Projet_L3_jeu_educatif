@@ -14,9 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     Fondu* fond1= new Fondu(fondu1);
     setCentralWidget(fond1);
-
     connect(fond1,&Fondu::end,this,&MainWindow::loadChap1);
-
 }
 
 void MainWindow::loadChap1()

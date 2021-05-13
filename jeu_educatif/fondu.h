@@ -1,11 +1,12 @@
 #ifndef FONDU_H
 #define FONDU_H
 
-#include <QPlainTextEdit>
+#include <QWidget>
+#include "LetterByLetterLabel.h"
 #include <QKeyEvent>
 enum typeFondu {fondu1,fondu2,fondu3,fin};
 
-class Fondu : public QPlainTextEdit
+class Fondu : public QWidget
 {
     Q_OBJECT
 public:
@@ -13,7 +14,7 @@ public:
 
     void keyPressEvent(QKeyEvent*) override;
 private:
-    static QString str1;
+    LetterByLetterLabel *_label;
 
 signals:
     void end();

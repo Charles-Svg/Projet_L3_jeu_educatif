@@ -28,7 +28,7 @@ void DirectoryView::OpenEvent()
         }
     }
     else {
-        QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès au dossier");
+        QMessageBox message(QMessageBox::Warning,"Accès interdit","Vous n'avez pas accès au dossier");
         message.exec();
     }
 

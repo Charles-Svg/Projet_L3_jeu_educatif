@@ -49,3 +49,18 @@ bool deepCopyCompleted(){
     QJsonObject chapter1(rootObj.value("Chapitre 1").toObject());
     return chapter1.value("Copie").toBool();
 }
+
+bool changeMarkCompleted(){
+    QFile inFile("save.json");
+    inFile.open(QIODevice::ReadOnly|QIODevice::Text);
+    QByteArray data = inFile.readAll();
+    inFile.close();
+    QJsonParseError errorPtr;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &errorPtr);
+    if (doc.isNull()) {
+        return false;
+    }
+    QJsonObject rootObj(doc.object());
+    QJsonObject chapter1(rootObj.value("Chapitre 2").toObject());
+    return chapter1.value("Notes").toBool();
+}
