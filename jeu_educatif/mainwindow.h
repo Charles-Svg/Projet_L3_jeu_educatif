@@ -10,7 +10,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
-signals:
+private slots:
+    void loadChap1();
 
 };
 

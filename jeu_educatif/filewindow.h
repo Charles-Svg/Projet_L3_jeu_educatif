@@ -29,6 +29,7 @@ private:
     QHBoxLayout * layout;
     QWidget * _desktop;
     QVector<AbstractfileView*> contenu;
+    void PostCopy();
 
 signals:
     void goPrevious(Directory* parentDir);

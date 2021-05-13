@@ -19,10 +19,16 @@ public:
 private:
     Directory* _model;
     QWidget* _desktop;
-
+    void emitCopied();
 
 protected:
 void OpenEvent() override;
+
+public slots:
+void OpenMenu(QPoint const &point);
+
+signals:
+void copied();
 
 };
 

@@ -60,6 +60,8 @@ set(PROJECT_SOURCES
 
         fakepdfviewer.cpp
 
+        fondu.cpp
+
         ressources.qrc
         python.qrc
 )

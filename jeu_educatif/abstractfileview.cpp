@@ -6,24 +6,27 @@ AbstractfileView::AbstractfileView(Abstractfile* filemodel, QWidget* parent,int 
 {
 
      auto metrics = QFontMetrics(QApplication::font());
-     int labelheight=18;
+     int labelheight=20;
      //faire en sorte que le label du nom ait une taille qui s'adapte
     if(metrics.horizontalAdvance(filemodel->nom())>larg-4)
     {
         int rapport=(metrics.horizontalAdvance(filemodel->nom())/larg)+1;
         labelheight=labelheight*rapport;
     }
+
     _nom->setAlignment(Qt::AlignCenter);
     _nom->setWordWrap(1);
 
 
 
      setFixedSize(largeur,hauteur+labelheight);
-     setAlignment(Qt::AlignHCenter | Qt::AlignTop );
+     setAlignment(Qt::AlignHCenter | Qt::AlignTop);
 
 
     _nom->setGeometry(0,this->height()-labelheight,largeur,labelheight);
     _nom->setStyleSheet("color : white");
+
+
 }
 
 
@@ -51,9 +54,8 @@ void AbstractfileView::mousePressEvent(QMouseEvent * event)
     }
     else if(event->button() == Qt::RightButton)
     {
-       emit rightclicked();
+       emit rightclicked(event->globalPos());
 
     }
 }
-
 

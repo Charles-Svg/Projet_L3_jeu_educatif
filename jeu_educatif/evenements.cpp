@@ -41,14 +41,23 @@ goPreviousEvent::goPreviousEvent(Directory* previousDir)
 //evenements d'ouverture de File
 QEvent::Type OpenPyFileEvent::MyType=static_cast<QEvent::Type>(QEvent::registerEventType());
 
-OpenPyFileEvent::OpenPyFileEvent(PyFile * send)
+OpenPyFileEvent::OpenPyFileEvent(PyFile* send)
     :QEvent(MyType),_sender(send)
 {}
+
+
 
 QEvent::Type OpenPdfFileEvent::MyType=static_cast<QEvent::Type>(QEvent::registerEventType());
 
 OpenPdfFileEvent::OpenPdfFileEvent(PdfFile * send)
     :QEvent(MyType),_sender(send)
 {}
+
+QEvent::Type OpenCopyFileEvent::MyType=static_cast<QEvent::Type>(QEvent::registerEventType());
+
+OpenCopyFileEvent::OpenCopyFileEvent()
+    :QEvent(MyType)
+{}
+
 
 #endif // EVENEMENTS_CPP

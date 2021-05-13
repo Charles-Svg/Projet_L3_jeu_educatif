@@ -13,13 +13,13 @@
 #include "fakepdfviewer.h"
 #include <QVector>
 
-enum User {Prof,Eleve};
+enum Chapitre {chap1,chap2};
 
 class Desktop : public QMdiArea
 {
     Q_OBJECT
 public:
-    explicit Desktop(User u,QWidget *parent = nullptr);
+    explicit Desktop(Chapitre u,QWidget *parent = nullptr);
     ~Desktop();
     bool event(QEvent* event) override;
 
@@ -29,12 +29,18 @@ public slots:
     void ajoutePyFileWindow(PyFile*);
     void ajoutePdfFileWindow(PdfFile*);
 
+
 private:
 QVector<Abstractfile*> contenu;
 
 //methode pour séparer le code
 void addFilesProf();
 void addFilesEleve();
+
+
+signals:
+void endChap1();
+void endChap2();
 
 };
 

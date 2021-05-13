@@ -54,6 +54,12 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
            DirectoryView* b=new DirectoryView(a,_desktop,classic,this);
            contenu.push_back(b);
            layout->addWidget(b);
+
+           if(a->EstCopiable())
+           {
+               connect(b,&AbstractfileView::rightclicked,b,&DirectoryView::OpenMenu);
+               connect(b,&DirectoryView::copied,this,&FileWindow::PostCopy);
+           }
        }
 
         layout->addStretch(1);
@@ -88,6 +94,11 @@ void FileWindow::goBack(bool)
         QCoreApplication::postEvent(_desktop,new goPreviousEvent(rootDir->parentDir()));
     }
 
+}
+
+void FileWindow::PostCopy()
+{
+    QCoreApplication::postEvent(_desktop,new OpenCopyFileEvent());
 }
 
 FileWindow::~FileWindow()

@@ -4,7 +4,6 @@
 #include "abstractfile.h"
 #include "idewindow.h"
 
-enum FileType {Txt,PDF,PY};
 
 class File : public Abstractfile
 {
@@ -28,7 +27,7 @@ private:
 
 };
 
-enum Cours {Cesar, Vigenere, Substitution, Fin, Autre};
+enum Cours {Cesar, Vigenere, Substitution, frequentielle, Autre};
 
 class PdfFile : public Abstractfile
 {

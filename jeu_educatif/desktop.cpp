@@ -7,7 +7,7 @@
 #include <QApplication>
 #include <QFile>
 
-Desktop::Desktop(User user,QWidget *parent) :
+Desktop::Desktop(Chapitre chap,QWidget *parent) :
     QMdiArea(parent)
 {
 
@@ -20,21 +20,10 @@ Desktop::Desktop(User user,QWidget *parent) :
     qDebug()<<this->viewport();
 
 
-    switch(user)
+    switch(chap)
     {
 
-        case Eleve:
-        {
-            QFile style(":/styleEleve");
-            style.open(QFile::ReadOnly);
-            QString styleSheet = (style.readAll());
-            this->setStyleSheet(styleSheet);
-            addFilesEleve();
-
-         }
-            break;
-
-        case Prof :
+        case chap1 :
         {
             //methode prof
             QFile style(":/styleProf");
@@ -45,6 +34,19 @@ Desktop::Desktop(User user,QWidget *parent) :
 
         }
             break;
+
+        case chap2:
+        {
+            QFile style(":/styleEleve");
+            style.open(QFile::ReadOnly);
+            QString styleSheet = (style.readAll());
+            this->setStyleSheet(styleSheet);
+            addFilesEleve();
+
+         }
+            break;
+
+
     }
 
 }
@@ -79,23 +81,29 @@ void Desktop::addFilesProf()
     //ce PC
         auto Vid=cePC->addDir("Vidéos");
         Vid->addDir("NSFW",false); // non ouvrable
-        cePC->addDir("Téléchargements",false);
+        cePC->addDir("Télécharg...",false);
         cePC->addDir("Images",false);
 
 
         auto Doc=cePC->addDir("Documents");
         // dans Documents
-            auto Notes=Doc->addDir("Notes et resultats"); //ce doc qu'on ne peut ouvrir dans le chap 1
+            auto Notes=Doc->addDir("Notes et resultats", false); //ce doc qu'on ne peut ouvrir dans le chap 1
+            //mettre signal pour lancer la copie !
+            Notes->SetCopaiable(true);
+
             auto Annales= Notes->addDir("Annales Examens");
             Annales->addPdfFile("Examen1 2019-2020",Cesar);
             auto notesExam=Notes->addDir("Notes Examens");
             auto Exam1= notesExam->addDir("Notes examen 1 2019");
-           // Exam1->addPdfFile("Barème.pdf",Cesar);
+            Exam1->addPdfFile("Barème.pdf",Cesar);
             Exam1->addFile("Notes exam 1");
 
-            Doc->addDir("Cours");
-
-    //contenu clé USB
+            auto cours=Doc->addDir("Cours");
+            //ajout des cours
+            cours->addPdfFile("Crypto Cesar 2020",Cours::Cesar);
+            cours->addPdfFile("Crypto Substi 2020",Cours::Substitution);
+            cours->addPdfFile("Crypto Vigenere 2020",Cours::Vigenere);
+            cours->addPdfFile("Crypto Freq 2020",Cours::frequentielle);
 
 
 
@@ -200,6 +208,15 @@ bool Desktop::event(QEvent *event)
          ajoutePdfFileWindow(ev->sender());
          return true;
      }
+     else if (event->type()==OpenCopyFileEvent::type())
+     {
+         IDEWindow* Pywindow = new IDEWindow(Enigme::Copie,this);
+         QMdiSubWindow* subwindow= this->addSubWindow(Pywindow);
+         subwindow->move(this->width()/2-Pywindow->width()/2,this->height()/2-Pywindow->height()/2);
+         subwindow->show();
+
+         return true;
+     }
     else
         return QMdiArea::event(event);
 }
@@ -236,7 +253,6 @@ void Desktop::ajoutePyFileWindow(PyFile* file)
     QMdiSubWindow* subwindow= this->addSubWindow(Pywindow);
     subwindow->move(this->width()/2-Pywindow->width()/2,this->height()/2-Pywindow->height()/2);
     subwindow->show();
-
 }
 
 void Desktop::ajoutePdfFileWindow(PdfFile* file)
@@ -248,6 +264,7 @@ void Desktop::ajoutePdfFileWindow(PdfFile* file)
     subwindow->move(this->width()/2-PdfWindow->width()/2,this->height()/2-PdfWindow->height()/2);
     subwindow->show();
 }
+
 
 
 Desktop::~Desktop()

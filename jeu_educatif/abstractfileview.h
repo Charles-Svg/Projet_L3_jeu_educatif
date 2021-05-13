@@ -8,6 +8,9 @@
 #include <QFont>
 #include <QApplication>
 #include <QMessageBox>
+#include <QPoint>
+#include <QMenu>
+#include <QAction>
 
 #include "abstractfile.h"
 
@@ -15,9 +18,9 @@ class AbstractfileView : public QLabel
 {
       Q_OBJECT
 public:
-    AbstractfileView(Abstractfile*, QWidget * parent=nullptr, int largeur=84,int hauteur=48);
+    AbstractfileView(Abstractfile*, QWidget * parent=nullptr, int largeur=84,int hauteur=64);
     virtual ~AbstractfileView()=default;
-
+    virtual void setImage(QString const & filename);
 
     QString nom()const{return _nom->text();}
 
@@ -28,13 +31,15 @@ private:
 protected:
     void mouseDoubleClickEvent(QMouseEvent *) override;
     void mousePressEvent(QMouseEvent * event) override;
-    virtual void setImage(QString const & filename);
+
     virtual void OpenEvent()=0;
+
 
 signals:
     void open();
-    void rightclicked();
+    void rightclicked(QPoint const &);
     void leftclicked();
+    void Copied();
 };
 
 #endif // ABSTRACTFILEVIEW_H

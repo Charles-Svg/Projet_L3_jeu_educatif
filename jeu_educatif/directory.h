@@ -23,13 +23,15 @@ public:
 
     void setparentDir(Directory* root){_parentDir=root;}
     Directory* parentDir(){return _parentDir;}
-
+    bool EstCopiable(){return copiable;}
+    void SetCopaiable(bool b){copiable=b;}
 
 protected:
     QVector<Abstractfile *> FileList;
 
 private:
     Directory * _parentDir;
+    bool copiable;
 
 };
 

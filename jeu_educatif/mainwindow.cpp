@@ -2,7 +2,7 @@
 #include <QScreen>
 #include <QDesktopServices>
 
-#include "fakepdfviewer.h"
+#include "fondu.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -11,7 +11,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     QScreen* ecran=QGuiApplication::primaryScreen() ;
     this->setFixedSize (ecran->availableSize());
 
-    Desktop* Desk= new Desktop(User::Eleve,this);
-    setCentralWidget(Desk);
 
+
+
+    Fondu* fond1= new Fondu(fondu1);
+    setCentralWidget(fond1);
+
+    connect(fond1,&Fondu::end,this,&MainWindow::loadChap1);
+
+}
+
+void MainWindow::loadChap1()
+{
+    Desktop* Desk= new Desktop(Chapitre::chap1,this);
+    setCentralWidget(Desk);
 }

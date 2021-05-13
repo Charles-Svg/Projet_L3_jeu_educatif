@@ -25,5 +25,9 @@
         <file alias="substitution2">src/substitution-2.jpg</file>
         <file alias="substitution3">src/substitution-3.jpg</file>
         <file alias="substitution4">src/substitution-4.jpg</file>
+        <file alias="freq1">src/Analyse_frequentielle-1.jpg</file>
+        <file alias="freq2">src/Analyse_frequentielle-2.jpg</file>
+        <file alias="freq3">src/Analyse_frequentielle-3.jpg</file>
+        <file alias="freq4">src/Analyse_frequentielle-4.jpg</file>
     </qresource>
 </RCC>
