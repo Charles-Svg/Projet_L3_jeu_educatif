@@ -8,7 +8,7 @@ def test():
 
     test1 = temp.substitution("avion", "xylophone")
     if test1 != "ixodg":
-        if test1 == "opqch":
+        if test1 == "xtaig":
             print("Incorrect : ceci est une fonction de chiffrement et non de déchiffrement comme requis")
         elif not test1.isalpha():
             print("Incorrect : mauvais traitement des lettres")
