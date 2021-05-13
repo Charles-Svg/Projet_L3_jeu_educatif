@@ -17,11 +17,8 @@ AbstractfileView::AbstractfileView(Abstractfile* filemodel, QWidget* parent,int 
     _nom->setAlignment(Qt::AlignCenter);
     _nom->setWordWrap(1);
 
-
-
      setFixedSize(largeur,hauteur+labelheight);
      setAlignment(Qt::AlignHCenter | Qt::AlignTop);
-
 
     _nom->setGeometry(0,this->height()-labelheight,largeur,labelheight);
     _nom->setStyleSheet("color : white");

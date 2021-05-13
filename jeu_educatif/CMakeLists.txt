@@ -59,6 +59,7 @@ set(PROJECT_SOURCES
         fakepdfviewer.cpp
 
         fondu.cpp
+
         JsonHelper.cpp
 
         ressources.qrc

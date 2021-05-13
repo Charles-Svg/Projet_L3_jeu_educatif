@@ -9,9 +9,10 @@
 #include <QTextCodec>
 #include <QDebug>
 #include <QBoxLayout>
+#include <QDebug>
 
 IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
-    QWidget(parent),_statusbar(new QStatusBar(this))
+    QWidget(parent),_statusbar(new QStatusBar(this)),enigme(e)
 
 {
     this->_codeEditor = new CodeEditor;
@@ -208,7 +209,6 @@ IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
 
 IDEWindow::~IDEWindow()
 {
-   // delete ui;
 }
 
 
@@ -239,7 +239,6 @@ void IDEWindow::executeFile(QString filename){
 
 void IDEWindow::runProgram(){
     this->_startProgram->setEnabled(false);
-    //ui->actionRun->setEnabled(false);
     QString filename("temp.py");
     QString data(this->_codeEditor->toPlainText());
     writeInFile(filename, data);
@@ -248,7 +247,7 @@ void IDEWindow::runProgram(){
     else
         executeFile(this->_testFilename);
     this->_stopProgram->setEnabled(true);
-   // ui->actionStop->setEnabled(true);
+
 
 }
 
@@ -269,6 +268,12 @@ void IDEWindow::codeExecution_finished(int /*exitCode*/){
     QFile file("temp.py");
     file.remove();
     this->_startProgram->setEnabled(true);
+
+    if(enigme==Enigme::Copie)
+    {
+        emit CopyExec();
+        qDebug()<<"copy finit";
+    }
 
 }
 

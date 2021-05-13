@@ -41,7 +41,10 @@ private:
     QToolButton* _startProgram;
     QToolButton* _stopProgram;
     QString _testFilename;
+    Enigme enigme;
 
+signals:
+    void CopyExec();
 
 };
 

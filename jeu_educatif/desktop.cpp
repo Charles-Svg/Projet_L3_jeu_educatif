@@ -6,6 +6,7 @@
 #include <QStyleFactory>
 #include <QApplication>
 #include <QFile>
+#include <QMessageBox>
 
 Desktop::Desktop(Chapitre chap,QWidget *parent) :
     QMdiArea(parent)
@@ -16,8 +17,6 @@ Desktop::Desktop(Chapitre chap,QWidget *parent) :
     //s'adapte a la taille de l'écran
     setMinimumSize(parent->size());
     setOption(QMdiArea::DontMaximizeSubWindowOnActivation);
-
-    qDebug()<<this->viewport();
 
 
     switch(chap)
@@ -198,7 +197,7 @@ bool Desktop::event(QEvent *event)
      {
         //regarder quel fichier on veut ouvrir
          OpenPyFileEvent* ev=dynamic_cast<OpenPyFileEvent*>(event);
-         ajoutePyFileWindow(ev->sender());
+         ajoutePyFileWindow(ev->sender()->enigmeType());
          return true;
      }
      else if (event->type()==OpenPdfFileEvent::type())
@@ -210,11 +209,7 @@ bool Desktop::event(QEvent *event)
      }
      else if (event->type()==OpenCopyFileEvent::type())
      {
-         IDEWindow* Pywindow = new IDEWindow(Enigme::Copie,this);
-         QMdiSubWindow* subwindow= this->addSubWindow(Pywindow);
-         subwindow->move(this->width()/2-Pywindow->width()/2,this->height()/2-Pywindow->height()/2);
-         subwindow->show();
-
+         ajoutePyFileWindow(Enigme::Copie);
          return true;
      }
     else
@@ -247,12 +242,14 @@ void Desktop::changeSubWindow(Directory* sender)
     }
 }
 
-void Desktop::ajoutePyFileWindow(PyFile* file)
+void Desktop::ajoutePyFileWindow(Enigme e)
 {
-    IDEWindow* Pywindow = new IDEWindow(file->enigmeType(),this);
+    IDEWindow* Pywindow = new IDEWindow(e,this);
     QMdiSubWindow* subwindow= this->addSubWindow(Pywindow);
     subwindow->move(this->width()/2-Pywindow->width()/2,this->height()/2-Pywindow->height()/2);
     subwindow->show();
+
+    connect(Pywindow,&IDEWindow::CopyExec,this,&Desktop::verifyEnigme);
 }
 
 void Desktop::ajoutePdfFileWindow(PdfFile* file)
@@ -265,6 +262,17 @@ void Desktop::ajoutePdfFileWindow(PdfFile* file)
     subwindow->show();
 }
 
+void Desktop::verifyEnigme()
+{
+    qDebug()<<"verification de l'énigme";
+    if(deepCopyCompleted())
+    {
+        qDebug()<<"copie complétée";
+        QMessageBox bj(QMessageBox::Information,"bien joué !","Le dossier à bien été copié sur la clé Usb");
+        connect(&bj,&QMessageBox::buttonClicked,this,&Desktop::EndChap1);
+        bj.exec();
+    }
+}
 
 
 Desktop::~Desktop()

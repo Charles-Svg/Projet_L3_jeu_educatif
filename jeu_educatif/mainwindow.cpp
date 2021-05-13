@@ -12,8 +12,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     this->setFixedSize (ecran->availableSize());
 
 
-
-
     Fondu* fond1= new Fondu(fondu1);
     setCentralWidget(fond1);
 
@@ -24,5 +22,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 void MainWindow::loadChap1()
 {
     Desktop* Desk= new Desktop(Chapitre::chap1,this);
+    setCentralWidget(Desk);
+    connect(Desk,&Desktop::endChap1,this,&MainWindow::loadFondu2);
+}
+
+
+void MainWindow::loadFondu2()
+{
+    Fondu* fond2= new Fondu(fondu2);
+    setCentralWidget(fond2);
+    connect(fond2,&Fondu::end,this,&MainWindow::loadChap2);
+}
+
+void MainWindow::loadChap2()
+{
+    Desktop* Desk= new Desktop(Chapitre::chap2,this);
     setCentralWidget(Desk);
 }

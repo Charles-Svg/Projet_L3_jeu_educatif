@@ -1,7 +1,8 @@
 #include "fondu.h"
 #include <QDebug>
 
-QString Fondu::str1="\n\n\n\t\t\t\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet\n"
+QString Fondu::str1=
+            "\n\n\n\t\t\t\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet\n"
             "\n\t\t\t\tadipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod\n "
             "\n\t\t\t\tnon, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper\n"
             "\n\t\t\t\tDuis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra\n "
@@ -19,6 +20,7 @@ Fondu::Fondu(typeFondu f)
         break;
 
         case fondu2:
+            setPlainText(str1);
         break;
 
         case fondu3:

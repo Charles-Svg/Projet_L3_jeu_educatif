@@ -5,13 +5,14 @@
 #include <QMainWindow>
 #include <QMdiArea>
 #include <QMdiSubWindow>
+#include <QVector>
 
 #include "fileview.h"
 #include "directoryview.h"
 #include "filewindow.h"
 #include "idewindow.h"
 #include "fakepdfviewer.h"
-#include <QVector>
+#include "JsonHelper.h"
 
 enum Chapitre {chap1,chap2};
 
@@ -26,8 +27,10 @@ public:
 public slots:
     void ajouteSubWindow(Directory*);
     void changeSubWindow(Directory*);
-    void ajoutePyFileWindow(PyFile*);
+    void ajoutePyFileWindow(Enigme);
     void ajoutePdfFileWindow(PdfFile*);
+    void verifyEnigme();
+    void EndChap1(QAbstractButton *){emit endChap1();}
 
 
 private:
