@@ -114,7 +114,6 @@ void Desktop::addFilesEleve()
     QGridLayout* FileLayout= new QGridLayout(this->viewport());
 
 
-   // this->viewport()->setLayout(FileLayout);
 
     int space=50;
 
@@ -138,35 +137,37 @@ void Desktop::addFilesEleve()
 
 
     //contenu de CePC
-    cePC->addPyFile("Test.py",Enigme::Vigenere);
-    cePC->addDir("Vidéos");
+    cePC->addDir("Vidéos",false);
 
     auto tel=cePC->addDir("Téléchargements");
-        tel->addFile("fortine.exe");
-        tel->addFile("glitcher pro v-bucks.bat");
+        tel->addFile("fortine.exe",false);
+        tel->addFile("glitcher pro v-bucks.bat",false);
 
-    cePC->addDir("Images");
+    cePC->addDir("Images",false);
 
     auto doc=cePC->addDir("Documents");
-        doc->addDir("Fortnite");
+        doc->addDir("Fortnite",false);
         auto cours=cePC->addDir("Cours");
-            cours->addDir("Maths");
-            cours->addDir("Karaté");
-            cours->addDir("Français");
+            cours->addDir("Maths",false);
+            cours->addDir("Karaté",false);
+            cours->addDir("Français",false);
 
             auto crypto= cours->addDir("Cryptographie");
                 crypto->addPdfFile("Vigenere",Vigenere);
                 crypto->addPdfFile("Substitution mot-clé",Substitution);
-                crypto->addPdfFile("Césaaaaar",Cesar); //ref à jojo
+                crypto->addPdfFile("Césaaaaaaaaaaar",Cesar); //ref à jojo
+                crypto->addPdfFile("Analyse fréquentielle",Cours::frequentielle);
 
     //clé usb
     auto notes = UsbKey->addDir("Notes et résultats");
-    notes->addPyFile("Programmation des examens.xls",Enigme::Substitution);
+    notes->addPyFile("Programmation des examens.xls",Enigme::Substitution,Icon::xls);
+
     auto exam= notes->addDir("Annales examens");
-    exam->addPyFile("Examen1.pdf",Enigme::Vigenere);
+    exam->addPyFile("Examen1.pdf",Enigme::Vigenere,Icon::pdf);
     auto note2=notes->addDir("Notes examens");
     auto note3=note2->addDir("Notes Examen1");
-    note3->addPyFile("Bareme.pdf",Enigme::Cesar);
+    note2->addDir("Notes Examen2",false);
+    note3->addPyFile("Bareme.pdf",Enigme::Cesar,Icon::pdf);
 
 
 }

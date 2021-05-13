@@ -26,7 +26,26 @@ void FileView::OpenEvent()
 PyFileView::PyFileView(PyFile* filemodel,QWidget *parent)
     :AbstractfileView(filemodel,parent),_model(filemodel)
 {
-    setImage(":/pieThonLogo");
+    switch (filemodel->icone)
+    {
+        case Icon::python :
+             setImage(":/pieThonLogo");
+        break;
+
+        case Icon::xls :
+             setImage(":/xlsIcon");
+        break;
+
+        case Icon::file :
+             setImage(":/file");
+        break;
+
+        case Icon::pdf:
+             setImage(":/pdfIcon");
+        break;
+
+    }
+
 }
 
 
