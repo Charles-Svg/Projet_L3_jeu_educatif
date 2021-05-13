@@ -2,7 +2,7 @@ import temp
 
 
 def test():
-    if temp.deepCopy(temp.notes.Dossier()) is None:
+    if temp.deepCopy(temp.files.Dossier()) is None:
         print("Incorrect : aucun retour")
         return False
 
