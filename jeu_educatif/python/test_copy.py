@@ -6,13 +6,13 @@ def test():
         print("Incorrect : aucun retour")
         return False
 
-    fichier1 = temp.notes.Fichier()
-    fichier2 = temp.notes.Fichier()
-    fichier3 = temp.notes.Fichier()
-    fichier4 = temp.notes.Fichier()
-    fichier5 = temp.notes.Fichier()
+    fichier1 = temp.files.Fichier()
+    fichier2 = temp.files.Fichier()
+    fichier3 = temp.files.Fichier()
+    fichier4 = temp.files.Fichier()
+    fichier5 = temp.files.Fichier()
 
-    repertoire = temp.notes.Dossier([fichier1, fichier2, fichier3, fichier4, fichier5])
+    repertoire = temp.files.Dossier([fichier1, fichier2, fichier3, fichier4, fichier5])
     rep2 = temp.deepCopy(repertoire)
 
     #Vérification que la copie renvoie une liste avec le bon nombre d'éléments
