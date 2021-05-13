@@ -45,6 +45,12 @@ Desktop::Desktop(Chapitre chap,QWidget *parent) :
          }
             break;
 
+        case chap3:
+        {
+
+    }
+        break;
+
 
     }
 
@@ -108,6 +114,73 @@ void Desktop::addFilesProf()
 
 }
 
+
+void Desktop::addFilesProf2()
+{
+    QGridLayout* FileLayout= new QGridLayout(this->viewport());
+
+
+    //this->viewport()->setLayout(FileLayout);
+
+    int space=50;
+
+    Directory * cePC=new Directory("Ce PC");
+    contenu.push_back(cePC);
+    DirectoryView * cePCView =new DirectoryView(cePC,this);
+    FileLayout->addWidget(cePCView,0,0);
+    FileLayout->setColumnMinimumWidth(1,space);
+
+
+    Directory* UsbKey=new Directory("Clé USB");
+    contenu.push_back(UsbKey);
+    DirectoryView * UsbKeyView= new DirectoryView(UsbKey,this,usb);
+    FileLayout->setRowMinimumHeight(1,space);
+    FileLayout->addWidget(UsbKeyView,2,0);
+
+
+     //permet de compacter les fichiers/dossier en haut a gauche
+    FileLayout->setColumnMinimumWidth(FileLayout->columnCount(),this->width());
+    FileLayout->setRowMinimumHeight(FileLayout->rowCount(),this->height());
+
+    //ce PC
+        auto Vid=cePC->addDir("Vidéos");
+        Vid->addDir("NSFW",false); // non ouvrable
+        cePC->addDir("Télécharg...",false);
+        cePC->addDir("Images",false);
+
+
+        auto Doc=cePC->addDir("Documents");
+        // dans Documents
+            auto Notes=Doc->addDir("Notes et resultats", false);
+
+ /*           auto Annales= Notes->addDir("Annales Examens");
+            Annales->addPdfFile("Examen1 2019-2020",Cesar);
+            auto notesExam=Notes->addDir("Notes Examens");
+            auto Exam1= notesExam->addDir("Notes examen 1 2019");
+            Exam1->addPdfFile("Barème.pdf",Cesar);
+            Exam1->addFile("Notes exam 1"); */
+
+            auto cours=Doc->addDir("Cours");
+            //ajout des cours
+            cours->addPdfFile("Crypto Cesar 2020",Cours::Cesar);
+            cours->addPdfFile("Crypto Substi 2020",Cours::Substitution);
+            cours->addPdfFile("Crypto Vigenere 2020",Cours::Vigenere);
+            cours->addPdfFile("Crypto Freq 2020",Cours::frequentielle);
+
+            //clé usb
+            auto notes = UsbKey->addDir("Notes et résultats");
+            notes->addPyFile("Programmation des examens.xls",Enigme::Substitution,Icon::xls);
+
+            auto exam= notes->addDir("Annales examens");
+            exam->addPyFile("Examen1.pdf",Enigme::Vigenere,Icon::pdf);
+            auto note2=notes->addDir("Notes examens");
+            auto note3=note2->addDir("Notes Examen1");
+            note2->addDir("Notes Examen2",false);
+            note3->addPyFile("Bareme.pdf",Enigme::Cesar,Icon::pdf);
+
+}
+
+
 void Desktop::addFilesEleve()
 {
 
@@ -139,7 +212,7 @@ void Desktop::addFilesEleve()
     //contenu de CePC
     cePC->addDir("Vidéos",false);
 
-    auto tel=cePC->addDir("Téléchargements");
+    auto tel=cePC->addDir("Télécharg...");
         tel->addFile("fortine.exe",false);
         tel->addFile("glitcher pro v-bucks.bat",false);
 
@@ -155,7 +228,7 @@ void Desktop::addFilesEleve()
             auto crypto= cours->addDir("Cryptographie");
                 crypto->addPdfFile("Vigenere",Vigenere);
                 crypto->addPdfFile("Substitution mot-clé",Substitution);
-                crypto->addPdfFile("Césaaaaaaaaaaar",Cesar); //ref à jojo
+                crypto->addPdfFile("Césaaaaaar",Cesar); //ref à jojo
                 crypto->addPdfFile("Analyse fréquentielle",Cours::frequentielle);
 
     //clé usb
@@ -169,6 +242,7 @@ void Desktop::addFilesEleve()
     note2->addDir("Notes Examen2",false);
     note3->addPyFile("Bareme.pdf",Enigme::Cesar,Icon::pdf);
 
+    note3->addFile("Notes examens1");
 
 }
 

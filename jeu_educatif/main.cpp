@@ -4,7 +4,7 @@
 #include <QFileInfo>
 #include <QtDebug>
 #include "JsonHelper.h"
-
+#include "enigmadialog.h"
 
 
 int main(int argc, char *argv[])
@@ -22,10 +22,13 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    MainWindow w;
+   /* MainWindow w;
 
     w.show();
-    w.setWindowState(Qt::WindowMaximized);
+    w.setWindowState(Qt::WindowMaximized);*/
+
+    EnigmaDialog e;
+    e.exec();
 
     return a.exec();
 }

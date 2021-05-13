@@ -62,6 +62,9 @@ set(PROJECT_SOURCES
 
         JsonHelper.cpp
 
+        enigmadialog.cpp
+        enigmadialog.ui
+
         ressources.qrc
         python.qrc
 )
