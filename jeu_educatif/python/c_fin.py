@@ -11,4 +11,20 @@
 # Pour vous aider vous pourrez vous servir de la variable suivante, qui contiendra le message :
 message = "qzrtxoevztjtdqufnggzfczadnolyknmeaokcxkxzydvmp.qufnvzpbpujpnuchgtnaedrtnkcgkcvinjacxongggdkcXZCG+K+G" \
           "+Bvzpxczsaggnzxwzltxntzxoztzokdnacxkejxodtlokfm "
+#
+# Vous aurez également accès à la fonction de déchiffrement de vigenère codée ci-dessous
 # Bon courage
+
+def vigenere(word, key):
+    key.lower()
+    message = ""
+    i = 0
+    for letter in word:
+        if letter.isalpha():
+            letter_index = 65 if letter.isupper() else 97
+            message += chr(((ord(letter) - letter_index)-(ord(key[i%len(key)]) - 97)) % 26 + letter_index)
+            i += 1
+        else:
+            message += letter
+    return message
+
