@@ -264,11 +264,9 @@ void Desktop::ajoutePdfFileWindow(PdfFile* file)
 
 void Desktop::verifyEnigme()
 {
-    qDebug()<<"verification de l'énigme";
     if(deepCopyCompleted())
     {
-        qDebug()<<"copie complétée";
-        QMessageBox bj(QMessageBox::Information,"bien joué !","Le dossier à bien été copié sur la clé Usb");
+        QMessageBox bj(QMessageBox::Information,"Bien joué !","Le dossier à bien été copié sur la clé Usb");
         connect(&bj,&QMessageBox::buttonClicked,this,&Desktop::EndChap1);
         bj.exec();
     }

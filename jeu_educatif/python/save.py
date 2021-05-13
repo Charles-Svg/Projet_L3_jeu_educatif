@@ -7,7 +7,7 @@ class Sauvegarde(Enum):
     CESAR = "Cesar"
     VIGENERE = "Vigenere"
     SUBSTITUTION = "Substitution"
-    FIN = "Fin"
+    NOTES = "Notes"
 
 
 def valider(chapitre, epreuve):

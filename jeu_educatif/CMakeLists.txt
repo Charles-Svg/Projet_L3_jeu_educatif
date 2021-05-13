@@ -62,6 +62,8 @@ set(PROJECT_SOURCES
 
         JsonHelper.cpp
 
+        LetterByLetterLabel.cpp
+
         ressources.qrc
         python.qrc
 )

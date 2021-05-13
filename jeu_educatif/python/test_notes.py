@@ -34,3 +34,7 @@ try:
 except Exception as e:
     print(type(e).__name__, ":", e)
     answer = False
+
+if answer:
+    import save
+    save.valider(2, save.Sauvegarde.NOTES)
