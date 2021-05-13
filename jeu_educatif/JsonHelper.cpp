@@ -34,3 +34,18 @@ bool enigmasFullyCompleted(){
     }
     return true;
 }
+
+bool deepCopyCompleted(){
+    QFile inFile("save.json");
+    inFile.open(QIODevice::ReadOnly|QIODevice::Text);
+    QByteArray data = inFile.readAll();
+    inFile.close();
+    QJsonParseError errorPtr;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &errorPtr);
+    if (doc.isNull()) {
+        return false;
+    }
+    QJsonObject rootObj(doc.object());
+    QJsonObject chapter1(rootObj.value("Chapitre 1").toObject());
+    return chapter1.value("Copie").toBool();
+}
