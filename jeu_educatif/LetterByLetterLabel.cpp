@@ -1,5 +1,4 @@
 #include "LetterByLetterLabel.h"
-#include <QDebug>
 
 void LetterByLetterLabel::setText(const QString & text)
 {

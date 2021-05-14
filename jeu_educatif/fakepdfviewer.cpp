@@ -1,6 +1,5 @@
 #include "fakepdfviewer.h"
 
-#include <QDebug>
 
 FakePdfViewer::FakePdfViewer(Cours cours,QWidget* parent)
     :QScrollArea(parent),layout(new QVBoxLayout)
@@ -28,8 +27,6 @@ FakePdfViewer::~FakePdfViewer()
 
 void FakePdfViewer::resizeEvent(QResizeEvent * ev)
 {
-    qDebug()<<"old "<<ev->oldSize();
-    qDebug()<<"new :"<<ev->size();
     setAlignment(Qt::AlignCenter);;
 }
 

@@ -2,7 +2,7 @@
 #include <QApplication>
 #include <QFile>
 #include <QFileInfo>
-#include <QtDebug>
+#include <QTextStream>
 #include "JsonHelper.h"
 
 

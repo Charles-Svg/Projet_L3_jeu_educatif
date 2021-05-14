@@ -9,6 +9,7 @@
 #include "codeeditor.h"
 #include "pythonhighlighter.h"
 
+//Enumeration permettant de savoir dans quel contexte on ouvre la fenêtre IDE (quelle énigme à charger)
 enum class Enigme{Copie, Cesar, Vigenere, Substitution, Notes, Final};
 
 
@@ -19,6 +20,8 @@ class IDEWindow : public QWidget
 public:
     explicit IDEWindow(Enigme e = Enigme::Cesar, QWidget *parent = nullptr);
     ~IDEWindow();
+
+
     void writeInFile(QString filename, QString data);
     void executeFile(QString filename);
     void runProgram();

@@ -1,6 +1,5 @@
 #include "fondu.h"
 #include "JsonHelper.h"
-#include <QDebug>
 #include <QBoxLayout>
 
 

@@ -4,31 +4,32 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QTextStream>
-#include <iostream>
 #include <QObject>
 #include <QTextCodec>
-#include <QDebug>
 #include <QBoxLayout>
-#include <QDebug>
 
 IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
     QWidget(parent),_statusbar(new QStatusBar(this)),enigme(e)
 
 {
+
     this->_codeEditor = new CodeEditor;
 
     setMinimumSize(800,600);
     QVBoxLayout* verticalLayout= new QVBoxLayout(this);
 
+    //Ajout de l'éditeur de code sur l'interface
     verticalLayout->addWidget(this->_codeEditor);
     this->_highlighter = new PythonHighlighter(this->_codeEditor->document());
 
 
 
+    //Ajout de la barre d'onglets sur l'interface
     this->_consoleTab = new QTabWidget;
     this->_consoleTab->setMaximumHeight(250);
     verticalLayout->addWidget(this->_consoleTab);
 
+    //Ajout de la barre de statut sur l'interface
     verticalLayout->addWidget(_statusbar);
 
     this->_consoleOutput = new QPlainTextEdit;
@@ -38,6 +39,8 @@ IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
     f.setPointSize(11);
     this->_consoleOutput->setFont(f);
 
+
+    //Ajout de l'onglet sortie console sur l'interface
     this->_consoleTab->insertTab(1,this->_consoleOutput,"Sortie Console");
 
 
@@ -58,6 +61,7 @@ IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
     pHLayout->addWidget(this->_stopProgram);
 
 
+    //Ajout des boutons d'exécution et d'arrêt de programme sur l'interface
     this->_consoleTab->setCornerWidget(tabCornerWidget);
 
 
@@ -70,6 +74,10 @@ IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
     connect(this->_stopProgram, &QToolButton::clicked, this, &IDEWindow::stopProgram);
 
 
+    /*
+     * Chargement de l'énigme correspondante au contexte courant
+     * Des fichiers sont crées afin de pouvoir plus tard être exécutés au lancement de l'exécution du script
+     */
     switch(e){
     case Enigme::Copie:{
         QFile file(":/python/c_copy.py");
@@ -213,7 +221,10 @@ IDEWindow::~IDEWindow()
 
 
 
-
+/*
+ * Permet d'écrire sur un fichier
+ *
+ */
 void IDEWindow::writeInFile(QString filename, QString data){
     QFile file(filename);
     if(file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -225,8 +236,10 @@ void IDEWindow::writeInFile(QString filename, QString data){
     file.close();
 }
 
+
 void IDEWindow::executeFile(QString filename){
     QStringList arguments {filename};
+    //exécution du script par l'interpréteur python
     this->_executor.start("python", arguments);
     this->_consoleOutput->clear();
     this->_consoleOutput->insertPlainText("-->");
@@ -238,14 +251,18 @@ void IDEWindow::executeFile(QString filename){
 
 
 void IDEWindow::runProgram(){
+    //Désactivation du bouton pour lancer le script
     this->_startProgram->setEnabled(false);
+    //Création d'un fichier temporaire contenant les données que le joueur a entré
     QString filename("temp.py");
     QString data(this->_codeEditor->toPlainText());
     writeInFile(filename, data);
+    //Un fichier de test null équivaut au contexte de fin : il n'y a pas de classe de test à exécuter donc on lance directement le fichier du joueur
     if(this->_testFilename.isNull())
         executeFile(filename);
     else
         executeFile(this->_testFilename);
+    //Activation du bouton pour stopper le script
     this->_stopProgram->setEnabled(true);
 
 
@@ -257,22 +274,29 @@ void IDEWindow::stopProgram(){
 }
 
 
-
+/*
+ *Permet de garder la barre de statut à jour
+ *
+ */
 void IDEWindow::cursorPosition_changed(){
     QTextCursor c = this->_codeEditor->textCursor();
     _statusbar->showMessage(QString("Ln %1, Col %2").arg(c.blockNumber() + 1).arg((c.positionInBlock() + 1)));
 }
 
+
 void IDEWindow::codeExecution_finished(int /*exitCode*/){
+    //Désactivation du bouton pour stopper le script
     this->_stopProgram->setEnabled(false);
+    //Suppression du fichier temporaire
     QFile file("temp.py");
     file.remove();
+    //Activation du bouton pour stopper le script
     this->_startProgram->setEnabled(true);
 
+    //Emission d'un signal permettant de marquer la fin du premier chapitre
     if(enigme==Enigme::Copie)
     {
         emit CopyExec();
-        qDebug()<<"copy finit";
     }
 
 }

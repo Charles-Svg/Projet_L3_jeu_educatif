@@ -42,7 +42,7 @@ void DirectoryView::emitCopied()
 void DirectoryView::OpenMenu(QPoint const &point)
 {
     QMenu * menu=new QMenu(this);
-    QAction* copy= new QAction("copier le dossier ?",this);
+    QAction* copy= new QAction("Copier",this);
     menu->addAction(copy);
     menu->popup(point);
     connect(copy,&QAction::triggered,this,&DirectoryView::emitCopied);

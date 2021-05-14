@@ -6,12 +6,11 @@
 #include <map>
 #include <vector>
 
-#include <QDebug>
-#include <iostream>
 
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
+    //Ajout du widget permettant de noter les lignes
     lineNumberArea = new LineNumberArea(this);
 
     connect(this, &CodeEditor::blockCountChanged, this, &CodeEditor::updateLineNumberAreaWidth);
@@ -28,7 +27,9 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 
 }
 
-
+/*
+ * Permet d'automatiquement calculer la largeur du widget lineNumberArea
+ */
 int CodeEditor::lineNumberAreaWidth()
 {
     int digits = 1;
@@ -67,6 +68,10 @@ void CodeEditor::resizeEvent(QResizeEvent *e)
     lineNumberArea->setGeometry(QRect(cr.left(), cr.top(), lineNumberAreaWidth(), cr.height()));
 }
 
+/*
+ *Permet de passer en surlignage la ligne courante
+ *
+ */
 void CodeEditor::highlightCurrentLine()
 {
     QList<QTextEdit::ExtraSelection> extraSelections;
@@ -87,7 +92,7 @@ void CodeEditor::highlightCurrentLine()
 }
 
 /*
- *  Permet de surligner la ligne active
+ *  Evenement de surlignage
 */
 void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
 {

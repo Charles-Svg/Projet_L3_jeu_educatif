@@ -1,7 +1,6 @@
 #include "desktop.h"
 
 #include <QGridLayout>
-#include <QDebug>
 #include <QtGui>
 #include <QStyleFactory>
 #include <QApplication>

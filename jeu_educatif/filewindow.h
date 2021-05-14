@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QIcon>
-#include <QDebug>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include "directory.h"

@@ -1,5 +1,4 @@
 #include "directory.h"
-#include <QDebug>
 
 Directory::Directory(QString const & nom,bool ouvrable)
     :Abstractfile(nom,ouvrable),_parentDir(nullptr),copiable(false)
