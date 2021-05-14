@@ -2,9 +2,10 @@
 
 
 FileView::FileView(File* filemodel,QWidget *parent)
-    :AbstractfileView(filemodel,parent),_model(filemodel)
+    :AbstractfileView(filemodel,parent),_model(filemodel),_ecriture(false)
 {
     setImage(":/file");
+
 }
 
 
@@ -13,7 +14,17 @@ void FileView::OpenEvent()
 {
     if(_model->ouvrable())
     {
-        //ouverture du dialog avec les lettre a rentrer
+        if(_ecriture==false){
+            //ouverture du dialog avec les lettres à rentrer
+            EnigmaDialog * e= new EnigmaDialog(this->parentWidget());
+            connect(e,&EnigmaDialog::accepted,this,&FileView::setEcritureTrue);
+            e->exec();
+        }
+        else{
+            //ouverture du scrpt de changement de notes
+            QCoreApplication::postEvent(this->parent(),new OpenPyFileEvent(Enigme::Notes));
+        }
+
     }
     else {
         QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès a fichier");
@@ -21,7 +32,11 @@ void FileView::OpenEvent()
     }
 }
 
-
+void FileView::setEcritureTrue()
+{
+    _ecriture=true;
+    qDebug()<<"ecriture=true";
+}
 
 PyFileView::PyFileView(PyFile* filemodel,QWidget *parent)
     :AbstractfileView(filemodel,parent),_model(filemodel)
@@ -54,7 +69,7 @@ void PyFileView::OpenEvent()
 {
     if(_model->ouvrable())
     {
-        QCoreApplication::postEvent(this->parent(),new OpenPyFileEvent(_model));
+        QCoreApplication::postEvent(this->parent(),new OpenPyFileEvent(_model->enigmeType()));
     }
     else {
         QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès a fichier");

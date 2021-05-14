@@ -5,6 +5,17 @@
 #include <QTextEdit>
 #include <QKeyEvent>
 
+class TextEdit : public QTextEdit
+{
+    Q_OBJECT
+
+public:
+    TextEdit(QWidget* parent=nullptr);
+
+void keyPressEvent(QKeyEvent*) override;
+
+};
+
 namespace Ui {
 class EnigmaDialog;
 }
@@ -20,18 +31,14 @@ public:
 
 private:
     Ui::EnigmaDialog *ui;
+    TextEdit* lettre1;
+    TextEdit* lettre2;
+    TextEdit* lettre3;
+
+private slots:
+    void testResult();
 };
 
 
 
-class TextEdit : public QTextEdit
-{
-    Q_OBJECT
-
-public:
-    TextEdit(QWidget* parent=nullptr);
-
-void keyPressEvent(QKeyEvent*) override;
-
-};
 #endif // ENIGMADIALOG_H

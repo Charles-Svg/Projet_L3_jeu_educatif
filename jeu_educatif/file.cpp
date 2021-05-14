@@ -1,4 +1,5 @@
 #include "file.h"
+
 #include <QDebug>
 
 File::File(QString const & nom,bool ouvrable)

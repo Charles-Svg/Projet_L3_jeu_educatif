@@ -73,7 +73,7 @@ bool FileWindow::event(QEvent * ev)
     if (ev->type()==OpenPyFileEvent::type())
     {
         OpenPyFileEvent* event = dynamic_cast<OpenPyFileEvent*>(ev);
-        QCoreApplication::postEvent(_desktop,new OpenPyFileEvent(event->sender()));
+        QCoreApplication::postEvent(_desktop,new OpenPyFileEvent(event->enigme()));
         return true;
     }
     else if (ev->type()==OpenPdfFileEvent::type())
@@ -98,7 +98,7 @@ void FileWindow::goBack(bool)
 
 void FileWindow::PostCopy()
 {
-    QCoreApplication::postEvent(_desktop,new OpenCopyFileEvent());
+    QCoreApplication::postEvent(_desktop,new OpenPyFileEvent(Enigme::Copie));
 }
 
 FileWindow::~FileWindow()

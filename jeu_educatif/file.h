@@ -4,6 +4,7 @@
 #include "abstractfile.h"
 #include "idewindow.h"
 
+
 enum Icon{python,xls,pdf,file};
 
 class File : public Abstractfile
