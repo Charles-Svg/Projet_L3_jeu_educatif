@@ -107,7 +107,7 @@ void Desktop::addFilesProf()
             cours->addPdfFile("Crypto Cesar 2020",Cours::Cesar);
             cours->addPdfFile("Crypto Substi 2020",Cours::Substitution);
             cours->addPdfFile("Crypto Vigenere 2020",Cours::Vigenere);
-            cours->addPdfFile("Crypto Freq 2020",Cours::frequentielle);
+
 
 
 
@@ -227,8 +227,8 @@ void Desktop::addFilesEleve()
             auto crypto= cours->addDir("Cryptographie");
                 crypto->addPdfFile("Vigenere",Vigenere);
                 crypto->addPdfFile("Substitution mot-clé",Substitution);
-                crypto->addPdfFile("Césaaaaaar",Cesar); //ref à jojo
-                crypto->addPdfFile("Analyse fréquentielle",Cours::frequentielle);
+                crypto->addPdfFile("Césaaar",Cesar); //ref à jojo
+
 
     //clé usb
     auto notes = UsbKey->addDir("Notes et résultats");
@@ -241,7 +241,7 @@ void Desktop::addFilesEleve()
     note2->addDir("Notes Examen2",false);
     note3->addPyFile("Bareme.pdf",Enigme::Cesar,Icon::pdf);
 
-    note3->addFile("Notes examens1");
+    note3->addFile("Notes examens1",true);
 
 }
 
@@ -271,7 +271,7 @@ bool Desktop::event(QEvent *event)
      {
         //regarder quel fichier on veut ouvrir
          OpenPyFileEvent* ev=dynamic_cast<OpenPyFileEvent*>(event);
-         ajoutePyFileWindow(ev->sender()->enigmeType());
+         ajoutePyFileWindow(ev->enigme());
          return true;
      }
      else if (event->type()==OpenPdfFileEvent::type())
@@ -281,11 +281,7 @@ bool Desktop::event(QEvent *event)
          ajoutePdfFileWindow(ev->sender());
          return true;
      }
-     else if (event->type()==OpenCopyFileEvent::type())
-     {
-         ajoutePyFileWindow(Enigme::Copie);
-         return true;
-     }
+
     else
         return QMdiArea::event(event);
 }

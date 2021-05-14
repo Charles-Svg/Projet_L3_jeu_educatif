@@ -10,9 +10,9 @@ EnigmaDialog::EnigmaDialog(QWidget *parent) :
     setWindowTitle("???");
 
 
-    TextEdit* lettre1= new TextEdit(this);
-    TextEdit* lettre2= new TextEdit(this);
-    TextEdit* lettre3= new TextEdit(this);
+    lettre1= new TextEdit(this);
+    lettre2= new TextEdit(this);
+    lettre3= new TextEdit(this);
 
     lettre1->setAlignment(Qt::AlignVCenter |Qt::AlignHCenter);
     lettre2->setAlignment(Qt::AlignVCenter |Qt::AlignHCenter);
@@ -33,6 +33,22 @@ EnigmaDialog::EnigmaDialog(QWidget *parent) :
     ui->letterLayout->addWidget(lettre2);
     ui->letterLayout->addWidget(lettre3);
 
+    connect(ui->acceptButton,&QPushButton::clicked,this,&EnigmaDialog::testResult);
+
+    ui->errorLabel->setStyleSheet("color:red;");
+
+}
+void EnigmaDialog::testResult()
+{
+    if(lettre1->toPlainText()=="c" && lettre2->toPlainText()=="q" && lettre3->toPlainText()=="i")
+    {
+
+        accept();
+
+    }
+    else {
+        ui->errorLabel->setText("séquence non valide");
+    }
 }
 
 

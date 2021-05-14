@@ -4,7 +4,7 @@
 #include "file.h"
 #include "abstractfileview.h"
 #include "evenements.h"
-
+#include "enigmadialog.h"
 #include <QCoreApplication>
 
 
@@ -15,8 +15,10 @@ public:
     FileView(File*,QWidget *parent = nullptr);
 
 private:
-    bool ecriture;
     File * _model;
+    bool _ecriture;
+private slots:
+    void setEcritureTrue();
 
 protected:
 void OpenEvent() override;

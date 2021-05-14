@@ -49,13 +49,12 @@ private:
 class OpenPyFileEvent : public QEvent
 {
 public:
-    OpenPyFileEvent(PyFile);
-    OpenPyFileEvent(PyFile*);
+    OpenPyFileEvent(Enigme e);
     static QEvent::Type type(){return MyType;}
-    PyFile* sender(){return _sender;}
+    Enigme enigme(){return _enigme;}
 private:
     static QEvent::Type MyType;
-    PyFile *_sender;
+    Enigme _enigme;
 };
 
 
@@ -71,15 +70,6 @@ private:
 };
 
 
-class OpenCopyFileEvent : public QEvent
-{
-public:
-    OpenCopyFileEvent();
-    static QEvent::Type type(){return MyType;}
-
-private:
-    static QEvent::Type MyType;
-};
 
 
 #endif // EVENEMENTS_H

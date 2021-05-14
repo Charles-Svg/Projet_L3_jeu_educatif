@@ -64,6 +64,7 @@ set(PROJECT_SOURCES
 
         enigmadialog.cpp
         enigmadialog.ui
+
         LetterByLetterLabel.cpp
 
         ressources.qrc

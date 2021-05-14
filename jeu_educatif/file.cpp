@@ -1,5 +1,6 @@
 #include "file.h"
 
+
 File::File(QString const & nom,bool ouvrable)
     : Abstractfile(nom,ouvrable)
 {}

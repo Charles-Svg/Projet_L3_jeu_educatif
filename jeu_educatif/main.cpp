@@ -26,9 +26,5 @@ int main(int argc, char *argv[])
 
     w.show();
     w.setWindowState(Qt::WindowMaximized);
-/*
-    EnigmaDialog e;
-    e.exec();
-*/
     return a.exec();
 }
