@@ -36,4 +36,30 @@ void MainWindow::loadChap2()
 {
     Desktop* Desk= new Desktop(Chapitre::chap2,this);
     setCentralWidget(Desk);
+    connect(Desk,&Desktop::endChap2,this,&MainWindow::loadFondu3);
 }
+
+
+void MainWindow::loadFondu3()
+{
+    Fondu* fond3= new Fondu(fondu3);
+    setCentralWidget(fond3);
+    connect(fond3,&Fondu::end,this,&MainWindow::loadChap3);
+}
+
+void MainWindow::loadChap3()
+{
+    Desktop* Desk= new Desktop(Chapitre::chap3,this);
+    setCentralWidget(Desk);
+}
+
+
+
+
+
+
+
+
+
+
+

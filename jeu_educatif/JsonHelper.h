@@ -3,4 +3,5 @@
 
 bool enigmasFullyCompleted();
 bool deepCopyCompleted();
+bool changeMarkCompleted();
 #endif // JSONHELPER_H

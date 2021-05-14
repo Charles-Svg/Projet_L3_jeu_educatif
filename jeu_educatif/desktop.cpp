@@ -46,8 +46,12 @@ Desktop::Desktop(Chapitre chap,QWidget *parent) :
 
         case chap3:
         {
-
-    }
+            QFile style(":/styleProf");
+            style.open(QFile::ReadOnly);
+            QString styleSheet = (style.readAll());
+            this->setStyleSheet(styleSheet);
+            addFilesProf2();
+        }
         break;
 
 
@@ -319,7 +323,9 @@ void Desktop::ajoutePyFileWindow(Enigme e)
     subwindow->move(this->width()/2-Pywindow->width()/2,this->height()/2-Pywindow->height()/2);
     subwindow->show();
 
-    connect(Pywindow,&IDEWindow::CopyExec,this,&Desktop::verifyEnigme);
+    connect(Pywindow,&IDEWindow::CopyExec,this,&Desktop::verifyCopy);
+    connect(Pywindow,&IDEWindow::NotesExec,this,&Desktop::verifyNotesChange);
+
 }
 
 void Desktop::ajoutePdfFileWindow(PdfFile* file)
@@ -332,7 +338,7 @@ void Desktop::ajoutePdfFileWindow(PdfFile* file)
     subwindow->show();
 }
 
-void Desktop::verifyEnigme()
+void Desktop::verifyCopy()
 {
     if(deepCopyCompleted())
     {
@@ -342,6 +348,15 @@ void Desktop::verifyEnigme()
     }
 }
 
+void Desktop::verifyNotesChange()
+{
+    if(changeMarkCompleted())
+    {
+        QMessageBox bv(QMessageBox::Information,"Bravo !","Le fichier des notes est modifé eheh");
+        connect(&bv,&QMessageBox::buttonClicked,this,&Desktop::EndChap2);
+        bv.exec();
+    }
+}
 
 Desktop::~Desktop()
 {

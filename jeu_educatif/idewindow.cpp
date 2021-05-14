@@ -304,6 +304,10 @@ void IDEWindow::codeExecution_finished(int /*exitCode*/){
     {
         emit CopyExec();
     }
+    else if(enigme==Enigme::Notes)
+    {
+        emit NotesExec();
+    }
 
 }
 

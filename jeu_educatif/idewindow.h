@@ -48,6 +48,7 @@ private:
 
 signals:
     void CopyExec();
+    void NotesExec();
 
 };
 

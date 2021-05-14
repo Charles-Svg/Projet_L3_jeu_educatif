@@ -29,9 +29,10 @@ public slots:
     void changeSubWindow(Directory*);
     void ajoutePyFileWindow(Enigme);
     void ajoutePdfFileWindow(PdfFile*);
-    void verifyEnigme();
+    void verifyCopy();
+    void verifyNotesChange();
     void EndChap1(QAbstractButton *){emit endChap1();}
-
+    void EndChap2(QAbstractButton *){emit endChap2();}
 
 private:
 QVector<Abstractfile*> contenu;
