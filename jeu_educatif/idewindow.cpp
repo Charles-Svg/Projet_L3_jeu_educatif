@@ -7,11 +7,13 @@
 #include <QObject>
 #include <QTextCodec>
 #include <QBoxLayout>
+#include <QShortcut>
 
 IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
     QWidget(parent),_statusbar(new QStatusBar(this)),enigme(e)
 
 {
+
 
     this->_codeEditor = new CodeEditor;
 
@@ -64,6 +66,10 @@ IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
     //Ajout des boutons d'exécution et d'arrêt de programme sur l'interface
     this->_consoleTab->setCornerWidget(tabCornerWidget);
 
+
+
+    QShortcut *shortcut = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_R), this);
+    connect(shortcut, &QShortcut::activated, this, &IDEWindow::runProgram);
 
     connect(this->_codeEditor,&QPlainTextEdit::cursorPositionChanged, this, &IDEWindow::cursorPosition_changed);
     connect(this->_consoleOutput,&QPlainTextEdit::textChanged, this->_consoleOutput, &QPlainTextEdit::ensureCursorVisible);
