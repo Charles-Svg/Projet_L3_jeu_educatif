@@ -62,6 +62,8 @@ set(PROJECT_SOURCES
 
         JsonHelper.cpp
 
+        enigmadialog.cpp
+        enigmadialog.ui
         LetterByLetterLabel.cpp
 
         ressources.qrc

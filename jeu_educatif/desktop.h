@@ -14,7 +14,7 @@
 #include "fakepdfviewer.h"
 #include "JsonHelper.h"
 
-enum Chapitre {chap1,chap2};
+enum Chapitre {chap1,chap2,chap3};
 
 class Desktop : public QMdiArea
 {
@@ -39,7 +39,7 @@ QVector<Abstractfile*> contenu;
 //methode pour séparer le code
 void addFilesProf();
 void addFilesEleve();
-
+void addFilesProf2();
 
 signals:
 void endChap1();
