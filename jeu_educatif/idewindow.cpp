@@ -79,6 +79,18 @@ IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
     connect(this->_startProgram, &QToolButton::clicked, this, &IDEWindow::runProgram);
     connect(this->_stopProgram, &QToolButton::clicked, this, &IDEWindow::stopProgram);
 
+    /*
+     * Section "Fin"
+     *
+     */
+    if(e == Enigme::Final){
+        QShortcut *finalShortcut = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_E + Qt::Key_V + Qt::Key_G), this);
+        /*
+         * Rajouter un slot au signal afin d'ouvrir la fenêtre pour finir le jeu
+
+        connect(finalShortcut, &QShortcut::activated, slotObject, &slotMethod);
+        */
+    }
 
     /*
      * Chargement de l'énigme correspondante au contexte courant
