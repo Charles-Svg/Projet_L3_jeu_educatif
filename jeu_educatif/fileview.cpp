@@ -27,7 +27,7 @@ void FileView::OpenEvent()
 
     }
     else {
-        QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès a fichier");
+        QMessageBox message(QMessageBox::Warning,"Accès interdit","Vous n'avez pas accès au fichier");
         message.exec();
     }
 }
@@ -84,7 +84,7 @@ void PyFileView::OpenEvent()
         QCoreApplication::postEvent(this->parent(),new OpenPyFileEvent(_model->enigmeType()));
     }
     else {
-        QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès a fichier");
+        QMessageBox message(QMessageBox::Warning,"Accès interdit","Vous n'avez pas accès au fichier");
         message.exec();
     }
 }
@@ -106,7 +106,7 @@ void PdfFileView::OpenEvent()
         QCoreApplication::postEvent(this->parent(),new OpenPdfFileEvent(_model));
     }
     else {
-        QMessageBox message(QMessageBox::Warning,"Vous n'avez pas accès","Vous n'avez pas accès a fichier");
+        QMessageBox message(QMessageBox::Warning,"Accès interdit","Vous n'avez pas accès au fichier");
         message.exec();
     }
 }

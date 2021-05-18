@@ -6,11 +6,11 @@ def test():
         print("Incorrect : aucun retour")
         return False
 
-    fichier1 = temp.files.Fichier()
-    fichier2 = temp.files.Fichier()
-    fichier3 = temp.files.Fichier()
-    fichier4 = temp.files.Fichier()
-    fichier5 = temp.files.Fichier()
+    fichier1 = temp.files.Fichier(1)
+    fichier2 = temp.files.Fichier(2)
+    fichier3 = temp.files.Fichier(3)
+    fichier4 = temp.files.Fichier(4)
+    fichier5 = temp.files.Fichier(5)
 
     repertoire = temp.files.Dossier([fichier1, fichier2, fichier3, fichier4, fichier5])
     rep2 = temp.deepCopy(repertoire)
@@ -19,6 +19,13 @@ def test():
     if rep2.nbElem() != repertoire.nbElem():
         print("Incorrect : erreur de copie")
         return False
+
+    #Vérification que les fichiers soient les mêmes
+    for i in range(len(repertoire.fichiers)):
+        if rep2.fichiers[i] == repertoire.fichiers[i]:
+            print("Incorrect : erreur de copie, fichiers copiés en surface et non en profondeur")
+            return False
+
 
     repertoire.supprFichier()
 

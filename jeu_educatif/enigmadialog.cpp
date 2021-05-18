@@ -30,6 +30,10 @@ EnigmaDialog::EnigmaDialog(QWidget *parent) :
     lettre2->setPlaceholderText("2");
     lettre3->setPlaceholderText("3");
 
+    lettre1->setTabChangesFocus(true);
+    lettre2->setTabChangesFocus(true);
+    lettre3->setTabChangesFocus(true);
+
     ui->letterLayout->addWidget(lettre1);
     ui->letterLayout->addWidget(lettre2);
     ui->letterLayout->addWidget(lettre3);
@@ -41,14 +45,14 @@ EnigmaDialog::EnigmaDialog(QWidget *parent) :
 }
 void EnigmaDialog::testResult()
 {
-    if(lettre1->toPlainText()=="c" && lettre2->toPlainText()=="q" && lettre3->toPlainText()=="i")
+    if(!lettre1->toPlainText().compare("c", Qt::CaseInsensitive) && !lettre2->toPlainText().compare("q", Qt::CaseInsensitive) && !lettre3->toPlainText().compare("i", Qt::CaseInsensitive))
     {
         accept();
-        QMessageBox M(QMessageBox::Information,"dévérouillé !","le fichier est dévérouillé, vous pouvez l'ouvrir");
+        QMessageBox M(QMessageBox::Information,"Dévérouillé !","Le fichier est dévérouillé, vous pouvez l'ouvrir");
         M.exec();
     }
     else {
-        ui->errorLabel->setText("séquence non valide");
+        ui->errorLabel->setText("Séquence non valide");
     }
 }
 
@@ -64,8 +68,14 @@ TextEdit::TextEdit(QWidget* parent)
 
 void TextEdit::keyPressEvent(QKeyEvent *ev)
 {
-    if(this->toPlainText()=="" or ev->key()==Qt::Key_Backspace)
+    if(this->toPlainText()=="" or ev->key()==Qt::Key_Backspace or !this->textCursor().selection().isEmpty())
     {
         QTextEdit::keyPressEvent(ev);
     }
+}
+
+void TextEdit::focusInEvent(QFocusEvent *e)
+{
+    this->selectAll();
+    QTextEdit::focusInEvent(e);
 }

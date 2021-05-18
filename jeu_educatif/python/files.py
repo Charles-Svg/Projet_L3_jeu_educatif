@@ -3,8 +3,7 @@ class Fichier:
         self.sizeMb = sizeMb
 
     def copy(self):
-        copie = Fichier(self.sizeMb)
-        return copie
+        return Fichier(self.sizeMb)
 
 
 class Dossier:

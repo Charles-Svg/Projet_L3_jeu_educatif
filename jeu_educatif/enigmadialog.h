@@ -13,6 +13,8 @@ public:
     TextEdit(QWidget* parent=nullptr);
 
 void keyPressEvent(QKeyEvent*) override;
+void focusInEvent(QFocusEvent *e) override;
+
 
 };
 

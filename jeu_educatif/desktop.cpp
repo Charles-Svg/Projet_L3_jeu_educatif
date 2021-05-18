@@ -102,7 +102,7 @@ void Desktop::addFilesProf()
             auto Annales= Notes->addDir("Annales Examens");
             Annales->addPdfFile("Examen1 2019-2020",Cesar);
             auto notesExam=Notes->addDir("Notes Examens");
-            auto Exam1= notesExam->addDir("Notes examen 1 2019");
+            auto Exam1= notesExam->addDir("Notes examen1");
             Exam1->addPdfFile("Barème.pdf",Cesar);
             Exam1->addFile("Notes exam 1");
 
@@ -159,7 +159,7 @@ void Desktop::addFilesProf2()
        auto Annales= Notes->addDir("Annales Examens");
             Annales->addPdfFile("Examen1 2019-2020",Cesar);
             auto notesExam=Notes->addDir("Notes Examens");
-            auto Exam1= notesExam->addDir("Notes examen 1 2019");
+            auto Exam1= notesExam->addDir("Notes examen1");
             Exam1->addPdfFile("Barème.pdf",Cesar);
 
             //fichier que l'on va remplacer pour enigme finale

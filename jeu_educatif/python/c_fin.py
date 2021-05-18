@@ -1,6 +1,6 @@
 # Le professeur a visiblement chiffré l'accès en écriture sur les fichiers de résultats pour s'assurer que personne ne
 # tricherait. Le message suivant apparaît :
-# qzrtxoevztjtdqufnggzfczadnolyknmeaokcxkxzydvmp.qufnvzpbpujpnuchgtnaedrtnkcgkcvinjacxongggdkcXZCG+K+G+Bvzpxczsaggnzxwzltxntzxoztzokdnacxkejxodtlokfm
+# qzrtxoevztjtdqufnggzfczadnolyknmeaokcxkxzydvmp.qufnvzpbpujpnuchgtnaedrtnkcgkcvinjacxongggdkcXZCG+K+E+Bvzpxczsaggnzxwzltxntzxoztzokdnacxkejxodtlokfm
 #
 # Voici ce que nous savons sur ce message :
 #   - Ce message a été chiffré avec l'algorithme de chiffrement de vigenère
@@ -9,14 +9,14 @@
 #   - Les caractères spéciaux n'ont pas été chiffrés, seules les lettres (minuscule et majuscule) le sont
 #
 # Pour vous aider vous pourrez vous servir de la variable suivante, qui contiendra le message :
-message = "qzrtxoevztjtdqufnggzfczadnolyknmeaokcxkxzydvmp.qufnvzpbpujpnuchgtnaedrtnkcgkcvinjacxongggdkcXZCG+K+G" \
+message = "qzrtxoevztjtdqufnggzfczadnolyknmeaokcxkxzydvmp.qufnvzpbpujpnuchgtnaedrtnkcgkcvinjacxongggdkcXZCG+K+E" \
           "+Bvzpxczsaggnzxwzltxntzxoztzokdnacxkejxodtlokfm "
 #
 # Vous aurez également accès à la fonction de déchiffrement de vigenère codée ci-dessous
 # Bon courage
 
 def vigenere(word, key):
-    key.lower()
+    key = key.lower()
     message = ""
     i = 0
     for letter in word:

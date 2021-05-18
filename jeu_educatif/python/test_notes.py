@@ -21,7 +21,7 @@ def test():
         else:
             print("Incorrect : ne modifiez que votre note")
         return False
-    print("Vous avez correctement modifié votre note. Vous pouvez fermer cette fenètre")
+    print("Vous avez correctement modifié votre note. Vous pouvez fermer cette fenêtre")
     return True
 
 
