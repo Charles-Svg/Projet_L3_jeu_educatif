@@ -365,6 +365,12 @@ void Desktop::verifyNotesChange()
     }
 }
 
+void Desktop::EndGame()
+{
+    QMessageBox m(QMessageBox::Information,"eazy peazy lemon squeezie","le fichier de note a été remplacé votre année est sauvée !");
+    m.exec();
+    emit endGame();
+}
 Desktop::~Desktop()
 {
      for (QVector<Abstractfile*>::iterator p=contenu.begin();p!=contenu.end();++p)

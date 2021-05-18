@@ -6,41 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>426</width>
-    <height>323</height>
+    <width>492</width>
+    <height>374</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>50</y>
-     <width>401</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Entrez les 3 lettres pour pouvoir modifier les notes</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>130</y>
-     <width>251</width>
-     <height>72</height>
+     <y>140</y>
+     <width>301</width>
+     <height>81</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="letterLayout"/>
@@ -48,10 +27,10 @@
   <widget class="QPushButton" name="acceptButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>270</y>
-     <width>91</width>
-     <height>31</height>
+     <x>350</x>
+     <y>300</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -66,9 +45,9 @@
   <widget class="QLabel" name="errorLabel">
    <property name="geometry">
     <rect>
-     <x>126</x>
-     <y>220</y>
-     <width>191</width>
+     <x>100</x>
+     <y>260</y>
+     <width>281</width>
      <height>20</height>
     </rect>
    </property>
@@ -78,6 +57,39 @@
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>475</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Entrez les 3 lettres pour pouvoir modifier les notes</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
