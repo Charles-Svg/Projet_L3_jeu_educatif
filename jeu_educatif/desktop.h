@@ -33,7 +33,7 @@ public slots:
     void verifyNotesChange();
     void EndChap1(QAbstractButton *){emit endChap1();}
     void EndChap2(QAbstractButton *){emit endChap2();}
-    void EndGame(){emit endGame(); }
+    void EndGame();
 
 private:
 QVector<Abstractfile*> contenu;
