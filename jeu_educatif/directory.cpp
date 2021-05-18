@@ -7,24 +7,28 @@ Directory::Directory(QString const & nom,bool ouvrable)
 
 
 //ajoute une fichier ou dossier au Vector
-void Directory::addFile(const QString &nom,bool ouvrable)
+File* Directory::addFile(const QString &nom,bool ouvrable)
 {
     File * file=new File(nom,ouvrable);
     FileList.push_back(file);
+    return file;
 }
 
 
-void Directory::addPyFile(const QString &nom,Enigme type,Icon i,bool ouvrable)
+PyFile* Directory::addPyFile(const QString &nom,Enigme type,Icon i,bool ouvrable)
 {
     PyFile* file=new PyFile(nom,type,i,ouvrable);
     FileList.push_back(file);
+    return file;
 }
 
 
-void Directory::addPdfFile(const QString &nom,Cours cours ,bool ouvrable)
+
+PdfFile* Directory::addPdfFile(const QString &nom,Cours cours ,bool ouvrable)
 {
     PdfFile * file= new PdfFile(nom,cours,ouvrable);
     FileList.push_back(file);
+    return file;
 }
 
 

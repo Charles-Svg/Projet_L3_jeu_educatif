@@ -19,10 +19,15 @@ private:
     bool _ecriture;
 private slots:
     void setEcritureTrue();
+    void emitReplaced(){emit replaced();}
 
+public slots:
+    void OpenMenu(QPoint const &point);
 protected:
 void OpenEvent() override;
 
+signals:
+    void replaced();
 };
 
 

@@ -5,12 +5,10 @@ FakePdfViewer::FakePdfViewer(Cours cours,QWidget* parent)
     :QScrollArea(parent),layout(new QVBoxLayout)
 {
 
-
     setMinimumSize(1024,600);
     setBackgroundRole(QPalette::Dark);
     setAlignment(Qt::AlignCenter);
     LoadImages(cours);
-
 
 }
 
@@ -42,35 +40,37 @@ void FakePdfViewer::LoadImages(Cours c)
     switch (c) {
         case Cesar:
 
-    {
-         QWidget* widget=new QWidget(this);
-         widget->setFixedSize(1050,610*4);
-         widget->setLayout(layout);
-         setWidget(widget);
-         for(int i=0;i<4;i++)
-         {
-             QLabel* label= new QLabel();
-             label->setBackgroundRole(QPalette::Base);
-             label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-             label->setScaledContents(true);
-             label->setPixmap(cours_cesar[i]);
-             label->adjustSize();
+        {
+             QWidget* widget=new QWidget(this);
+             widget->setFixedSize(1050,610*4);
+             widget->setLayout(layout);
+             setWidget(widget);
 
-             layout->addWidget(label);
+             for(int i=0;i<4;i++)
+             {
+                 QLabel* label= new QLabel();
+                 label->setBackgroundRole(QPalette::Base);
+                 label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+                 label->setScaledContents(true);
+                 label->setPixmap(cours_cesar[i]);
+                 label->adjustSize();
 
-             Images.push_back(label);
+                 layout->addWidget(label);
 
+                 Images.push_back(label);
+
+             }
          }
-     }
 
         break;
 
         case Vigenere:
-       {
+        {
             QWidget* widget=new QWidget(this);
             widget->setFixedSize(1050,610*5);
             widget->setLayout(layout);
             setWidget(widget);
+
             for(int i=0;i<5;i++)
             {
                 QLabel* label= new QLabel();
@@ -95,6 +95,7 @@ void FakePdfViewer::LoadImages(Cours c)
              widget->setFixedSize(1050,610*4);
              widget->setLayout(layout);
              setWidget(widget);
+
              for(int i=0;i<4;i++)
              {
                  QLabel* label= new QLabel();
@@ -114,26 +115,27 @@ void FakePdfViewer::LoadImages(Cours c)
         break;
 
         case frequentielle:
-    {
-         QWidget* widget=new QWidget(this);
-         widget->setFixedSize(1050,610*4);
-         widget->setLayout(layout);
-         setWidget(widget);
-         for(int i=0;i<4;i++)
-         {
-             QLabel* label= new QLabel();
-             label->setBackgroundRole(QPalette::Base);
-             label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-             label->setScaledContents(true);
-             label->setPixmap(cours_freq[i]);
-             label->adjustSize();
+        {
+             QWidget* widget=new QWidget(this);
+             widget->setFixedSize(1050,610*4);
+             widget->setLayout(layout);
+             setWidget(widget);
 
-             layout->addWidget(label);
+             for(int i=0;i<4;i++)
+             {
+                 QLabel* label= new QLabel();
+                 label->setBackgroundRole(QPalette::Base);
+                 label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+                 label->setScaledContents(true);
+                 label->setPixmap(cours_freq[i]);
+                 label->adjustSize();
 
-             Images.push_back(label);
+                 layout->addWidget(label);
 
+                 Images.push_back(label);
+
+             }
          }
-     }
         break;
 
         case Autre:

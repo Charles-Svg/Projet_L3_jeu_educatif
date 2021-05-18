@@ -29,6 +29,7 @@ private:
     QWidget * _desktop;
     QVector<AbstractfileView*> contenu;
     void PostCopy();
+    void PostReplace();
 
 signals:
     void goPrevious(Directory* parentDir);

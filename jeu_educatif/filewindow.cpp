@@ -32,6 +32,12 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
            contenu.push_back(b);
            layout->addWidget(b);
 
+           if(a->remplacable())
+           {
+               connect(b,&AbstractfileView::rightclicked,b,&FileView::OpenMenu);
+               connect(b,&FileView::replaced,this,&FileWindow::PostReplace);
+           }
+
        }
        else if(PyFile* a=dynamic_cast<PyFile*>(rootDir->filelist().at(i)))
        {
@@ -39,6 +45,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
            PyFileView* b= new PyFileView(a,this);
            contenu.push_back(b);
            layout->addWidget(b);
+
        }
        else if (PdfFile* a=dynamic_cast<PdfFile*>(rootDir->filelist().at(i)))
        {
@@ -96,10 +103,19 @@ void FileWindow::goBack(bool)
 
 }
 
+//envoie l'evenement pour ouvrir la fenetre de copie
 void FileWindow::PostCopy()
 {
     QCoreApplication::postEvent(_desktop,new OpenPyFileEvent(Enigme::Copie));
 }
+
+
+//envoie l'evenement pour ouvrir la fenetre de l'enigme finale
+void FileWindow::PostReplace()
+{
+    QCoreApplication::postEvent(_desktop,new OpenPyFileEvent(Enigme::Final));
+}
+
 
 FileWindow::~FileWindow()
 {

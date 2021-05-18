@@ -14,7 +14,7 @@ void FileView::OpenEvent()
 {
     if(_model->ouvrable())
     {
-        if(_ecriture==false){
+        if(_model->ecriture()==false){
             //ouverture du dialog avec les lettres à rentrer
             EnigmaDialog * e= new EnigmaDialog(this->parentWidget());
             connect(e,&EnigmaDialog::accepted,this,&FileView::setEcritureTrue);
@@ -32,10 +32,23 @@ void FileView::OpenEvent()
     }
 }
 
+
+void FileView::OpenMenu(QPoint const &point)
+{
+    QMenu * menu=new QMenu(this);
+    QAction* replace= new QAction("Remplacer le fichier",this);
+    menu->addAction(replace);
+    menu->popup(point);
+    connect(replace,&QAction::triggered,this,&FileView::emitReplaced);
+}
+
+
 void FileView::setEcritureTrue()
 {
-    _ecriture=true;
+    _model->setEcriture(true);
 }
+
+
 
 PyFileView::PyFileView(PyFile* filemodel,QWidget *parent)
     :AbstractfileView(filemodel,parent),_model(filemodel)

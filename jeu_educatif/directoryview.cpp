@@ -18,12 +18,12 @@ void DirectoryView::OpenEvent()
         //regarder s'il y a une fenetre ouverte sinon on en créer une autre
         if(_model->parentDir()==nullptr)
         {
-           //ai-je une autre solution ?
+
            QCoreApplication::postEvent(_desktop,new OpenDirEvent(_model));
         }
         else {
 
-            QCoreApplication::postEvent(_desktop,new ChangeFileWindowEvent(_model));
+           QCoreApplication::postEvent(_desktop,new ChangeFileWindowEvent(_model));
 
         }
     }

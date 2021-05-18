@@ -1,6 +1,7 @@
 #include "enigmadialog.h"
 #include "ui_enigmadialog.h"
 #include <QtGui>
+#include <QMessageBox>
 
 EnigmaDialog::EnigmaDialog(QWidget *parent) :
     QDialog(parent),
@@ -42,9 +43,9 @@ void EnigmaDialog::testResult()
 {
     if(lettre1->toPlainText()=="c" && lettre2->toPlainText()=="q" && lettre3->toPlainText()=="i")
     {
-
         accept();
-
+        QMessageBox M(QMessageBox::Information,"dévérouillé !","le fichier est dévérouillé, vous pouvez l'ouvrir");
+        M.exec();
     }
     else {
         ui->errorLabel->setText("séquence non valide");

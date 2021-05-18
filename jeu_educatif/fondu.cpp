@@ -16,6 +16,8 @@ QString badEnding="Bien joué, vous avez réussi à modifier votre note ! Malheu
                   "\nvous finissez seul, dans la rue, à n’avoir d’autre choix que de dormir dans ce coin de rue un petit peu plus chaud que la moyenne en attendant de pouvoir réussir à sortir de cette situation."
                   "\nC’est dommage d’en arriver là juste parce qu’on a voulu essayer de trouver le code sans avoir résolu l’ensemble des énigmes.";
 
+QString remerciment="Jeux réalisé par Teddy Sicard et Charles Sauvagnac\n"
+                    "Merci d'y avoir joué!"    ;
 Fondu::Fondu(typeFondu f)
     :QWidget()
 {
@@ -56,8 +58,9 @@ Fondu::Fondu(typeFondu f)
                 this->_label->setText(goodEnding);
             else
                 this->_label->setText(badEnding);
-
         break;
+        case merci:
+        this->_label->setText(remerciment);
 
     }
 

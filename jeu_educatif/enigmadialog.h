@@ -16,6 +16,7 @@ void keyPressEvent(QKeyEvent*) override;
 
 };
 
+
 namespace Ui {
 class EnigmaDialog;
 }
@@ -27,7 +28,6 @@ class EnigmaDialog : public QDialog
 public:
     explicit EnigmaDialog(QWidget *parent = nullptr);
     ~EnigmaDialog();
-
 
 private:
     Ui::EnigmaDialog *ui;

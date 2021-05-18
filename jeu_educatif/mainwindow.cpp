@@ -51,6 +51,21 @@ void MainWindow::loadChap3()
 {
     Desktop* Desk= new Desktop(Chapitre::chap3,this);
     setCentralWidget(Desk);
+    connect(Desk,&Desktop::endGame,this,&MainWindow::loadEndScreen);
+}
+
+void MainWindow::loadEndScreen()
+{
+    Fondu* fin=new Fondu(typeFondu::fin);
+    setCentralWidget(fin);
+    connect(fin,&Fondu::end,this,&MainWindow::thanks);
+}
+
+void MainWindow::thanks()
+{
+    Fondu * merci= new Fondu(typeFondu::merci);
+    setCentralWidget(merci);
+    connect(merci,&Fondu::end,this,&QApplication::quit);
 }
 
 

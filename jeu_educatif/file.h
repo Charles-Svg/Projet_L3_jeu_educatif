@@ -13,6 +13,15 @@ class File : public Abstractfile
 public:
     explicit File(QString const & nom,bool ouvrable=false);
     ~File()=default;
+    void setRemplacable(bool t){_remplacable=t;}
+    bool remplacable(){return _remplacable;}
+    void setEcriture(bool t){_ecriture=t;}
+    bool ecriture(){return _ecriture;}
+
+
+private:
+    bool _remplacable;
+    bool _ecriture;
 
 };
 

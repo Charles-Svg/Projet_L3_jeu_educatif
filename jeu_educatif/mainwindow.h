@@ -16,6 +16,8 @@ private slots:
     void loadChap2();
     void loadFondu3();
     void loadChap3();
+    void loadEndScreen();
+    void thanks();
 };
 
 #endif // MAINWINDOW_H

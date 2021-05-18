@@ -154,14 +154,17 @@ void Desktop::addFilesProf2()
 
         auto Doc=cePC->addDir("Documents");
         // dans Documents
-            auto Notes=Doc->addDir("Notes et resultats", false);
+            auto Notes=Doc->addDir("Notes et resultats");
 
- /*           auto Annales= Notes->addDir("Annales Examens");
+       auto Annales= Notes->addDir("Annales Examens");
             Annales->addPdfFile("Examen1 2019-2020",Cesar);
             auto notesExam=Notes->addDir("Notes Examens");
             auto Exam1= notesExam->addDir("Notes examen 1 2019");
             Exam1->addPdfFile("Barème.pdf",Cesar);
-            Exam1->addFile("Notes exam 1"); */
+
+            //fichier que l'on va remplacer pour enigme finale
+            auto FileE=Exam1->addFile("Notes exam 1");
+            FileE->setRemplacable(true);
 
             auto cours=Doc->addDir("Cours");
             //ajout des cours
@@ -325,6 +328,10 @@ void Desktop::ajoutePyFileWindow(Enigme e)
 
     connect(Pywindow,&IDEWindow::CopyExec,this,&Desktop::verifyCopy);
     connect(Pywindow,&IDEWindow::NotesExec,this,&Desktop::verifyNotesChange);
+    if(e==Enigme::Final)
+    {
+        connect(Pywindow,&IDEWindow::endGame,this,&Desktop::EndGame);
+    }
 
 }
 

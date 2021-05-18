@@ -2,7 +2,7 @@
 
 
 File::File(QString const & nom,bool ouvrable)
-    : Abstractfile(nom,ouvrable)
+    : Abstractfile(nom,ouvrable),_remplacable(false),_ecriture(false)
 {}
 
 

@@ -33,6 +33,7 @@ private slots:
     void codeExecution_finished(int exitCode);
     void displayStandard_output();
     void displayStandard_error();
+    void EndGame();
 
 private:
     QStatusBar* _statusbar;
@@ -49,6 +50,7 @@ private:
 signals:
     void CopyExec();
     void NotesExec();
+    void endGame();
 
 };
 
