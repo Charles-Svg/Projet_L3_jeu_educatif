@@ -3,6 +3,42 @@
 #include <QtGui>
 #include <QMessageBox>
 
+
+TextEdit::TextEdit(QWidget* parent)
+    :QTextEdit(parent)
+{
+    setAlignment(Qt::AlignVCenter |Qt::AlignHCenter);
+
+    QFont font ;
+    font.setPointSize(26);
+
+    setFont(font);
+    setTabChangesFocus(true);
+}
+
+void TextEdit::keyPressEvent(QKeyEvent *ev)
+{
+
+     if(this->toPlainText()=="" or ev->key()==Qt::Key_Backspace or !this->textCursor().selection().isEmpty())
+    {
+        QTextEdit::keyPressEvent(ev);
+    }
+
+}
+
+void TextEdit::focusInEvent(QFocusEvent *e)
+{
+    this->selectAll();
+    QTextEdit::focusInEvent(e);
+}
+
+
+void TextEdit::dragEnterEvent(QDragEnterEvent *)
+{}
+
+//-------------------------------------------EnigmaDialog-------------------------------------------------//
+
+
 EnigmaDialog::EnigmaDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EnigmaDialog)
@@ -10,29 +46,16 @@ EnigmaDialog::EnigmaDialog(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("???");
 
+    //emepeche de resize la fenetre
+    this->setFixedSize(this->width(),this->height());
 
     lettre1= new TextEdit(this);
     lettre2= new TextEdit(this);
     lettre3= new TextEdit(this);
 
-    lettre1->setAlignment(Qt::AlignVCenter |Qt::AlignHCenter);
-    lettre2->setAlignment(Qt::AlignVCenter |Qt::AlignHCenter);
-    lettre3->setAlignment(Qt::AlignVCenter |Qt::AlignHCenter);
-
-    QFont font ;
-    font.setPointSize(26);
-
-    lettre1->setFont(font);
-    lettre2->setFont(font);
-    lettre3->setFont(font);
-
     lettre1->setPlaceholderText("1");
     lettre2->setPlaceholderText("2");
     lettre3->setPlaceholderText("3");
-
-    lettre1->setTabChangesFocus(true);
-    lettre2->setTabChangesFocus(true);
-    lettre3->setTabChangesFocus(true);
 
     ui->letterLayout->addWidget(lettre1);
     ui->letterLayout->addWidget(lettre2);
@@ -40,6 +63,7 @@ EnigmaDialog::EnigmaDialog(QWidget *parent) :
 
     connect(ui->acceptButton,&QPushButton::clicked,this,&EnigmaDialog::testResult);
 
+    //label d'error si le code est faux
     ui->errorLabel->setStyleSheet("color:red;");
 
 }
@@ -62,20 +86,4 @@ EnigmaDialog::~EnigmaDialog()
     delete ui;
 }
 
-TextEdit::TextEdit(QWidget* parent)
-    :QTextEdit(parent)
-{}
 
-void TextEdit::keyPressEvent(QKeyEvent *ev)
-{
-    if(this->toPlainText()=="" or ev->key()==Qt::Key_Backspace or !this->textCursor().selection().isEmpty())
-    {
-        QTextEdit::keyPressEvent(ev);
-    }
-}
-
-void TextEdit::focusInEvent(QFocusEvent *e)
-{
-    this->selectAll();
-    QTextEdit::focusInEvent(e);
-}

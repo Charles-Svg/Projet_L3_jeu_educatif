@@ -13,17 +13,17 @@ Desktop::Desktop(Chapitre chap,QWidget *parent) :
 
     setBackground(QBrush());// permet de modifier/actualiser le background avec le css
 
-    //s'adapte a la taille de l'écran
+    //adapte la fenetre a la taille de l'écran
     setMinimumSize(parent->size());
     setOption(QMdiArea::DontMaximizeSubWindowOnActivation);
 
-
+    //charge le bureau correspondant au chapitre
     switch(chap)
     {
 
         case chap1 :
         {
-            //methode prof
+
             QFile style(":/styleProf");
             style.open(QFile::ReadOnly);
             QString styleSheet = (style.readAll());
@@ -63,9 +63,7 @@ void Desktop::addFilesProf()
 {
     QGridLayout* FileLayout= new QGridLayout(this->viewport());
 
-
-    //this->viewport()->setLayout(FileLayout);
-
+    //sert pour espacer les dossier sur le bureau
     int space=50;
 
     Directory * cePC=new Directory("Ce PC");
@@ -122,9 +120,7 @@ void Desktop::addFilesProf2()
 {
     QGridLayout* FileLayout= new QGridLayout(this->viewport());
 
-
-    //this->viewport()->setLayout(FileLayout);
-
+    //sert pour espacer les dossier sur le bureau
     int space=50;
 
     Directory * cePC=new Directory("Ce PC");
@@ -141,11 +137,11 @@ void Desktop::addFilesProf2()
     FileLayout->addWidget(UsbKeyView,2,0);
 
 
-     //permet de compacter les fichiers/dossier en haut a gauche
+    //permet de compacter les fichiers/dossier en haut a gauche
     FileLayout->setColumnMinimumWidth(FileLayout->columnCount(),this->width());
     FileLayout->setRowMinimumHeight(FileLayout->rowCount(),this->height());
 
-    //ce PC
+        //ce PC
         auto Vid=cePC->addDir("Vidéos");
         Vid->addDir("NSFW",false); // non ouvrable
         cePC->addDir("Télécharg...",false);
@@ -153,10 +149,11 @@ void Desktop::addFilesProf2()
 
 
         auto Doc=cePC->addDir("Documents");
-        // dans Documents
+
+            //dans Documents
             auto Notes=Doc->addDir("Notes et resultats");
 
-       auto Annales= Notes->addDir("Annales Examens");
+            auto Annales= Notes->addDir("Annales Examens");
             Annales->addPdfFile("Examen1 2019-2020",Cesar);
             auto notesExam=Notes->addDir("Notes Examens");
             auto Exam1= notesExam->addDir("Notes examen1");
@@ -192,8 +189,7 @@ void Desktop::addFilesEleve()
 
     QGridLayout* FileLayout= new QGridLayout(this->viewport());
 
-
-
+    //sert pour espacer les dossier sur le bureau
     int space=50;
 
     Directory * cePC=new Directory("Ce PC");
@@ -371,6 +367,8 @@ void Desktop::EndGame()
     m.exec();
     emit endGame();
 }
+
+
 Desktop::~Desktop()
 {
      for (QVector<Abstractfile*>::iterator p=contenu.begin();p!=contenu.end();++p)

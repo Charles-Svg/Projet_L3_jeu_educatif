@@ -1,5 +1,8 @@
 #include "filewindow.h"
 #include <QPushButton>
+#include <QStyle>
+#include <QIcon>
+#include <QPixmap>
 
 FileWindow::FileWindow(Directory * Dir,QWidget * desk)
     :QWidget(nullptr),rootDir(Dir),layout(new QHBoxLayout()),_desktop(desk)
@@ -10,10 +13,10 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
     setMinimumSize(800,600);
 
 
-    //boutton de retour en arrière
-
-     QPushButton* goPrevious= new QPushButton("Go Back",this);
+     //boutton de retour en arrière
+     QPushButton* goPrevious= new QPushButton(this->style()->standardIcon(QStyle::SP_ArrowLeft),"",this);
      goPrevious->setMinimumSize(60,40);
+     goPrevious->setIconSize(QSize(40,40));
      layout->addWidget(goPrevious);
      connect(goPrevious,&QAbstractButton::clicked,this,&FileWindow::goBack);
 
@@ -22,12 +25,14 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
     layout->setAlignment(Qt::AlignTop);
     layout->addStretch(1);
 
+
+    //création de la vue des fichiers contenus dans le dossier
     for(auto i=0;i<rootDir->filelist().size();++i)
     {
 
        if(File* a=dynamic_cast<File*>(rootDir->filelist().at(i)))
         {
-           //on ceer un nouveau fichier
+
            FileView* b= new FileView(a,this);
            contenu.push_back(b);
            layout->addWidget(b);

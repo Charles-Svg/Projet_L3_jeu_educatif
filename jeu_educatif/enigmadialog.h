@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QTextEdit>
 #include <QKeyEvent>
+#include <QDragEnterEvent>
+
 
 class TextEdit : public QTextEdit
 {
@@ -14,10 +16,10 @@ public:
 
 void keyPressEvent(QKeyEvent*) override;
 void focusInEvent(QFocusEvent *e) override;
+void dragEnterEvent(QDragEnterEvent *) override;
 
 
 };
-
 
 namespace Ui {
 class EnigmaDialog;

@@ -22,6 +22,7 @@ class Desktop : public QMdiArea
 public:
     explicit Desktop(Chapitre u,QWidget *parent = nullptr);
     ~Desktop();
+
     bool event(QEvent* event) override;
 
 public slots:
@@ -38,10 +39,10 @@ public slots:
 private:
 QVector<Abstractfile*> contenu;
 
-//methode pour séparer le code
-void addFilesProf();
-void addFilesEleve();
-void addFilesProf2();
+//methodes pour séparer le code
+void addFilesProf(); //ajout des fichiers chap1
+void addFilesEleve(); //ajout des fichiers chap2
+void addFilesProf2(); //ajout des fichiers chap3
 
 signals:
 void endChap1();

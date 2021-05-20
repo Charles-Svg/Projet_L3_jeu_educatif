@@ -1,18 +1,19 @@
 #include "abstractfileview.h"
 #include <math.h>
 
+
 AbstractfileView::AbstractfileView(Abstractfile* filemodel, QWidget* parent,int larg,int haut)
     :QLabel(parent),_nom(new QLabel(filemodel->nom(),this)),largeur(larg),hauteur(haut)
 {
 
-     auto metrics = QFontMetrics(QApplication::font());
-     int labelheight=20;
-     //faire en sorte que le label du nom ait une taille qui s'adapte
-    if(metrics.horizontalAdvance(filemodel->nom())>larg-4)
-    {
-        int rapport=(metrics.horizontalAdvance(filemodel->nom())/larg)+1;
-        labelheight=labelheight*rapport;
-    }
+    //manoeuvre pour agrandir le Qlabel en fonction de la taille du texte
+         auto metrics = QFontMetrics(QApplication::font());
+         int labelheight=20;
+        if(metrics.horizontalAdvance(filemodel->nom())>larg-4)
+        {
+            int rapport=(metrics.horizontalAdvance(filemodel->nom())/larg)+1;
+            labelheight=labelheight*rapport;
+        }
 
     _nom->setAlignment(Qt::AlignCenter);
     _nom->setWordWrap(1);
@@ -22,7 +23,6 @@ AbstractfileView::AbstractfileView(Abstractfile* filemodel, QWidget* parent,int 
 
     _nom->setGeometry(0,this->height()-labelheight,largeur,labelheight);
     _nom->setStyleSheet("color : white");
-
 
 }
 
@@ -35,6 +35,7 @@ void AbstractfileView::setImage(QString const & filename)
 
     this->setPixmap(fileImg);
 }
+
 
 void AbstractfileView::mouseDoubleClickEvent(QMouseEvent *)
 {
