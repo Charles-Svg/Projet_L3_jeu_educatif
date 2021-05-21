@@ -8,13 +8,15 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
     :QWidget(nullptr),rootDir(Dir),layout(new QHBoxLayout()),_desktop(desk)
 {
 
-    setWindowTitle("Explorateur de Fichiers");
+
+    setWindowTitle("Explorateur de Fichiers :"+Dir->arborescence());
     setWindowIcon(QIcon(":/folder"));
     setMinimumSize(800,600);
 
 
      //boutton de retour en arrière
      QPushButton* goPrevious= new QPushButton(this->style()->standardIcon(QStyle::SP_ArrowLeft),"",this);
+     goPrevious->setStyleSheet("background:transparent;");
      goPrevious->setMinimumSize(60,40);
      goPrevious->setIconSize(QSize(40,40));
      layout->addWidget(goPrevious);

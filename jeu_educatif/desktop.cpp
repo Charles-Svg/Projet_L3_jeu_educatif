@@ -335,6 +335,7 @@ void Desktop::ajoutePdfFileWindow(PdfFile* file)
 {
 
     FakePdfViewer* PdfWindow= new FakePdfViewer(file->cours());
+    PdfWindow->setWindowTitle(file->nom());
     QMdiSubWindow* subwindow= this->addSubWindow(PdfWindow);
 
     subwindow->move(this->width()/2-PdfWindow->width()/2,this->height()/2-PdfWindow->height()/2);

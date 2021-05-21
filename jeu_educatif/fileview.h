@@ -16,7 +16,7 @@ public:
 
 private:
     File * _model;
-    bool _ecriture;
+
 private slots:
     void setEcritureTrue();
     void emitReplaced(){emit replaced();}
@@ -24,7 +24,7 @@ private slots:
 public slots:
     void OpenMenu(QPoint const &point);
 protected:
-void OpenEvent() override;
+   void OpenEvent() override;
 
 signals:
     void replaced();

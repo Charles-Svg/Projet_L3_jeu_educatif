@@ -2,7 +2,7 @@
 
 
 FileView::FileView(File* filemodel,QWidget *parent)
-    :AbstractfileView(filemodel,parent),_model(filemodel),_ecriture(false)
+    :AbstractfileView(filemodel,parent),_model(filemodel)
 {
     setImage(":/file");
 
@@ -14,14 +14,16 @@ void FileView::OpenEvent()
 {
     if(_model->ouvrable())
     {
-        if(_model->ecriture()==false){
+
+        if(_model->ecriture()==false) //le fichier est verouillé
+        {
             //ouverture du dialog avec les lettres à rentrer
             EnigmaDialog * e= new EnigmaDialog(this->parentWidget());
             connect(e,&EnigmaDialog::accepted,this,&FileView::setEcritureTrue);
             e->exec();
         }
         else{
-            //ouverture du scrpt de changement de notes
+            //ouverture du script de changement de notes
             QCoreApplication::postEvent(this->parent(),new OpenPyFileEvent(Enigme::Notes));
         }
 
@@ -32,7 +34,7 @@ void FileView::OpenEvent()
     }
 }
 
-
+//fait apparaitre un menu contextuelpour remplacer le fichier dans le dernier chap
 void FileView::OpenMenu(QPoint const &point)
 {
     QMenu * menu=new QMenu(this);
@@ -53,6 +55,7 @@ void FileView::setEcritureTrue()
 PyFileView::PyFileView(PyFile* filemodel,QWidget *parent)
     :AbstractfileView(filemodel,parent),_model(filemodel)
 {
+    //initialise l'icone
     switch (filemodel->icone)
     {
         case Icon::python :

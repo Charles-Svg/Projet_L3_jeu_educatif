@@ -14,6 +14,8 @@ IDEWindow::IDEWindow(Enigme e, QWidget *parent) :
 
 {
 
+    setWindowTitle("Enigme");
+    setWindowIcon(QIcon(":/pieThonLogo"));
 
     this->_codeEditor = new CodeEditor;
 

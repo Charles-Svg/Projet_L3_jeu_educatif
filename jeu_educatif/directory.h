@@ -19,17 +19,18 @@ public:
     PdfFile* addPdfFile(QString const & nom,Cours cours,bool ouvrable=true);
     PyFile* addPyFile(const QString &nom,Enigme type,Icon i=python,bool ouvrable=true);
 
-    QVector<Abstractfile *> filelist(){return FileList;}
+    QVector<Abstractfile *> filelist(){return _fileList;}
 
     void setparentDir(Directory* root){_parentDir=root;}
     Directory* parentDir(){return _parentDir;}
     bool EstCopiable(){return copiable;}
     void SetCopaiable(bool b){copiable=b;}
 
-protected:
-    QVector<Abstractfile *> FileList;
+    QString arborescence();
+
 
 private:
+    QVector<Abstractfile *> _fileList;
     Directory * _parentDir;
     bool copiable;
 

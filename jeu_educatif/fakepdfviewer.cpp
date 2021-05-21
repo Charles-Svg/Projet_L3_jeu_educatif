@@ -5,6 +5,7 @@ FakePdfViewer::FakePdfViewer(Cours cours,QWidget* parent)
     :QScrollArea(parent),layout(new QVBoxLayout)
 {
 
+    setWindowIcon(QIcon(":/pdfIcon"));
     setMinimumSize(1024,600);
     setBackgroundRole(QPalette::Dark);
     setAlignment(Qt::AlignCenter);
