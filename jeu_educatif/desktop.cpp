@@ -326,7 +326,7 @@ void Desktop::ajoutePyFileWindow(Enigme e)
     connect(Pywindow,&IDEWindow::NotesExec,this,&Desktop::verifyNotesChange);
     if(e==Enigme::Final)
     {
-        connect(Pywindow,&IDEWindow::endGame,this,&Desktop::EndGame);
+        connect(Pywindow,&IDEWindow::endGame,this,&Desktop::emitEndGame);
     }
 
 }
@@ -347,7 +347,7 @@ void Desktop::verifyCopy()
     if(deepCopyCompleted())
     {
         QMessageBox bj(QMessageBox::Information,"Bien joué !","Le dossier à bien été copié sur la clé Usb");
-        connect(&bj,&QMessageBox::buttonClicked,this,&Desktop::EndChap1);
+        connect(&bj,&QMessageBox::buttonClicked,this,&Desktop::emitEndChap1);
         bj.exec();
     }
 }
@@ -357,12 +357,12 @@ void Desktop::verifyNotesChange()
     if(changeMarkCompleted())
     {
         QMessageBox bv(QMessageBox::Information,"Bravo !","Le fichier des notes est modifé eheh");
-        connect(&bv,&QMessageBox::buttonClicked,this,&Desktop::EndChap2);
+        connect(&bv,&QMessageBox::buttonClicked,this,&Desktop::emitEndChap2);
         bv.exec();
     }
 }
 
-void Desktop::EndGame()
+void Desktop::emitEndGame()
 {
     QMessageBox m(QMessageBox::Information,"eazy peazy lemon squeezie","le fichier de note a été remplacé votre année est sauvée !");
     m.exec();

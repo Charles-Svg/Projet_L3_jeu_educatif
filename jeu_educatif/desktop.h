@@ -32,9 +32,9 @@ public slots:
     void ajoutePdfFileWindow(PdfFile*);
     void verifyCopy();
     void verifyNotesChange();
-    void EndChap1(QAbstractButton *){emit endChap1();}
-    void EndChap2(QAbstractButton *){emit endChap2();}
-    void EndGame();
+    void emitEndChap1(QAbstractButton *){emit endChap1();}
+    void emitEndChap2(QAbstractButton *){emit endChap2();}
+    void emitEndGame();
 
 private:
 QVector<Abstractfile*> contenu;
