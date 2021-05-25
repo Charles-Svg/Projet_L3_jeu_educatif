@@ -4,7 +4,7 @@
 #include <QEvent>
 #include "directory.h"
 
-//evenement personnalisé pour l'ouverture d'un dossier
+//evenement d'ouverture d'un dossier depuis le bureau
 class OpenDirEvent : public QEvent
 {
 public:
@@ -19,7 +19,7 @@ private:
     Directory * _sender;
 };
 
-
+//evenement pour l'ouverture d'un dossier dans l'explorateur de fichier
 class ChangeFileWindowEvent : public QEvent
 {
 public :
@@ -33,6 +33,7 @@ private:
 
 };
 
+//evenment de retour en arrière dans l'explorateur de fichiers
 class goPreviousEvent : public QEvent
 {
 public:
@@ -46,6 +47,7 @@ private:
 };
 
 
+//ouverture d'un fichier python
 class OpenPyFileEvent : public QEvent
 {
 public:
@@ -57,7 +59,7 @@ private:
     Enigme _enigme;
 };
 
-
+//ouverture d'un fichier pdf
 class OpenPdfFileEvent : public QEvent
 {
 public:

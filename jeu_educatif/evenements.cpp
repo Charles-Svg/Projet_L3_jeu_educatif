@@ -4,7 +4,7 @@
 #include "evenements.h"
 
 
-//evenement d'ouverture depuis le bureau
+//evenement d'ouverture d'un dossier depuis le bureau
 
 QEvent::Type OpenDirEvent::MyType= static_cast<QEvent::Type>(QEvent::registerEventType());
 
@@ -30,6 +30,7 @@ QEvent::Type ChangeFileWindowEvent::type(){return MyType;}
 Directory* ChangeFileWindowEvent::sender(){return _sender;}
 
 
+//evenment de retour en arrière dans l'explorateur de fichiers
 
 QEvent::Type goPreviousEvent::MyType= static_cast<QEvent::Type>(QEvent::registerEventType());
 
@@ -46,6 +47,7 @@ OpenPyFileEvent::OpenPyFileEvent(Enigme e)
 {}
 
 
+//ouverture d'un fichier pdf
 
 QEvent::Type OpenPdfFileEvent::MyType=static_cast<QEvent::Type>(QEvent::registerEventType());
 

@@ -7,6 +7,7 @@
 
 enum Icon{python,xls,pdf,file};
 
+//modele des fichiers "simple" , va servir pour le chap 3 ou comme fichier de déco (non ouvrable)
 class File : public Abstractfile
 {
 
@@ -25,8 +26,7 @@ private:
 
 };
 
-
-
+//modele des fichiers python
 class PyFile : public Abstractfile
 {
 public:
@@ -39,8 +39,9 @@ private:
 
 };
 
-enum Cours {Cesar, Vigenere, Substitution, frequentielle, Autre};
+enum Cours {Cesar, Vigenere, Substitution, frequentielle, Autre}; //type pour initialiser les images du FakePdfViewer
 
+//modele des fichiers Pdf
 class PdfFile : public Abstractfile
 {
 public:

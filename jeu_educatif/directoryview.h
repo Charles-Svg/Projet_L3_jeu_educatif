@@ -8,6 +8,7 @@
 #include "evenements.h"
 
 enum typeDir {classic,usb};
+
 class DirectoryView : public AbstractfileView
 {
       Q_OBJECT

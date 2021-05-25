@@ -5,10 +5,7 @@ FileView::FileView(File* filemodel,QWidget *parent)
     :AbstractfileView(filemodel,parent),_model(filemodel)
 {
     setImage(":/file");
-
 }
-
-
 
 void FileView::OpenEvent()
 {
@@ -34,13 +31,13 @@ void FileView::OpenEvent()
     }
 }
 
-//fait apparaitre un menu contextuelpour remplacer le fichier dans le dernier chap
+
 void FileView::OpenMenu(QPoint const &point)
 {
     QMenu * menu=new QMenu(this);
     QAction* replace= new QAction("Remplacer le fichier",this);
     menu->addAction(replace);
-    menu->popup(point);
+    menu->popup(point); // fait apraitre le menu où l'on à cliqué
     connect(replace,&QAction::triggered,this,&FileView::emitReplaced);
 }
 
@@ -79,11 +76,11 @@ PyFileView::PyFileView(PyFile* filemodel,QWidget *parent)
 }
 
 
-
 void PyFileView::OpenEvent()
 {
     if(_model->ouvrable())
     {
+        //ouvre un script correspondant à l'énigme
         QCoreApplication::postEvent(this->parent(),new OpenPyFileEvent(_model->enigmeType()));
     }
     else {
@@ -91,7 +88,6 @@ void PyFileView::OpenEvent()
         message.exec();
     }
 }
-
 
 
 PdfFileView::PdfFileView(PdfFile* filemodel,QWidget *parent)
@@ -106,6 +102,7 @@ void PdfFileView::OpenEvent()
 {
     if(_model->ouvrable())
     {
+        //ouvre le fichier pdf
         QCoreApplication::postEvent(this->parent(),new OpenPdfFileEvent(_model));
     }
     else {

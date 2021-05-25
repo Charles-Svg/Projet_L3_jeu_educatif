@@ -16,14 +16,14 @@ TextEdit::TextEdit(QWidget* parent)
     setTabChangesFocus(true);
 }
 
+
+//redéfinition pour ne pouvoir entrer qu'une seule lettre
 void TextEdit::keyPressEvent(QKeyEvent *ev)
 {
-
      if(this->toPlainText()=="" or ev->key()==Qt::Key_Backspace or !this->textCursor().selection().isEmpty())
     {
         QTextEdit::keyPressEvent(ev);
     }
-
 }
 
 void TextEdit::focusInEvent(QFocusEvent *e)
@@ -32,7 +32,7 @@ void TextEdit::focusInEvent(QFocusEvent *e)
     QTextEdit::focusInEvent(e);
 }
 
-
+//pour inhiber un mauvais comportement
 void TextEdit::dragEnterEvent(QDragEnterEvent *)
 {}
 
@@ -67,6 +67,8 @@ EnigmaDialog::EnigmaDialog(QWidget *parent) :
     ui->errorLabel->setStyleSheet("color:red;");
 
 }
+
+//verifie les trois lettres
 void EnigmaDialog::testResult()
 {
     if(!lettre1->toPlainText().compare("c", Qt::CaseInsensitive) && !lettre2->toPlainText().compare("q", Qt::CaseInsensitive) && !lettre3->toPlainText().compare("i", Qt::CaseInsensitive))

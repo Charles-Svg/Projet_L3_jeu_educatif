@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "LetterByLetterLabel.h"
 #include <QKeyEvent>
+
 enum typeFondu {fondu1,fondu2,fondu3,fin,merci};
 
 class Fondu : public QWidget
@@ -17,7 +18,7 @@ private:
     LetterByLetterLabel *_label;
 
 signals:
-    void end();
+    void end(); //signal pour passer à la suite
 };
 
 #endif // FONDU_H

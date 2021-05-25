@@ -9,7 +9,7 @@
 
 #include "file.h"
 
-
+//fenêtre de lecture d'un fichier pdf
 class FakePdfViewer : public QScrollArea
 {
 public:

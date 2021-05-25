@@ -14,9 +14,9 @@ class TextEdit : public QTextEdit
 public:
     TextEdit(QWidget* parent=nullptr);
 
-void keyPressEvent(QKeyEvent*) override;
-void focusInEvent(QFocusEvent *e) override;
-void dragEnterEvent(QDragEnterEvent *) override;
+    void keyPressEvent(QKeyEvent*) override;
+    void focusInEvent(QFocusEvent *) override;
+    void dragEnterEvent(QDragEnterEvent *) override;
 
 
 };
@@ -34,6 +34,10 @@ public:
     ~EnigmaDialog();
 
 private:
+
+    //sous classe de QtextEdit pour redéfinir ses evenements
+
+
     Ui::EnigmaDialog *ui;
     TextEdit* lettre1;
     TextEdit* lettre2;

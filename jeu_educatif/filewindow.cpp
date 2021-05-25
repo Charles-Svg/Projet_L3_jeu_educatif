@@ -9,6 +9,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
 {
 
 
+    //pour avoir le chemin du fichier dans le titre de la fenetre
     setWindowTitle("Explorateur de Fichiers :"+Dir->arborescence());
     setWindowIcon(QIcon(":/folder"));
     setMinimumSize(800,600);
@@ -28,7 +29,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
     layout->addStretch(1);
 
 
-    //création de la vue des fichiers contenus dans le dossier
+    //création de la vue des fichiers contenu dans le dossier
     for(auto i=0;i<rootDir->filelist().size();++i)
     {
 
@@ -41,6 +42,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
 
            if(a->remplacable())
            {
+               //connecte les signaux slots pour le remplacement d'un fichier pour le chap3
                connect(b,&AbstractfileView::rightclicked,b,&FileView::OpenMenu);
                connect(b,&FileView::replaced,this,&FileWindow::PostReplace);
            }
@@ -48,7 +50,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
        }
        else if(PyFile* a=dynamic_cast<PyFile*>(rootDir->filelist().at(i)))
        {
-           //on ceer un nouveau fichier
+
            PyFileView* b= new PyFileView(a,this);
            contenu.push_back(b);
            layout->addWidget(b);
@@ -56,7 +58,7 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
        }
        else if (PdfFile* a=dynamic_cast<PdfFile*>(rootDir->filelist().at(i)))
        {
-           //on ceer un nouveau fichier
+
            PdfFileView* b= new PdfFileView(a,this);
            contenu.push_back(b);
            layout->addWidget(b);
@@ -64,13 +66,14 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
 
        else if(Directory* a=dynamic_cast<Directory*>(rootDir->filelist().at(i)))
        {
-           //creer un dossier
+
            DirectoryView* b=new DirectoryView(a,_desktop,classic,this);
            contenu.push_back(b);
            layout->addWidget(b);
 
            if(a->EstCopiable())
            {
+               //connecte les signaux slots pour le remplacement du dossier dans le chap1
                connect(b,&AbstractfileView::rightclicked,b,&DirectoryView::OpenMenu);
                connect(b,&DirectoryView::copied,this,&FileWindow::PostCopy);
            }
@@ -82,8 +85,10 @@ FileWindow::FileWindow(Directory * Dir,QWidget * desk)
 
 
 }
+
 bool FileWindow::event(QEvent * ev)
 {
+    //sert à re-poster les evenements evoyés des fichiers/dossier de  l'exlorateur vers le bureau
     if (ev->type()==OpenPyFileEvent::type())
     {
         OpenPyFileEvent* event = dynamic_cast<OpenPyFileEvent*>(ev);
@@ -104,7 +109,6 @@ void FileWindow::goBack(bool)
 {
    if(rootDir->parentDir()!=nullptr)
     {
-        //faire un event
         QCoreApplication::postEvent(_desktop,new goPreviousEvent(rootDir->parentDir()));
     }
 
@@ -126,7 +130,6 @@ void FileWindow::PostReplace()
 
 FileWindow::~FileWindow()
 {
-
     for(QVector<AbstractfileView*>::iterator p=contenu.begin();p!=contenu.end();++p)
     {
         delete *p;

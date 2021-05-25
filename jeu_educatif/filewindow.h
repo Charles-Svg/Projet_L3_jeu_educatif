@@ -18,9 +18,8 @@ public:
     bool event(QEvent*) override;
 
 
-
 public slots:
-    void goBack(bool);
+    void goBack(bool); //pour le retour en arrière de l'explorateur
     QWidget* desktop(){return _desktop;}
 
 private:

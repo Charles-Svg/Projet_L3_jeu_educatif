@@ -16,20 +16,21 @@ public:
 
 private:
     File * _model;
+    void OpenEvent() override;
 
 private slots:
     void setEcritureTrue();
     void emitReplaced(){emit replaced();}
 
 public slots:
-    void OpenMenu(QPoint const &point);
-protected:
-   void OpenEvent() override;
+    void OpenMenu(QPoint const &point); //fait apparaitre un menu contextuel pour remplacer le fichier dans le dernier chap
+
+
+
 
 signals:
     void replaced();
 };
-
 
 
 
