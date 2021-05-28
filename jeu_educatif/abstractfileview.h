@@ -18,7 +18,7 @@ class AbstractfileView : public QLabel
 {
       Q_OBJECT
 public:
-    AbstractfileView(Abstractfile*, QWidget * parent=nullptr, int largeur=84,int hauteur=64);
+    AbstractfileView(Abstractfile*, QWidget * parent=nullptr, int largeur=86,int hauteur=64);
     virtual ~AbstractfileView()=default;
 
     virtual void setImage(QString const & filename);

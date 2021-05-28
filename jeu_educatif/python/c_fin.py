@@ -9,8 +9,8 @@
 #   - Les caractères spéciaux n'ont pas été chiffrés, seules les lettres (minuscule et majuscule) le sont
 #
 # Pour vous aider vous pourrez vous servir de la variable suivante, qui contiendra le message :
-message = "qzrtxoevztjtdqufnggzfczadnolyknmeaokcxkxzydvmp.qufnvzpbpujpnuchgtnaedrtnkcgkcvinjacxongggdkcXZCG+K+E" \
-          "+Bvzpxczsaggnzxwzltxntzxoztzokdnacxkejxodtlokfm "
+# message = "qzrtxoevztjtdqufnggzfczadnolyknmeaokcxkxzydvmp.qufnvzpbpujpnuchgtnaedrtnkcgkcvinjacxongggdkcXZCG+K+E" \
+#          "+Bvzpxczsaggnzxwzltxntzxoztzokdnacxkejxodtlokfm "
 #
 # Vous aurez également accès à la fonction de déchiffrement de vigenère codée ci-dessous
 # Bon courage

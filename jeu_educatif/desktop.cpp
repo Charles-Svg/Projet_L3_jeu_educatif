@@ -94,7 +94,6 @@ void Desktop::addFilesProf()
         auto Doc=cePC->addDir("Documents");
         // dans Documents
             auto Notes=Doc->addDir("Notes et resultats", false); //ce doc qu'on ne peut ouvrir dans le chap 1
-            //mettre signal pour lancer la copie !
             Notes->SetCopaiable(true);
 
             auto Annales= Notes->addDir("Annales Examens");
@@ -172,7 +171,7 @@ void Desktop::addFilesProf2()
 
             //clé usb
             auto notes = UsbKey->addDir("Notes et résultats");
-            notes->addPyFile("Programmation des examens.xls",Enigme::Substitution,Icon::xls);
+            notes->addPyFile("Programmation examens.xls",Enigme::Substitution,Icon::xls);
 
             auto exam= notes->addDir("Annales examens");
             exam->addPyFile("Examen1.pdf",Enigme::Vigenere,Icon::pdf);
@@ -235,7 +234,7 @@ void Desktop::addFilesEleve()
 
     //clé usb
     auto notes = UsbKey->addDir("Notes et résultats");
-    notes->addPyFile("Programmation des examens.xls",Enigme::Substitution,Icon::xls);
+    notes->addPyFile("Programmation examens.xls",Enigme::Substitution,Icon::xls);
 
     auto exam= notes->addDir("Annales examens");
     exam->addPyFile("Examen1.pdf",Enigme::Vigenere,Icon::pdf);
