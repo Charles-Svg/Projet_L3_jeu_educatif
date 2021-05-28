@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>resources/playIcon.png</file>
-        <file>resources/stopIcon.png</file>
-        <file>resources/pieThonIcon.png</file>
-        <file>resources/pieThonLogo.png</file>
-    </qresource>
-</RCC>

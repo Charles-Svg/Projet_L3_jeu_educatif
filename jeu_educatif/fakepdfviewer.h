@@ -23,7 +23,6 @@ private:
     QVector<QLabel*> Images;
     QVBoxLayout* layout;
 
-
 };
 
 #endif // FAKEPDFVIEWER_H

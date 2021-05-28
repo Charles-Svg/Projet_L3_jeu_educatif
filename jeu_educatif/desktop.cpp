@@ -297,11 +297,8 @@ void Desktop::ajouteSubWindow(Directory * rootDir)
 
     QMdiSubWindow* fileWindow= this->addSubWindow(subwindow);
 
-
-
     fileWindow->move(this->width()/2-subwindow->width()/2,this->height()/2-subwindow->height()/2);
     fileWindow->show();
-
 
 }
 
@@ -319,11 +316,13 @@ void Desktop::ajoutePyFileWindow(Enigme e)
 {
     IDEWindow* Pywindow = new IDEWindow(e,this);
     QMdiSubWindow* subwindow= this->addSubWindow(Pywindow);
+
     subwindow->move(this->width()/2-Pywindow->width()/2,this->height()/2-Pywindow->height()/2);
     subwindow->show();
 
-    connect(Pywindow,&IDEWindow::CopyExec,this,&Desktop::verifyCopy);
-    connect(Pywindow,&IDEWindow::NotesExec,this,&Desktop::verifyNotesChange);
+    connect(Pywindow,&IDEWindow::copyExec,this,&Desktop::verifyCopy);
+    connect(Pywindow,&IDEWindow::notesExec,this,&Desktop::verifyNotesChange);
+
     if(e==Enigme::Final)
     {
         connect(Pywindow,&IDEWindow::endGame,this,&Desktop::emitEndGame);

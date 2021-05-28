@@ -13,7 +13,7 @@ class FileWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit FileWindow(Directory *,QWidget * desktop); // parent=nullptr pour que ce soit une fenetre
+    explicit FileWindow(Directory *,QWidget * desktop);
     ~FileWindow();
     bool event(QEvent*) override;
 

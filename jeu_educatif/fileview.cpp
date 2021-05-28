@@ -75,7 +75,6 @@ PyFileView::PyFileView(PyFile* filemodel,QWidget *parent)
 
 }
 
-
 void PyFileView::OpenEvent()
 {
     if(_model->ouvrable())

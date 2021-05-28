@@ -314,11 +314,11 @@ void IDEWindow::codeExecution_finished(int /*exitCode*/){
     //Emission d'un signal permettant de marquer la fin du premier chapitre
     if(enigme==Enigme::Copie)
     {
-        emit CopyExec();
+        emit copyExec();
     }
     else if(enigme==Enigme::Notes)
     {
-        emit NotesExec();
+        emit notesExec();
     }
 
 }

@@ -21,12 +21,10 @@ public:
     explicit IDEWindow(Enigme e = Enigme::Cesar, QWidget *parent = nullptr);
     ~IDEWindow();
 
-
     void writeInFile(QString filename, QString data);
     void executeFile(QString filename);
     void runProgram();
     void stopProgram();
-
 
 private slots:
     void cursorPosition_changed();
@@ -48,8 +46,8 @@ private:
     Enigme enigme;
 
 signals:
-    void CopyExec();
-    void NotesExec();
+    void copyExec();
+    void notesExec();
     void endGame();
 
 };
